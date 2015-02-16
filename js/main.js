@@ -1,12 +1,25 @@
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
-	console.log($);
-	console.log(_);
-	console.log(Backbone);
+define([
+	'jquery', 
+	'underscore', 
+	'backbone',
+	'router'
+], function(
+	$, 
+	_, 
+	Backbone,
+	Router
+) {
 
-	return Backbone.Model.extend({
-		initialize: function() {
+	var Main = Backbone.Model.extend({
+		initialize: function () {
 
+			console.log('HELLOOO nr 2!');
+			var AppRouter = new Router();
+
+			Backbone.history.start();
 			console.log('I\'m initialized!');
 		}
 	});
+
+	return Main;
 });
