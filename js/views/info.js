@@ -1,15 +1,15 @@
 define(['backbone','underscore', 'jquery'], function(Backbone, _, $) {
 	return Backbone.View.extend({
 
-		id: 'home-page',
+		id: 'info-page',
 
 		initialize: function() {
-			console.log('Home view initialized!');
+			console.log('Info view initialized!');
 			this.render();
 		},
 
 		render: function() {
-			this.el.innerHTML = '<h2>Who would know?!</h2>';
+			this.el.innerHTML = '<p>Info page loaded</p>';
 			// document.getElementById('page-content').appendChild(this.el);
 			console.log('...and even rendered!', this);
 			return this;

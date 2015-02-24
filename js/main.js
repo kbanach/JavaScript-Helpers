@@ -2,24 +2,53 @@ define([
 	'jquery', 
 	'underscore', 
 	'backbone',
-	'router'
+	'views/home',
+	'views/info'
 ], function(
 	$, 
 	_, 
 	Backbone,
-	Router
+	Home,
+	Info
 ) {
 
-	var Main = Backbone.Model.extend({
-		initialize: function () {
+	var MainViewElement = document.getElementById('page-content'),
+		AppRouter;
 
-			console.log('HELLOOO nr 2!');
-			var AppRouter = new Router();
+	AppRouter = Backbone.Router.extend({
+		routes: {
+			'home': 'showHome',
+			'info': 'showInfo'
+		},
+
+		showHome: function showHomeRoute() {
+			console.log('You are looking at HELP!');
+			console.log(Home);
+			this.loadView(new Home());
+		},
+
+		showInfo: function showInfoRoute() {
+			console.log('You are looking at INFO!');
+			this.loadView(new Info());
+		},
+
+		loadView: function(view) {
+			if (this.view) {
+				MainViewElement.removeChild(this.view.el);
+				this.view.remove();	
+			}
+			
+			this.view = view;
+			MainViewElement.appendChild(this.view.el);
+		}
+	});
+
+	return Backbone.Model.extend({
+		initialize: function () {
+			var appRouter = new AppRouter();
 
 			Backbone.history.start();
 			console.log('I\'m initialized!');
 		}
 	});
-
-	return Main;
 });
