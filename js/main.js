@@ -3,12 +3,14 @@ define([
 	'underscore', 
 	'backbone',
 	'views/home',
+	'views/comment_generator',
 	'views/info'
 ], function(
 	$, 
 	_, 
 	Backbone,
 	Home,
+	ConsoleGen,
 	Info
 ) {
 
@@ -18,7 +20,8 @@ define([
 	AppRouter = Backbone.Router.extend({
 		routes: {
 			'home': 'showHome',
-			'info': 'showInfo'
+			'info': 'showInfo',
+			'console': 'showConsoleGenerator'
 		},
 
 		showHome: function showHomeRoute() {
@@ -30,6 +33,11 @@ define([
 		showInfo: function showInfoRoute() {
 			console.log('You are looking at INFO!');
 			this.loadView(new Info());
+		},
+
+		showConsoleGenerator: function showInfoRoute() {
+			console.log('You are looking at INFO!');
+			this.loadView(new ConsoleGen());
 		},
 
 		loadView: function(view) {

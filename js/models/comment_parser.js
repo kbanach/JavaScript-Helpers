@@ -17,13 +17,15 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 		},
 
 		generate: function(newInput) {
+			console.dir(arguments);
+
 			if (_.isString(newInput)) {
 				this.set({ input:  newInput });
 				this.set({ output: generateLogs(this)} );
 
 				return this.get('output');
 			} else {
-				throw new Error('Given input is not an event');
+				throw new Error('Given input is not an string');
 			}
 		}
 	});
