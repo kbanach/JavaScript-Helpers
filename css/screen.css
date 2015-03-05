@@ -127,3 +127,6 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 /* line 14, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-normalize-1.5/stylesheets/normalize/_tables.scss */
 td, th { padding: 0; }
+
+/* line 1, ../scss/_common.scss */
+#console-output { font-family: monospace; white-space: pre; }

@@ -1,11 +1,40 @@
-define(['backbone','models/comment_parser'], function(Backbone, CommentParserModel) {
+define([
+	'backbone',
+	'models/comment_parser',
+	'helpers/elementSelector',
+	'dotjs',
+	'text!templates/comment_generator.html'
+], function(
+	Backbone, 
+	CommentParserModel,
+	elementSelector,
+	doT,
+	templateHtml
+) {
 	return Backbone.View.extend({
+
 		model: new CommentParserModel(),
 
 		id: 'comment-parsers',
 
+		template: doT.template(templateHtml),
+
+		langs: {
+			consoleLogFormName: 'console-log-form',
+			inputFieldId: 'console-input',
+			outputFieldId: 'console-output',
+
+			viewTitle: 'Logs Generator',
+			commentInputLabel: 'Console.log Generator',
+			submitButton: 'Generate logs!',
+			submitButtonId: 'generateConsoleLogs',
+			markAllButton: 'Mark it!',
+			markAllButtonId: 'markAll'
+		},
+
 		events: {
-			'click #generateConsoleLogs': 'generateLogs'
+			'click #generateConsoleLogs': 'generateLogs',
+			'click #markAll': 'markAll'
 		},
 
 		initialize: function() {
@@ -14,30 +43,24 @@ define(['backbone','models/comment_parser'], function(Backbone, CommentParserMod
 		},
 
 		render: function (){
-			var viewContent = document.createDocumentFragment();
+			this.el.innerHTML = this.template(this.langs);
 
-			viewContent.id = this.id;
-			
-			this.consoleInput = document.createElement('textarea');
-			this.consoleOutput = document.createElement('pre');
-			this.consoleSubmit = document.createElement('button');
-
-			viewContent.appendChild(this.consoleInput);
-			viewContent.appendChild(this.consoleSubmit);
-			viewContent.appendChild(this.consoleOutput);
-
-			this.consoleSubmit.innerHTML = 'Generate logs!';
-			this.consoleSubmit.id = 'generateConsoleLogs';
-
-			
-			this.el.innerHTML = '<h2>Console.log Generator</h2>';
-			this.el.appendChild(viewContent);			
+			this.consoleInput = this.el.querySelector('#' + this.langs.inputFieldId);
+			this.consoleOutput = this.el.querySelector('#' + this.langs.outputFieldId);
 			
 			return this;
 		},
 
-		generateLogs: function() {
+		generateLogs: function(event) {
+			event.preventDefault();
+
 			this.consoleOutput.innerHTML = this.model.generate(this.consoleInput.value);
+		},
+
+		markAll: function(event) {
+			event.preventDefault();
+
+			elementSelector(this.consoleOutput);
 		}
 	});
 });

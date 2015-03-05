@@ -12,7 +12,14 @@ require.config({
 		}
 	},
 
+	paths: {},
+
 	packages: [
+		{
+			name: 'text',
+			location: 'libs/require',
+			main: 'text'
+		},
 		{
 			name: 'underscore',
 			location: 'libs/underscore',
@@ -27,6 +34,11 @@ require.config({
 			name: 'jquery',
 			location: 'libs/jquery',
 			main: 'jquery-2.1.3'
+		},
+		{
+			name: 'dotjs',
+			location: 'libs/dot',
+			main: 'dot.min'
 		}
 	]
 });
