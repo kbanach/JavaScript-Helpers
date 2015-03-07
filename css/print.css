@@ -1,3 +1,24 @@
 /* Welcome to Compass. Use this file to define print styles. Import this file using the following HTML or equivalent: <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
 /* line 1, ../scss/_common.scss */
-#console-output { font-family: monospace; white-space: pre; }
+body { width: 960px; margin: 0 auto; }
+
+/* line 6, ../scss/_common.scss */
+label { display: block; }
+/* line 9, ../scss/_common.scss */
+.inline-form label { display: inline-block; }
+
+/* line 14, ../scss/_common.scss */
+#console-output { background: #ddd; border: 1px dashed #999; border-radius: 3px; padding: 0.4em; margin: 1em 0.3em; font-family: monospace; white-space: pre; }
+
+/* line 29, ../scss/_common.scss */
+#comment-parsers form { width: 600px; }
+/* line 33, ../scss/_common.scss */
+#comment-parsers textarea { line-height: 1.4em; height: 7em; width: 570px; }
+/* line 41, ../scss/_common.scss */
+#comment-parsers .form-field { margin-bottom: 1em; }
+/* line 46, ../scss/_common.scss */
+#comment-parsers .inline-form label { width: 240px; }
+/* line 50, ../scss/_common.scss */
+#comment-parsers .inline-form input, #comment-parsers .inline-form textarea, #comment-parsers .inline-form select { width: 330px; }
+/* line 53, ../scss/_common.scss */
+#comment-parsers .inline-form input[type="checkbox"], #comment-parsers .inline-form textarea[type="checkbox"], #comment-parsers .inline-form select[type="checkbox"] { width: auto; }
