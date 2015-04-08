@@ -10,7 +10,7 @@ define([], function () {
                 range.moveToElementText(elementToSelect);
                 range.select();
             } else if (window.getSelection) { // moz, opera, webkit
-                var selection = window.getSelection();            
+                var selection = window.getSelection();
                 var range = document.createRange();
                 range.selectNodeContents(elementToSelect);
                 selection.removeAllRanges();

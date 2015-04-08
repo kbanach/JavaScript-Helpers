@@ -1,147 +1,154 @@
 define([
-	'backbone',
-	'models/comment_parser',
-	'helpers/elementSelector',
-	'dotjs',
-	'text!templates/comment_generator.html'
+    'backbone',
+    'models/comment_parser',
+    'helpers/elementSelector',
+    'dotjs',
+    'text!templates/comment_generator.html'
 ], function(
-	Backbone, 
-	CommentParserModel,
-	elementSelector,
-	doT,
-	templateHtml
+    Backbone, 
+    CommentParserModel,
+    elementSelector,
+    doT,
+    templateHtml
 ) {
-	return Backbone.View.extend({
+    return Backbone.View.extend({
 
-		model: new CommentParserModel(),
+        model: new CommentParserModel(),
 
-		id: 'comment-parsers',
+        id: 'comment-parsers',
 
-		template: doT.template(templateHtml),
+        template: doT.template(templateHtml),
 
-		minLineLength: 10,
+        minLineLength: 10,
 
-		maxLineLength: 120,
+        maxLineLength: 120,
 
-		templateConfig: {
-			consoleLogFormName: 'console-log-form',
-			inputFieldId: 'console-input',
-			outputFieldId: 'console-output',
+        templateConfig: {
+            consoleLogFormName: 'console-log-form',
+            inputFieldId: 'console-input',
+            outputFieldId: 'console-output',
 
-			viewTitle: 'Logs Generator',
-			commentInputLabel: 'Console.log Generator',
-			placeHold: 'Placeholder',
-			placeHoldId: 'placeHold',
-			commentLength: 'Comment length',
-			commentLengthId: 'commentLength',
-			prefix: 'Text before',
-			prefixId: 'prefix',
-			postfix: 'Text after',
-			postfixId: 'postfix',
-			hasBorder: 'Border around',
-			hasBorderId: 'hasBorder',
-			extraSpace: 'Extra spacebar',
-			extraSpaceId: 'extraSpace',
-			fillSpace: 'Fill empty space',
-			fillSpaceId: 'fillSpace',
-			selectAlign: 'Text align',
-			selectAlignId: 'textAlign',
-			selectAlignFields: {
-				'left': 'Left',
-				'center': 'Center',
-				'right': 'Right'
-			},
-			submitButton: 'Generate logs!',
-			submitButtonId: 'generateConsoleLogs',
-			markAllButton: 'Mark it!',
-			markAllButtonId: 'markAll'
-		},
+            viewTitle: 'Logs Generator',
+            commentInputLabel: 'Console.log Generator',
+            placeHold: 'Placeholder',
+            placeHoldId: 'placeHold',
+            commentLength: 'Comment length',
+            commentLengthId: 'commentLength',
+            prefix: 'Text before',
+            prefixId: 'prefix',
+            postfix: 'Text after',
+            postfixId: 'postfix',
+            hasBorder: 'Border around',
+            hasBorderId: 'hasBorder',
+            extraSpace: 'Extra spacebar',
+            extraSpaceId: 'extraSpace',
+            fillSpace: 'Fill empty space',
+            fillSpaceId: 'fillSpace',
+            selectAlign: 'Text align',
+            selectAlignId: 'textAlign',
+            selectAlignFields: {
+                'left': 'Left',
+                'center': 'Center',
+                'right': 'Right'
+            },
+            submitButton: 'Generate logs!',
+            submitButtonId: 'generateConsoleLogs',
+            markAllButton: 'Mark it!',
+            markAllButtonId: 'markAll'
+        },
 
-		events: {
-			'focusout #placeHold': 'changePlaceholder',
-			'change #commentLength': 'changeCommentLength',
-			'focusout #prefix': 'changePrefix',
-			'focusout #postfix': 'changePostfix',
-			'change #hasBorder': 'changeBorder',
-			'change #extraSpace': 'changeSpace',
-			'change #fillSpace': 'changeFillSpace',
-			'change #textAlign': 'changeAlign',
-			'click #generateConsoleLogs': 'generateLogs',
-			'click #markAll': 'markAll'
-		},
+        events: {
+            'focusout #placeHold': 'changePlaceholder',
+            'change #commentLength': 'changeCommentLength',
+            'focusout #prefix': 'changePrefix',
+            'focusout #postfix': 'changePostfix',
+            'change #hasBorder': 'changeBorder',
+            'change #extraSpace': 'changeSpace',
+            'change #fillSpace': 'changeFillSpace',
+            'change #textAlign': 'changeAlign',
+            'click #generateConsoleLogs': 'generateLogs',
+            'click #markAll': 'markAll'/*,
+            'change model:output': 'outputChanged'*/
+        },
 
-		initialize: function() {
-			console.log('Console generator view!');
-			this.render();
-		},
+        initialize: function() {
+            console.log('Console generator view!');
+            this.render();
+        },
 
-		render: function (){
-			this.el.innerHTML = this.template(this.templateConfig);
+        render: function (){
+            this.el.innerHTML = this.template(this.templateConfig);
 
-			this.placehold = this.el.querySelector('#' + this.templateConfig.placeHoldId);
-			this.commentLength = this.el.querySelector('#' + this.templateConfig.commentLengthId);
-			this.prefixInput = this.el.querySelector('#' + this.templateConfig.prefixId);
-			this.postfixInput = this.el.querySelector('#' + this.templateConfig.postfixId);
-			this.consoleInput = this.el.querySelector('#' + this.templateConfig.inputFieldId);
-			this.consoleOutput = this.el.querySelector('#' + this.templateConfig.outputFieldId);
-			this.hasBorder = this.el.querySelector('#' + this.templateConfig.hasBorderId);
-			this.extraSpace = this.el.querySelector('#' + this.templateConfig.extraSpaceId);
-			this.fillSpace = this.el.querySelector('#' + this.templateConfig.fillSpaceId);
-			this.textAlign = this.el.querySelector('#' + this.templateConfig.selectAlignId);
+            this.placehold = this.el.querySelector('#' + this.templateConfig.placeHoldId);
+            this.commentLength = this.el.querySelector('#' + this.templateConfig.commentLengthId);
+            this.prefixInput = this.el.querySelector('#' + this.templateConfig.prefixId);
+            this.postfixInput = this.el.querySelector('#' + this.templateConfig.postfixId);
+            this.consoleInput = this.el.querySelector('#' + this.templateConfig.inputFieldId);
+            this.consoleOutput = this.el.querySelector('#' + this.templateConfig.outputFieldId);
+            this.hasBorder = this.el.querySelector('#' + this.templateConfig.hasBorderId);
+            this.extraSpace = this.el.querySelector('#' + this.templateConfig.extraSpaceId);
+            this.fillSpace = this.el.querySelector('#' + this.templateConfig.fillSpaceId);
+            this.textAlign = this.el.querySelector('#' + this.templateConfig.selectAlignId);
 
-			this.placehold.value = this.model.get('placeholder');
-			this.commentLength.value = this.model.get('lineLength');
-			this.prefixInput.value = this.model.get('prefix');
-			this.postfixInput.value = this.model.get('postfix');
-			
-			return this;
-		},
+            this.placehold.value = this.model.get('placeholder');
+            this.commentLength.value = this.model.get('lineLength');
+            this.prefixInput.value = this.model.get('prefix');
+            this.postfixInput.value = this.model.get('postfix');
+            
+            return this;
+        },
 
-		changePlaceholder: function () {
-			this.model.set({ placeholder: this.placehold.value[0] }); 
-		},
+        outputChanged: function() {
+            console.log('********************************************************************************');
+            console.log('* output changed! **************************************************************');
+            console.log('********************************************************************************');
+        },
 
-		changeCommentLength: function () {
-			this.model.set({
-				lineLength: 
-					Math.max( Math.min( parseInt(this.commentLength.value, 10), this.maxLineLength), this.minLineLength)  
-			});
-		},
+        changePlaceholder: function () {
+            this.model.set({ placeholder: this.placehold.value[0] }); 
+        },
 
-		changePrefix: function() {
-			this.model.set({ prefix: this.prefixInput.value }); 
-		},
+        changeCommentLength: function () {
+            this.model.set({
+                lineLength: 
+                    Math.max( Math.min( parseInt(this.commentLength.value, 10), this.maxLineLength), this.minLineLength)  
+            });
+        },
 
-		changePostfix: function() {
-			this.model.set({ postfix: this.postfixInput.value }); 
-		},
+        changePrefix: function() {
+            this.model.set({ prefix: this.prefixInput.value }); 
+        },
 
-		changeBorder: function() {
-			this.model.set({ border: !!this.hasBorder.checked });
-		},
+        changePostfix: function() {
+            this.model.set({ postfix: this.postfixInput.value }); 
+        },
 
-		changeSpace: function() {
-			this.model.set({ extraSpace: !!this.extraSpace.checked }); 
-		},
+        changeBorder: function() {
+            this.model.set({ border: !!this.hasBorder.checked });
+        },
 
-		changeFillSpace: function() {
-			this.model.set({ filled: !!this.fillSpace.checked }); 	
-		},
+        changeSpace: function() {
+            this.model.set({ extraSpace: !!this.extraSpace.checked }); 
+        },
 
-		changeAlign: function() {
-			this.model.set({ textAlign: this.textAlign.value }); 
-		},
+        changeFillSpace: function() {
+            this.model.set({ filled: !!this.fillSpace.checked });   
+        },
 
-		generateLogs: function(event) {
-			event.preventDefault();
+        changeAlign: function() {
+            this.model.set({ textAlign: this.textAlign.value }); 
+        },
 
-			this.consoleOutput.innerHTML = this.model.generate(this.consoleInput.value);
-		},
+        generateLogs: function(event) {
+            event.preventDefault();
 
-		markAll: function(event) {
-			event.preventDefault();
+            this.consoleOutput.innerHTML = this.model.generate(this.consoleInput.value);
+        },
 
-			elementSelector(this.consoleOutput);
-		}
-	});
+        markAll: function(event) {
+            event.preventDefault();
+
+            elementSelector(this.consoleOutput);
+        }
+    });
 });
