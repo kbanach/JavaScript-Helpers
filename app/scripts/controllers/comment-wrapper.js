@@ -115,6 +115,12 @@ function varLog(varName, options) {
     var output = '';
 
     if (varName && typeof varName === 'string') {
+        var escapedVarName = varName;
+
+        if (options.escapeStringEscapeChars) {
+            escapedVarName = escapedVarName.replace(options.stringEscapeChar, '\\' + options.stringEscapeChar, 'g');
+        }
+
         output += options.lineStart
             + options.stringEscapeChar
             + options.fillChar;
@@ -123,7 +129,7 @@ function varLog(varName, options) {
             output += ' ';
         }
 
-        output += varName + options.stringEscapeChar + ', ' + varName + options.lineEnd + options.endOfLineChar;
+        output += escapedVarName + options.stringEscapeChar + ', ' + varName + options.lineEnd + options.endOfLineChar;
     }
 
     return output;
