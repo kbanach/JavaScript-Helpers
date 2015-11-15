@@ -1,7 +1,7 @@
 # JavaScript Helpers
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+Project live preview on http://kbanach.github.io/JavaScript-Helpers
+
 
 ## Prepare environment*
 
@@ -37,15 +37,16 @@ Run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
 
-Running `grunt test` will run the unit tests with karma.
+Running `grunt test` will run the unit tests with karma. And yes, I have to fix ALL of them.
 
 ## Gnomes Inc. release notes
 
-Everything what you can see here, is a one-man-one-tomuchfreetime job. Don't blame me for anything. Ask questions.
-Questions are good. Like chocolate. The difference is, that someone cares about chocolate and probably no one will care about
-any questions related with this project.
+This project was generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.12.1.
 
-Exception:
+Everything what you can see here, is a one-man-one-tomuchfreetime job. Don't blame me for anything. Ask questions.
+Questions are good. Like chocolate.
+
 If you want to add something into project or suggest some fuckup inside of it.
 Then please write to banach.krystian at gmail. I promise I'll give you potato if you want one!
 
