@@ -10,6 +10,6 @@
 angular.module('jsUtilsApp')
     .controller('ContactCtrl', [
         '$scope', function ($scope) {
-            $scope.gitHubLink = 'https://github.com/kbanach/js_utils';
+            $scope.gitHubLink = 'https://github.com/kbanach/JavaScript-Helpers';
         }
     ]);

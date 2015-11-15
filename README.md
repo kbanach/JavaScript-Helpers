@@ -47,7 +47,7 @@ version 0.12.1.
 Everything what you can see here, is a one-man-one-tomuchfreetime job. Don't blame me for anything. Ask questions.
 Questions are good. Like chocolate.
 
-If you want to add something into project or suggest some fuckup inside of it.
-Then please write to banach.krystian at gmail. I promise I'll give you potato if you want one!
+If you want to add something into project or suggest some fuckup inside of it, then please write 
+to banach.krystian at gmail. I promise I'll give you potato if you want one!
 
 Slava.
