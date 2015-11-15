@@ -56,7 +56,8 @@ function wrapLineInChars(line, options) {
     var output = '';
 
     if (line) {
-        var additionalCharsLength = (2 * options.fillChar.length * options.borderAround + 2 * options.additionalEmptySpacer);
+        var additionalCharsLength = (2 * options.fillChar.length * options.borderAround
+             + 2 * options.additionalEmptySpacer);
         var availableLineCharsLength = options.lineLength - additionalCharsLength;
 
         if (line.length < availableLineCharsLength) {
@@ -129,7 +130,15 @@ function varLog(varName, options) {
             output += ' ';
         }
 
-        output += escapedVarName + options.stringEscapeChar + ', ' + varName + options.lineEnd + options.endOfLineChar;
+        output += escapedVarName
+            + ' '
+            + options.stringEscapeChar
+            + options.varConcatChar
+            + options.varEscapePrefix
+            + varName
+            + options.varEscapePostfix
+            + options.lineEnd
+            + options.endOfLineChar;
     }
 
     return output;
@@ -210,23 +219,92 @@ function commentWrapperCtrl($scope) {
         selectElementsContent(document.getElementById('commentWrapper_output'));
     }
 
+    function loadPreset(preset) {
+        blockRecalculation = true;
+        angular.extend($scope.options, preset);
+        blockRecalculation = false;
+        recalculateOutput();
+    }
+
     var defaults = {
         lineStart:               'console.log(',
         lineEnd:                 ');',
         stringEscapeChar:        '\'',
         lineLength:              60,
         fillChar:                '*',
+        showAdvancedOptions:     false,
         additionalEmptySpacer:   true,
         borderAround:            true,
         escapeStringEscapeChars: true,
         endOfLineChar:           '\n',
         varsToList:              '',
         varsToListSeparator:     ',',
-        input:                   'Lorem\nipsum\n\ndolor'
+        varConcatChar:           ',',
+        varEscapePrefix:         '',
+        varEscapePostfix:        '',
+        placeholder: {
+            lineStart:               'console.log(',
+            lineEnd:                 ');',
+            fillChar:                'e.g. "*" or "="',
+            varConcatChar:           'e.g. "," or "+"',
+            varsToList:              'lorem, ipsum, dolor',
+            varEscapePrefix:         'JSON.stringify(',
+            varEscapePostfix:        ', false, "\\t")',
+        },
+        input:                   'Put your comment\nhere'
+    };
+
+    var presets = {
+        'androidstudio': {
+            presetName:              'Android Studio',
+            lineStart:               'Log.i(',
+            lineEnd:                 ');',
+            lineLength:              80,
+            stringEscapeChar:        '\"',
+            varConcatChar:           '+',
+            varEscapePrefix:         '',
+            varEscapePostfix:        '.toString()',
+            input:                   'Android Studio preset loaded!\nLoad LOG class ;)'
+        },
+        'browser': {
+            lineStart:               'console.log(',
+            lineEnd:                 ');',
+            stringEscapeChar:        '\'',
+            presetName:              'Browser',
+            lineLength:              60,
+            varEscapePrefix:         '',
+            varEscapePostfix:        '',
+            varConcatChar:           '+',
+            input:                   'Browser preset loaded!'
+        },
+        'javascriptcomment': {
+            presetName:              'JS Comment',
+            lineStart:               '// ',
+            lineEnd:                 '',
+            stringEscapeChar:        '',
+            lineLength:              60,
+            fillChar:                '*',
+            additionalEmptySpacer:   true,
+            borderAround:            true,
+            escapeStringEscapeChars: false,
+            endOfLineChar:           '\n'
+        },
+        'nodejs': {
+            lineStart:               'console.log(',
+            lineEnd:                 ');',
+            stringEscapeChar:        '\'',
+            presetName:              'NodeJS',
+            lineLength:              60,
+            varEscapePrefix:         'utils.inspect(',
+            varEscapePostfix:        ', false, 3)',
+            input:                   'NodeJS preset loaded!\nDon`t forget to equire "utils" Node package'
+        }
     };
 
     $scope.options = angular.copy(defaults);
     $scope.calculateOutput = recalculateOutput;
+    $scope.presets = presets;
+    $scope.loadPreset = loadPreset;
     $scope.reset = resetToDefaults;
     $scope.select = selectOutput;
 

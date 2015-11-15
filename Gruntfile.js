@@ -1,5 +1,5 @@
-// Generated on 2015-10-24 using generator-angular 0.12.1
-'use strict';
+/* jshint node: true */
+"use strict";
 
 // # Globbing
 // for performance reasons we're only matching one level down:
