@@ -1,28 +1,15 @@
 <h2>Comments Generator</h2>
 
+<h3>Default Presets</h3>
+<div class="btn-group">
+    <a class="btn btn-default btn-sm"
+       ng-repeat="(key, value) in presets"
+       ng-click="loadPreset(value)">
+        {{value.presetName}} preset
+    </a>
+</div>
+
 <h3>Basic Settings</h3>
-<div class="form-group">
-    <label for="commentWrapper_lineStart">Line start</label>
-    <input type="text"
-        ng-model="options.lineStart"
-        ng-trim="false"
-        ng-change="calculateOutput()"
-        class="form-control"
-        placeholder="{{options.placeholder.lineStart}}"
-        id="commentWrapper_lineStart" />
-</div>
-
-<div class="form-group">
-    <label for="commentWrapper_lineEnd">Line end</label>
-    <input type="text"
-        ng-model="options.lineEnd"
-        ng-trim="false"
-        ng-change="calculateOutput()"
-        class="form-control"
-        placeholder="{{options.placeholder.lineEnd}}"
-        id="commentWrapper_lineEnd" />
-</div>
-
 <div class="form-group">
     <label for="commentWrapper_fillChar">Char to use as filler</label>
     <input type="text"
@@ -43,15 +30,6 @@
         id="commentWrapper_lineLength" />
 </div>
 
-<h3>Default Presets</h3>
-<div class="btn-group">
-<a class="btn btn-default btn-sm"
-    ng-repeat="(key, value) in presets"
-    ng-click="loadPreset(value)">
-    Load {{value.presetName}} preset
-</a>
-</div>
-
 <h3>
     Advanced Settings
     <div class="btn-group pull-right">
@@ -63,8 +41,28 @@
     </div>
 </h3>
 
-
 <div ng-show="options.showAdvancedOptions">
+    <div class="form-group">
+        <label for="commentWrapper_lineStart">Line start</label>
+        <input type="text"
+               ng-model="options.lineStart"
+               ng-trim="false"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.lineStart}}"
+               id="commentWrapper_lineStart" />
+    </div>
+
+    <div class="form-group">
+        <label for="commentWrapper_lineEnd">Line end</label>
+        <input type="text"
+               ng-model="options.lineEnd"
+               ng-trim="false"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.lineEnd}}"
+               id="commentWrapper_lineEnd" />
+    </div>
 
     <div class="form-group">
         <label for="commentWrapper_stringEscapeChar">

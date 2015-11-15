@@ -275,7 +275,7 @@ function commentWrapperCtrl($scope) {
             lineLength:              60,
             varEscapePrefix:         '',
             varEscapePostfix:        '',
-            varConcatChar:           '+',
+            varConcatChar:           ',',
             input:                   'Browser preset loaded!'
         },
         'javascriptcomment': {
@@ -299,7 +299,20 @@ function commentWrapperCtrl($scope) {
             lineLength:              60,
             varEscapePrefix:         'utils.inspect(',
             varEscapePostfix:        ', false, 3)',
+            varConcatChar:           ',',
             input:                   'NodeJS preset loaded!\nDon`t forget to equire "utils" Node package'
+        },
+        'python3': {
+            lineStart:               'print(',
+            lineEnd:                 ')',
+            escapeStringEscapeChars: true,
+            stringEscapeChar:        '\'',
+            presetName:              'Python 3.x',
+            lineLength:              60,
+            varEscapePrefix:         '',
+            varEscapePostfix:        '',
+            varConcatChar:           ',',
+            input:                   'Python 3.x preset loaded!'
         }
     };
 
