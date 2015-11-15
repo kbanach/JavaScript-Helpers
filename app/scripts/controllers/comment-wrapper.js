@@ -269,6 +269,7 @@ function commentWrapperCtrl($scope) {
         'browser': {
             lineStart:               'console.log(',
             lineEnd:                 ');',
+            escapeStringEscapeChars: true,
             stringEscapeChar:        '\'',
             presetName:              'Browser',
             lineLength:              60,
@@ -292,6 +293,7 @@ function commentWrapperCtrl($scope) {
         'nodejs': {
             lineStart:               'console.log(',
             lineEnd:                 ');',
+            escapeStringEscapeChars: true,
             stringEscapeChar:        '\'',
             presetName:              'NodeJS',
             lineLength:              60,
