@@ -15,7 +15,8 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'ui.bootstrap'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -39,6 +40,11 @@ angular
                 templateUrl:  'views/contact.html',
                 controller:   'ContactCtrl',
                 controllerAs: 'contact'
+            })
+            .when('/commits', {
+                templateUrl:  'views/commit-parser.html',
+                controller:   'CommitParserCtrl',
+                controllerAs: 'commitParser'
             })
             .otherwise({
                 redirectTo: '/'
