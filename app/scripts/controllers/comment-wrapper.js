@@ -131,6 +131,7 @@ function varLog(varName, options) {
         }
 
         output += escapedVarName
+            + options.varNamePostfix
             + ' '
             + options.stringEscapeChar
             + options.varConcatChar
@@ -238,6 +239,7 @@ function commentWrapperCtrl($scope) {
         escapeStringEscapeChars: true,
         endOfLineChar:           '\n',
         varsToList:              '',
+        varNamePostfix:          ':',
         varsToListSeparator:     ',',
         varConcatChar:           ',',
         varEscapePrefix:         '',
@@ -250,6 +252,7 @@ function commentWrapperCtrl($scope) {
             varsToList:              'lorem, ipsum, dolor',
             varEscapePrefix:         'JSON.stringify(',
             varEscapePostfix:        ', false, "\\t")',
+            varNamePostfix:          'e.g. ":" or "="',
         },
         input:                   'Put your comment\nhere'
     };
@@ -257,14 +260,14 @@ function commentWrapperCtrl($scope) {
     var presets = {
         'androidstudio': {
             presetName:              'Android Studio',
-            lineStart:               'Log.i(',
+            lineStart:               'Log.i(TAG, ',
             lineEnd:                 ');',
             lineLength:              80,
             stringEscapeChar:        '\"',
             varConcatChar:           '+',
             varEscapePrefix:         '',
             varEscapePostfix:        '.toString()',
-            input:                   'Android Studio preset loaded!\nLoad LOG class ;)'
+            input:                   'Android Studio preset loaded!\nLoad LOG class and add an TAG string'
         },
         'browser': {
             lineStart:               'console.log(',
@@ -288,7 +291,8 @@ function commentWrapperCtrl($scope) {
             additionalEmptySpacer:   true,
             borderAround:            true,
             escapeStringEscapeChars: false,
-            endOfLineChar:           '\n'
+            endOfLineChar:           '\n',
+            input:                   'JS Comment preset loaded!'
         },
         'nodejs': {
             lineStart:               'console.log(',
@@ -297,10 +301,10 @@ function commentWrapperCtrl($scope) {
             stringEscapeChar:        '\'',
             presetName:              'NodeJS',
             lineLength:              60,
-            varEscapePrefix:         'utils.inspect(',
+            varEscapePrefix:         'util.inspect(',
             varEscapePostfix:        ', false, 3)',
             varConcatChar:           ',',
-            input:                   'NodeJS preset loaded!\nDon`t forget to equire "utils" Node package'
+            input:                   'NodeJS preset loaded!\nDon`t forget to equire "util" Node package'
         },
         'python3': {
             lineStart:               'print(',
@@ -309,9 +313,9 @@ function commentWrapperCtrl($scope) {
             stringEscapeChar:        '\'',
             presetName:              'Python 3.x',
             lineLength:              60,
-            varEscapePrefix:         '',
-            varEscapePostfix:        '',
-            varConcatChar:           ',',
+            varEscapePrefix:         'str(',
+            varEscapePostfix:        ')',
+            varConcatChar:           ' + ',
             input:                   'Python 3.x preset loaded!'
         }
     };
