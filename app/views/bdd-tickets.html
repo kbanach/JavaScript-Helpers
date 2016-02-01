@@ -1,0 +1,42 @@
+<h2>BDD Tickets</h2>
+
+<div ng-repeat="fieldType in options.fieldTypes">
+    <h3>{{ options[fieldType].readableName }}</h3>
+    <div class="row form-group" ng-repeat="givenField in options[fieldType].fields">
+        <div class="col-md-11">
+            <input type="text"
+                   ng-model="givenField.value"
+                   ng-blur="updateFields(fieldType)"
+                   class="form-control"
+                   placeholder="{{options.placeholder[fieldType]}}"
+                   id="{{givenField.label}}">
+        </div>
+        <div class="col-md-1">
+            <input class="btn btn-danger"
+                   type="button"
+                   value="X"
+                   ng-click="removeField(fieldType, givenField.label)">
+        </div>
+    </div>
+    <div class="row form-group col-md-12">
+        <input class="btn btn-primary"
+               type="button"
+               value='Add another "{{options[fieldType].readableName}}"'
+               ng-click="addField(fieldType)">
+    </div>
+</div>
+
+<div class="form-group">
+    <input class="btn btn-default"
+           type="button"
+           value="Reset settings"
+           ng-click="reset()">
+    <input class="btn btn-default"
+           type="button"
+           value="Select output"
+           ng-click="select()">
+</div>
+
+<div class="form-group">
+    <pre id="commitParser_output">{{output}}</pre>
+</div>

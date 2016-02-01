@@ -46,6 +46,11 @@ angular
                 controller:   'CommitParserCtrl',
                 controllerAs: 'commitParser'
             })
+            .when('/bdd', {
+                templateUrl:  'views/bdd-tickets.html',
+                controller:   'BddTicketsCtrl',
+                controllerAs: 'bddTickets'
+            })
             .otherwise({
                 redirectTo: '/'
             });
