@@ -304,7 +304,7 @@ function commentWrapperCtrl($scope) {
             varEscapePrefix:         'util.inspect(',
             varEscapePostfix:        ', false, 3)',
             varConcatChar:           ',',
-            input:                   'NodeJS preset loaded!\nDon`t forget to equire "util" Node package'
+            input:                   'NodeJS preset loaded!\nDon`t forget to require "util" Node package'
         },
         'python3': {
             lineStart:               'print(',

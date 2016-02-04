@@ -97,7 +97,8 @@ function getReadableOutput(options) {
             field.readableName +
             options.typeWrapper +
             ' ' +
-            beautifyTypeOutput(field.getValues(), options);
+            beautifyTypeOutput(field.getValues(), options) +
+            '\n';
     });
 
     return output;

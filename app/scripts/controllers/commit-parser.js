@@ -56,7 +56,7 @@ function chopTextBySections(options) {
                 currentSection = lines[key].trim();
 
                 continue;
-            } else if (lines[key].trim()[0] === '*') {
+            } else if (lines[key].trim()[0] === options.listChar) {
                 if (typeof loggedSections[currentSection] === 'undefined') {
                     loggedSections[currentSection] = '';
                 }
@@ -108,7 +108,7 @@ function generateSections(options) {
                 regexpOptions += 'i';
             }
 
-            sectionsRegexes.push(new RegExp(literal, regexpOptions));
+            sectionsRegexes.push(new RegExp(literal.trim(), regexpOptions));
         }
 
     });
@@ -123,6 +123,7 @@ function commitParserCtrl($scope) {
     var defaults = {
         showAdvancedOptions:    true,
         input:                  '',
+        listChar:               '*',
         sectionsInput:          '',
         sectionsSeparator:      ',',
         sectionLiterals:        ['added', 'removed', 'fixed', 'modified'],
@@ -135,7 +136,9 @@ function commitParserCtrl($scope) {
         ],
         placeholder:            {
             sections: 'Defaults: added, removed, fixed, modified',
-            input:    'Added:\n' +
+            listChar: 'e.g. "*" or "-"',
+            input:    '// example how to fill this field:\n\n' +
+                      'Added:\n' +
                       '* thing added\n' +
                       '* another thing added' +
                       '\n\n' +
@@ -174,8 +177,6 @@ function commitParserCtrl($scope) {
         }
 
         $scope.options.sections = generateSections($scope.options);
-
-        console.log('New sections: ', $scope.options.sections);
     }
 
     $scope.reset = resetToDefaults;

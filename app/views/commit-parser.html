@@ -15,6 +15,17 @@
 </div>
 
 <div class="form-group">
+    <label for="commitParser_listChar">Char to begin each feature</label>
+    <input type="text"
+           ng-model="options.listChar"
+           ng-change="calculateOutput()"
+           ng-maxlength="1"
+           class="form-control"
+           placeholder="{{options.placeholder.listChar}}"
+           id="commitParser_listChar" />
+</div>
+
+<div class="form-group">
     <label class="checkbox-inline">
         <input type="checkbox"
                ng-model="options.sectionCaseInsensitive"
