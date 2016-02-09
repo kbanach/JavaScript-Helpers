@@ -79,7 +79,7 @@ function beautifyOutput(loggedSections) {
             output += key;
             output += loggedSections[key];
 
-            output += '\n';
+            output += '\n\n';
         }
     }
 
