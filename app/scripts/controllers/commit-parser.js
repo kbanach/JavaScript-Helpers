@@ -41,8 +41,8 @@ function chopTextBySections(options) {
     var loggedSections = {};
     var lines = words.split('\n');
 
-    function lineStartsSection(testedLine) {
-        if (testedLine.test(lines[key])) {
+    function lineStartsSection(testedSection) {
+        if (testedSection.test(lines[key])) {
             keywordLine = true;
         }
     }
@@ -103,17 +103,37 @@ function generateSections(options) {
     sectionLiterals.forEach(function (literal) {
         var regexpOptions = '';
 
-        if (typeof literal === 'string' && literal.trim() !== '') {
+        if (_.isString(literal) && !_.isEmpty(literal.trim())) {
             if (options.sectionCaseInsensitive) {
                 regexpOptions += 'i';
             }
 
-            sectionsRegexes.push(new RegExp(literal.trim(), regexpOptions));
+            sectionsRegexes.push(new RegExp('^' + literal.trim(), regexpOptions));
         }
 
     });
 
     return sectionsRegexes;
+}
+
+function generateTaskTitle(options) {
+    var taskName = angular.copy(options.taskNameInput);
+    var output = '';
+
+    if (_.isString(taskName)) {
+        taskName = taskName.trim();
+
+        if (!_.isEmpty(taskName)) {
+            if (options.taskNameEscape && taskName[0] === options.taskNameCharToEscape) {
+                taskName = taskName.substring(1);
+                output += options.taskNameEscaper;
+            }
+
+            output += taskName + '\n\n';
+        }
+    }
+
+    return output;
 }
 
 function commitParserCtrl($scope) {
@@ -123,6 +143,10 @@ function commitParserCtrl($scope) {
     var defaults = {
         showAdvancedOptions:    true,
         input:                  '',
+        taskNameInput:          '',
+        taskNameEscape:         true,
+        taskNameCharToEscape:   '#',
+        taskNameEscaper:        ' #',
         listChar:               '*',
         sectionsInput:          '',
         sectionsSeparator:      ',',
@@ -163,7 +187,8 @@ function commitParserCtrl($scope) {
 
     function recalculateOutput() {
         if (!blockRecalculation) {
-            $scope.output = parseCommits($scope.options);
+            $scope.output = generateTaskTitle($scope.options) +
+                parseCommits($scope.options);
         }
     }
 
