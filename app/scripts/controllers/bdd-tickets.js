@@ -11,31 +11,12 @@
 angular.module('jsUtilsApp')
     .controller('BddTicketsCtrl', bddTicketsCtrl);
 
-function selectElementsContent(elementToSelect) {
-    if (elementToSelect instanceof HTMLElement) {
-        /**
-         * code copied from: http://goo.gl/N2cvkS
-         */
-        if (document.body.createTextRange) { // ms
-            var range = document.body.createTextRange();
-            range.moveToElementText(elementToSelect);
-            range.select();
-        } else if (window.getSelection) { // moz, opera, webkit
-            var selection = window.getSelection();
-            var range = document.createRange();
-            range.selectNodeContents(elementToSelect);
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-
-        return true;
-    } else {
-        throw new Error('You can select only HTMLElement');
-    }
-}
-
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function reverseString(string) {
+    return string.split('').reverse().join('');
 }
 
 function InputField(label) {
@@ -73,7 +54,11 @@ function beautifyTypeOutput(fieldsValues, options) {
     _.forEach(fieldsValues, function (fieldValue, index) {
         if (fieldValue.trim()) {
             if (index) {
-                output += '\n' + options.andWrapper + options.andLiteral + options.andWrapper + ' ';
+                output += '\n' +
+                    options.andWrapper +
+                    options.andLiteral +
+                    reverseString(options.andWrapper) +
+                    ' ';
             }
 
             output += fieldValue;
@@ -95,10 +80,13 @@ function getReadableOutput(options) {
 
         output += options.typeWrapper +
             field.readableName +
-            options.typeWrapper +
+            reverseString(options.typeWrapper) +
             ' ' +
-            beautifyTypeOutput(field.getValues(), options) +
-            '\n';
+            beautifyTypeOutput(field.getValues(), options);
+
+        if (options.spaceBetween) {
+            output += '\n';
+        }
     });
 
     return output;
@@ -110,14 +98,20 @@ function bddTicketsCtrl($scope) {
 
     var defaults = {
         fieldTypes:  ['given', 'when', 'then'],
+        fieldTypesPlaceholders: [
+            'state of app, e.g. logged as Administrator to Reports site',
+            'action/trigger of behaviour, e.g. button "Generate report" is clicked',
+            'expected result, e.g. download popup is visible'
+        ],
         typeWrapper:  '*',
         andWrapper:  '_',
         andLiteral:  'And',
+        spaceBetween: true,
         placeholder: {
-            given: 'e.g. logged as Administrator to Reports site',
-            when: 'e.g. button "Generate report" is clicked',
-            then: 'e.g. download popup is visible',
+            typeWrapper: 'char which will be around step name, e.g. * will wrap Given to *Given*',
+            andWrapper: 'char which will be around And, e.g. _ will wrap it to _And_'
         }
+
     };
 
     function generateFields(options) {
@@ -138,14 +132,9 @@ function bddTicketsCtrl($scope) {
     }
 
     function recalculateOutput() {
-
         if (!blockRecalculation) {
             $scope.output = getReadableOutput($scope.options);
         }
-    }
-
-    function selectOutput() {
-        selectElementsContent(document.getElementById('commitParser_output'));
     }
 
     function addField(type) {
@@ -177,9 +166,14 @@ function bddTicketsCtrl($scope) {
         return updatedFields;
     }
 
+    function updateStepFieldsTypes() {
+        generateFields($scope.options);
+        recalculateOutput();
+    }
+
     $scope.reset = resetToDefaults;
-    $scope.select = selectOutput;
     $scope.calculateOutput = recalculateOutput;
+    $scope.updateStepFieldsTypes = updateStepFieldsTypes;
     $scope.addField = addField;
     $scope.removeField = removeField;
     $scope.updateFields = updateFields;

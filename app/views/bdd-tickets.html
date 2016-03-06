@@ -1,42 +1,112 @@
 <h2>BDD Tickets</h2>
 
-<div ng-repeat="fieldType in options.fieldTypes">
-    <h3>{{ options[fieldType].readableName }}...</h3>
-    <div class="row form-group" ng-repeat="givenField in options[fieldType].fields">
-        <div class="col-md-11">
+<h3>Basic Settings</h3>
+
+<div class="form-group">
+    <label>Steps</label>
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="bddTickets_steps_given">Given</label>
             <input type="text"
-                   ng-model="givenField.value"
-                   ng-blur="updateFields(fieldType)"
+                   ng-model="options.fieldTypes[0]"
+                   ng-blur="updateStepFieldsTypes()"
                    class="form-control"
-                   placeholder="{{options.placeholder[fieldType]}}"
-                   id="{{givenField.label}}">
+                   id="bddTickets_steps_given"
+                   placeholder="e.g. Given">
         </div>
-        <div class="col-md-1">
-            <input class="btn btn-danger"
-                   type="button"
-                   value="X"
-                   ng-click="removeField(fieldType, givenField.label)">
+
+        <div class="form-group">
+            <label class="sr-only" for="bddTickets_steps_when">When</label>
+            <input type="text"
+                   ng-model="options.fieldTypes[1]"
+                   ng-blur="updateStepFieldsTypes()"
+                   class="form-control"
+                   id="bddTickets_steps_when"
+                   placeholder="e.g. When">
+        </div>
+
+        <div class="form-group">
+            <label class="sr-only" for="bddTickets_steps_then">Then</label>
+            <input type="text"
+                   ng-model="options.fieldTypes[2]"
+                   ng-blur="updateStepFieldsTypes()"
+                   class="form-control"
+                   id="bddTickets_steps_then"
+                   placeholder="e.g. Then">
+        </div>
+    </form>
+</div>
+
+<div class="form-group">
+    <label class="checkbox-inline">
+        <input type="checkbox"
+               ng-model="options.spaceBetween"
+               ng-change="calculateOutput()">Additional empty line between given/when/then
+    </label>
+</div>
+
+<div class="form-group">
+    <label for="bddTickets_typeWrapper">Step name wrap char (up to 3 chars, closing ones will be in reverse order)</label>
+    <input type="text"
+           ng-model="options.typeWrapper"
+           ng-change="calculateOutput()"
+           maxlength="3"
+           class="form-control"
+           placeholder="{{options.placeholder.typeWrapper}}"
+           id="bddTickets_typeWrapper"/>
+</div>
+
+<div class="form-group">
+    <label for="bddTickets_andWrapper">"And" wrap char (up to 3 chars, closing ones will be in reverse order)</label>
+    <input type="text"
+           ng-model="options.andWrapper"
+           ng-change="calculateOutput()"
+           maxlength="3"
+           class="form-control"
+           placeholder="{{options.placeholder.andWrapper}}"
+           id="bddTickets_andWrapper"/>
+</div>
+
+
+<h3>BDD tickets description
+    <div class="btn-group pull-right">
+        <a class="btn btn-default btn-sm pull-right"
+           ng-click="reset()">Clear form</a>
+    </div>
+</h3>
+
+<div ng-repeat="fieldType in options.fieldTypes">
+    <div class="row form-group" ng-repeat="(index, givenField) in options[fieldType].fields">
+        <div class="col-md-11">
+            <div class="input-group">
+                <div class="input-group-addon"
+                     ng-if="!$first">and
+                </div>
+
+                <div class="input-group-addon"
+                     ng-if="$first">{{ options[fieldType].readableName }}
+                </div>
+
+                <input type="text"
+                       ng-model="givenField.value"
+                       ng-blur="updateFields(fieldType)"
+                       class="form-control input-sm"
+                       placeholder="{{options.fieldTypesPlaceholders[index]}}"
+                       id="{{givenField.label}}">
+            </div>
+        </div>
+        <div class="col-md-1 text-right">
+            <a class="btn btn-danger btn-sm"
+               ng-click="removeField(fieldType, givenField.label)">X</a>
         </div>
     </div>
     <div class="row form-group col-md-12">
-        <input class="btn btn-primary"
+        <input class="btn btn-default btn-sm"
                type="button"
-               value='Add another "{{options[fieldType].readableName}}"'
+               value='Add next "{{options[fieldType].readableName}}"'
                ng-click="addField(fieldType)">
     </div>
 </div>
 
-<div class="form-group">
-    <input class="btn btn-default"
-           type="button"
-           value="Reset settings"
-           ng-click="reset()">
-    <input class="btn btn-default"
-           type="button"
-           value="Select output"
-           ng-click="select()">
-</div>
 
-<div class="form-group">
-    <pre id="commitParser_output">{{output}}</pre>
-</div>
+<output-field value="output"></output-field>

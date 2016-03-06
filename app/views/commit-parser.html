@@ -35,13 +35,21 @@
 
 </div>
 
+<h3>
+    Parse commits
+    <div class="btn-group pull-right">
+        <a class="btn btn-default btn-sm pull-right"
+           ng-click="reset()">Clear form</a>
+    </div>
+</h3>
+
 <div class="form-group">
     <label for="commitParser_taskNameInput">Current task name</label>
     <input type="text"
            ng-model="options.taskNameInput"
            ng-change="calculateOutput()"
            class="form-control"
-           id="commitParser_taskNameInput" />
+           id="commitParser_taskNameInput"/>
 </div>
 
 <div class="form-group">
@@ -56,20 +64,7 @@
     </textarea>
 </div>
 
-<div class="form-group">
-    <input class="btn btn-default"
-           type="button"
-           value="Reset settings"
-           ng-click="reset()">
-    <input class="btn btn-default"
-           type="button"
-           value="Select output"
-           ng-click="select()">
-</div>
-
-<div class="form-group">
-    <pre id="commitParser_output">{{output}}</pre>
-</div>
+<output-field value="output"></output-field>
 
 <script type="text/ng-template" id="commitParser_inputTooltip.html">
     <div id="commitParser_inputPlaceholder" class="text-left">{{options.placeholder.input}}</div>

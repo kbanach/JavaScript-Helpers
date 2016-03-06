@@ -22,6 +22,10 @@ function charChain(char, length) {
     return output;
 }
 
+function escapeCharInWholeString(charToEscape, string) {
+    return string.replace(new RegExp(charToEscape, 'g'), '\\' + charToEscape);
+}
+
 function fillLine(line, availableLineCharsLength, options) {
     var output = '';
 
@@ -46,7 +50,7 @@ function fillLine(line, availableLineCharsLength, options) {
     output += postString;
 
     if (options.escapeStringEscapeChars) {
-        output = output.replace(options.stringEscapeChar, '\\' + options.stringEscapeChar, 'g');
+        output = escapeCharInWholeString(options.stringEscapeChar, output);
     }
 
     return output;
@@ -119,7 +123,7 @@ function varLog(varName, options) {
         var escapedVarName = varName;
 
         if (options.escapeStringEscapeChars) {
-            escapedVarName = escapedVarName.replace(options.stringEscapeChar, '\\' + options.stringEscapeChar, 'g');
+            escapedVarName = escapeCharInWholeString(options.stringEscapeChar, escapedVarName);
         }
 
         output += options.lineStart
@@ -177,29 +181,6 @@ function generateComment(options) {
     return output;
 }
 
-function selectElementsContent(elementToSelect) {
-    if (elementToSelect instanceof HTMLElement) {
-        /**
-         * code copied from: http://goo.gl/N2cvkS
-         */
-        if (document.body.createTextRange) { // ms
-            var range = document.body.createTextRange();
-            range.moveToElementText(elementToSelect);
-            range.select();
-        } else if (window.getSelection) { // moz, opera, webkit
-            var selection = window.getSelection();
-            var range = document.createRange();
-            range.selectNodeContents(elementToSelect);
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-
-        return true;
-    } else {
-        throw new Error('You can select only HTMLElement');
-    }
-}
-
 function commentWrapperCtrl($scope) {
     var blockRecalculation = false;
 
@@ -214,10 +195,6 @@ function commentWrapperCtrl($scope) {
         $scope.options = angular.copy(defaults);
         blockRecalculation = false;
         recalculateOutput();
-    }
-
-    function selectOutput() {
-        selectElementsContent(document.getElementById('commentWrapper_output'));
     }
 
     function loadPreset(preset) {
@@ -325,7 +302,6 @@ function commentWrapperCtrl($scope) {
     $scope.presets = presets;
     $scope.loadPreset = loadPreset;
     $scope.reset = resetToDefaults;
-    $scope.select = selectOutput;
 
     recalculateOutput();
 }

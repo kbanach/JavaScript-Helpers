@@ -13,30 +13,30 @@
 <div class="form-group">
     <label for="commentWrapper_fillChar">Char to use as filler</label>
     <input type="text"
-        ng-model="options.fillChar"
-        ng-change="calculateOutput()"
-        ng-maxlength="1"
-        class="form-control"
-        placeholder="{{options.placeholder.fillChar}}"
-        id="commentWrapper_fillChar" />
+           ng-model="options.fillChar"
+           ng-change="calculateOutput()"
+           ng-maxlength="1"
+           class="form-control"
+           placeholder="{{options.placeholder.fillChar}}"
+           id="commentWrapper_fillChar"/>
 </div>
 
 <div class="form-group">
     <label for="commentWrapper_lineLength">Line length</label>
     <input type="number"
-        ng-model="options.lineLength"
-        ng-blur="calculateOutput()"
-        class="form-control"
-        id="commentWrapper_lineLength" />
+           ng-model="options.lineLength"
+           ng-blur="calculateOutput()"
+           class="form-control"
+           id="commentWrapper_lineLength"/>
 </div>
 
 <h3>
     Advanced Settings
     <div class="btn-group pull-right">
         <a class="btn btn-sm pull-right"
-            ng-class="{true: 'btn-primary', false: 'btn-danger'}[!options.showAdvancedOptions]"
-            ng-click="options.showAdvancedOptions = !options.showAdvancedOptions">
-               {{!options.showAdvancedOptions && 'Show' || 'Hide'}} advanced options
+           ng-class="{true: 'btn-primary', false: 'btn-danger'}[!options.showAdvancedOptions]"
+           ng-click="options.showAdvancedOptions = !options.showAdvancedOptions">
+            {{!options.showAdvancedOptions && 'Show' || 'Hide'}} advanced options
         </a>
     </div>
 </h3>
@@ -50,7 +50,7 @@
                ng-change="calculateOutput()"
                class="form-control"
                placeholder="{{options.placeholder.lineStart}}"
-               id="commentWrapper_lineStart" />
+               id="commentWrapper_lineStart"/>
     </div>
 
     <div class="form-group">
@@ -61,35 +61,35 @@
                ng-change="calculateOutput()"
                class="form-control"
                placeholder="{{options.placeholder.lineEnd}}"
-               id="commentWrapper_lineEnd" />
+               id="commentWrapper_lineEnd"/>
     </div>
 
     <div class="form-group">
         <label for="commentWrapper_stringEscapeChar">
             Char escaper</label>
         <input type="text"
-            ng-model="options.stringEscapeChar"
-            ng-change="calculateOutput()"
-            ng-maxlength="1"
-            class="form-control"
-            id="commentWrapper_stringEscapeChar" />
+               ng-model="options.stringEscapeChar"
+               ng-change="calculateOutput()"
+               ng-maxlength="1"
+               class="form-control"
+               id="commentWrapper_stringEscapeChar"/>
     </div>
 
     <div class="form-group">
         <label class="checkbox-inline">
             <input type="checkbox"
-                ng-model="options.additionalEmptySpacer"
-                ng-change="calculateOutput()"
-                id="commentWrapper_additionalEmptySpacer">Put additional empty space between fill and content
+                   ng-model="options.additionalEmptySpacer"
+                   ng-change="calculateOutput()"
+                   id="commentWrapper_additionalEmptySpacer">Put additional empty space between fill and content
         </label>
     </div>
 
     <div class="form-group">
         <label class="checkbox-inline">
             <input type="checkbox"
-                ng-model="options.borderAround"
-                ng-change="calculateOutput()"
-                id="commentWrapper_borderAround">Put "border" around comments
+                   ng-model="options.borderAround"
+                   ng-change="calculateOutput()"
+                   id="commentWrapper_borderAround">Put "border" around comments
         </label>
 
     </div>
@@ -97,99 +97,92 @@
     <div class="form-group">
         <label class="checkbox-inline">
             <input type="checkbox"
-                ng-model="options.escapeStringEscapeChars"
-                ng-change="calculateOutput()"
-                id="commentWrapper_escapeStringEscapeChars">Escape string starting/ending char
+                   ng-model="options.escapeStringEscapeChars"
+                   ng-change="calculateOutput()"
+                   id="commentWrapper_escapeStringEscapeChars">Escape string starting/ending char
         </label>
 
     </div>
     <div class="form-group">
         <label for="commentWrapper_varsToListSeparator">Variable separator</label>
         <input type="text"
-            ng-model="options.varsToListSeparator"
-            ng-change="calculateOutput()"
-            ng-maxlength="1"
-            class="form-control"
-            id="commentWrapper_varsToListSeparator" />
+               ng-model="options.varsToListSeparator"
+               ng-change="calculateOutput()"
+               ng-maxlength="1"
+               class="form-control"
+               id="commentWrapper_varsToListSeparator"/>
     </div>
 
     <div class="form-group">
         <label for="commentWrapper_varConcatChar">Variable concatenate char</label>
         <input type="text"
-            ng-model="options.varConcatChar"
-            ng-change="calculateOutput()"
-            ng-maxlength="1"
-            class="form-control"
-            placeholder="{{options.placeholder.varConcatChar}}"
-            id="commentWrapper_varConcatChar" />
+               ng-model="options.varConcatChar"
+               ng-change="calculateOutput()"
+               ng-maxlength="1"
+               class="form-control"
+               placeholder="{{options.placeholder.varConcatChar}}"
+               id="commentWrapper_varConcatChar"/>
     </div>
 
     <div class="form-group">
         <label for="commentWrapper_varEscapePrefix">Variable wrapper code prefix</label>
         <input type="text"
-            ng-model="options.varEscapePrefix"
-            ng-change="calculateOutput()"
-            class="form-control"
-            placeholder="{{options.placeholder.varEscapePrefix}}"
-            id="commentWrapper_varEscapePrefix" />
+               ng-model="options.varEscapePrefix"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.varEscapePrefix}}"
+               id="commentWrapper_varEscapePrefix"/>
     </div>
 
     <div class="form-group">
         <label for="commentWrapper_varNamePostfix">Variable name postfix</label>
         <input type="text"
-            ng-model="options.varNamePostfix"
-            ng-change="calculateOutput()"
-            class="form-control"
-            placeholder="{{options.placeholder.varNamePostfix}}"
-            id="commentWrapper_varNamePostfix" />
+               ng-model="options.varNamePostfix"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.varNamePostfix}}"
+               id="commentWrapper_varNamePostfix"/>
     </div>
 
     <div class="form-group">
         <label for="commentWrapper_varEscapePostfix">Variable wrapper code postfix</label>
         <input type="text"
-            ng-model="options.varEscapePostfix"
-            ng-change="calculateOutput()"
-            class="form-control"
-            placeholder="{{options.placeholder.varEscapePostfix}}"
-            id="commentWrapper_varEscapePostfix" />
+               ng-model="options.varEscapePostfix"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.varEscapePostfix}}"
+               id="commentWrapper_varEscapePostfix"/>
     </div>
 </div>
 <!-- advanced options -->
 
-<h3>Make comment</h3>
+<h3>
+    Make comment
+    <div class="btn-group pull-right">
+        <a class="btn btn-default btn-sm pull-right"
+           ng-click="reset()">Clear form</a>
+    </div>
+</h3>
 <div class="form-group">
     <label for="commentWrapper_varsToList">Variable names to list (use
         <code>{{options.varsToListSeparator}}</code> as separator)
     </label>
     <input type="text"
-        ng-model="options.varsToList"
-        ng-change="calculateOutput()"
-        class="form-control"
-        placeholder="{{options.placeholder.varsToList}}"
-        id="commentWrapper_varsToList" />
+           ng-model="options.varsToList"
+           ng-change="calculateOutput()"
+           class="form-control"
+           placeholder="{{options.placeholder.varsToList}}"
+           id="commentWrapper_varsToList"/>
 </div>
 
 <div class="form-group">
     <label for="commentWrapper_input">Input</label>
     <textarea ng-model="options.input"
-        ng-change="calculateOutput()"
-        id="commentWrapper_input"
-        class="form-control"
-        rows="10">
+              ng-change="calculateOutput()"
+              id="commentWrapper_input"
+              class="form-control"
+              rows="10">
     </textarea>
 </div>
 
-<div class="form-group">
-    <input class="btn btn-default"
-        type="button"
-        value="Reset settings"
-        ng-click="reset()">
-    <input class="btn btn-default"
-        type="button"
-        value="Select output"
-        ng-click="select()">
-</div>
-
-<div class="form-group">
-    <pre id="commentWrapper_output">{{output}}</pre>
-</div>
+<output-field value="output"></output-field>

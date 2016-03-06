@@ -11,29 +11,6 @@
 angular.module('jsUtilsApp')
     .controller('CommitParserCtrl', commitParserCtrl);
 
-function selectElementsContent(elementToSelect) {
-    if (elementToSelect instanceof HTMLElement) {
-        /**
-         * code copied from: http://goo.gl/N2cvkS
-         */
-        if (document.body.createTextRange) { // ms
-            var range = document.body.createTextRange();
-            range.moveToElementText(elementToSelect);
-            range.select();
-        } else if (window.getSelection) { // moz, opera, webkit
-            var selection = window.getSelection();
-            var range = document.createRange();
-            range.selectNodeContents(elementToSelect);
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-
-        return true;
-    } else {
-        throw new Error('You can select only HTMLElement');
-    }
-}
-
 function chopTextBySections(options) {
     var words = options.input;
     var sections = options.sections;
@@ -192,10 +169,6 @@ function commitParserCtrl($scope) {
         }
     }
 
-    function selectOutput() {
-        selectElementsContent(document.getElementById('commitParser_output'));
-    }
-
     function updateSections() {
         if ($scope.options.sectionsInput.trim()) {
             $scope.options.sectionLiterals = $scope.options.sectionsInput.split($scope.options.sectionsSeparator);
@@ -205,7 +178,6 @@ function commitParserCtrl($scope) {
     }
 
     $scope.reset = resetToDefaults;
-    $scope.select = selectOutput;
     $scope.calculateOutput = recalculateOutput;
     $scope.updateSections = updateSections;
 
