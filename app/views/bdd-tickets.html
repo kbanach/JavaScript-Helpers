@@ -1,72 +1,99 @@
 <h2>BDD Tickets</h2>
 
-<h3>Basic Settings</h3>
+<h3>
+    Settings
+    <div class="btn-group pull-right">
+        <a class="btn btn-sm pull-right"
+           ng-class="{true: 'btn-primary', false: 'btn-danger'}[!options.showOptions]"
+           ng-click="options.showOptions = !options.showOptions">
+            {{!options.showOptions && 'Show' || 'Hide'}} settings
+        </a>
+    </div>
+</h3>
 
-<div class="form-group">
-    <label>Steps</label>
-    <form class="form-inline">
-        <div class="form-group">
-            <label class="sr-only" for="bddTickets_steps_given">Given</label>
-            <input type="text"
-                   ng-model="options.fieldTypes[0]"
-                   ng-blur="updateStepFieldsTypes()"
-                   class="form-control"
-                   id="bddTickets_steps_given"
-                   placeholder="e.g. Given">
-        </div>
 
-        <div class="form-group">
-            <label class="sr-only" for="bddTickets_steps_when">When</label>
-            <input type="text"
-                   ng-model="options.fieldTypes[1]"
-                   ng-blur="updateStepFieldsTypes()"
-                   class="form-control"
-                   id="bddTickets_steps_when"
-                   placeholder="e.g. When">
-        </div>
+<div ng-show="options.showOptions">
 
-        <div class="form-group">
-            <label class="sr-only" for="bddTickets_steps_then">Then</label>
-            <input type="text"
-                   ng-model="options.fieldTypes[2]"
-                   ng-blur="updateStepFieldsTypes()"
-                   class="form-control"
-                   id="bddTickets_steps_then"
-                   placeholder="e.g. Then">
-        </div>
-    </form>
+
+    <div class="form-group">
+        <label>Steps</label>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="bddTickets_steps_given">Given</label>
+                <input type="text"
+                       ng-model="options.fieldTypes[0]"
+                       ng-blur="updateStepFieldsTypes()"
+                       class="form-control"
+                       id="bddTickets_steps_given"
+                       placeholder="e.g. Given">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="bddTickets_steps_when">When</label>
+                <input type="text"
+                       ng-model="options.fieldTypes[1]"
+                       ng-blur="updateStepFieldsTypes()"
+                       class="form-control"
+                       id="bddTickets_steps_when"
+                       placeholder="e.g. When">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="bddTickets_steps_then">Then</label>
+                <input type="text"
+                       ng-model="options.fieldTypes[2]"
+                       ng-blur="updateStepFieldsTypes()"
+                       class="form-control"
+                       id="bddTickets_steps_then"
+                       placeholder="e.g. Then">
+            </div>
+        </form>
+    </div>
+
+    <div class="form-group">
+        <label class="checkbox-inline">
+            <input type="checkbox"
+                   ng-model="options.spaceBetween"
+                   ng-change="calculateOutput()">Additional empty line between steps
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="bddTickets_andWrapper">Header wrap char (up to 3 chars, closing ones will be in reverse
+            order)</label>
+        <input type="text"
+               ng-model="options.headerWrapper"
+               ng-change="calculateOutput()"
+               maxlength="3"
+               class="form-control"
+               placeholder="{{options.placeholder.headerWrapper}}"
+               id="bddTickets_headerWrapper"/>
+    </div>
+
+    <div class="form-group">
+        <label for="bddTickets_typeWrapper">Step name wrap char (up to 3 chars, closing ones will be in reverse
+            order)</label>
+        <input type="text"
+               ng-model="options.typeWrapper"
+               ng-change="calculateOutput()"
+               maxlength="3"
+               class="form-control"
+               placeholder="{{options.placeholder.typeWrapper}}"
+               id="bddTickets_typeWrapper"/>
+    </div>
+
+    <div class="form-group">
+        <label for="bddTickets_andWrapper">"And" wrap char (up to 3 chars, closing ones will be in reverse
+            order)</label>
+        <input type="text"
+               ng-model="options.andWrapper"
+               ng-change="calculateOutput()"
+               maxlength="3"
+               class="form-control"
+               placeholder="{{options.placeholder.andWrapper}}"
+               id="bddTickets_andWrapper"/>
+    </div>
 </div>
-
-<div class="form-group">
-    <label class="checkbox-inline">
-        <input type="checkbox"
-               ng-model="options.spaceBetween"
-               ng-change="calculateOutput()">Additional empty line between given/when/then
-    </label>
-</div>
-
-<div class="form-group">
-    <label for="bddTickets_typeWrapper">Step name wrap char (up to 3 chars, closing ones will be in reverse order)</label>
-    <input type="text"
-           ng-model="options.typeWrapper"
-           ng-change="calculateOutput()"
-           maxlength="3"
-           class="form-control"
-           placeholder="{{options.placeholder.typeWrapper}}"
-           id="bddTickets_typeWrapper"/>
-</div>
-
-<div class="form-group">
-    <label for="bddTickets_andWrapper">"And" wrap char (up to 3 chars, closing ones will be in reverse order)</label>
-    <input type="text"
-           ng-model="options.andWrapper"
-           ng-change="calculateOutput()"
-           maxlength="3"
-           class="form-control"
-           placeholder="{{options.placeholder.andWrapper}}"
-           id="bddTickets_andWrapper"/>
-</div>
-
 
 <h3>BDD tickets description
     <div class="btn-group pull-right">
@@ -75,8 +102,20 @@
     </div>
 </h3>
 
-<div ng-repeat="fieldType in options.fieldTypes">
-    <div class="row form-group" ng-repeat="(index, givenField) in options[fieldType].fields">
+<div class="form-group">
+    <label for="bddTickets_header">Header</label>
+    <input type="text"
+           ng-model="options.header"
+           ng-change="calculateOutput()"
+           class="form-control"
+           id="bddTickets_header"/>
+</div>
+
+
+<label>Steps</label>
+<div ng-repeat="(index, fieldType) in options.fieldTypes">
+
+    <div class="row form-group" ng-repeat="givenField in options[fieldType].fields">
         <div class="col-md-11">
             <div class="input-group">
                 <div class="input-group-addon"

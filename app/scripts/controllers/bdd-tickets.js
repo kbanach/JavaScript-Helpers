@@ -68,8 +68,29 @@ function beautifyTypeOutput(fieldsValues, options) {
     return output;
 }
 
+function getHeader(options) {
+    var output = '';
+
+    if (_.isEmpty(options.header.trim())) {
+        return output;
+    }
+
+    output += options.headerWrapper +
+            options.header +
+            reverseString(options.headerWrapper)
+            + '\n';
+
+    if (options.spaceBetween) {
+        output += '\n';
+    }
+
+    return output;
+}
+
 function getReadableOutput(options) {
     var output = '';
+
+    output += getHeader(options);
 
     _.forEach(options.fieldTypes, function (fieldType, index) {
         var field = options[fieldType];
@@ -106,10 +127,15 @@ function bddTicketsCtrl($scope) {
         typeWrapper:  '*',
         andWrapper:  '_',
         andLiteral:  'And',
+        header:  'Scenario #1',
+        headerWrapper:  '_*',
         spaceBetween: true,
+        showOptions: false,
         placeholder: {
             typeWrapper: 'char which will be around step name, e.g. * will wrap Given to *Given*',
-            andWrapper: 'char which will be around And, e.g. _ will wrap it to _And_'
+            andWrapper: 'char which will be around And, e.g. _ will wrap it to _And_',
+            header: 'e.g. Scenario #1',
+            headerWrapper: 'char which will be around And, e.g. _* will wrap it to _*Secenario #1*_'
         }
 
     };
