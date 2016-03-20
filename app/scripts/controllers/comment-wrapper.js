@@ -182,7 +182,7 @@ function commentWrapperCtrl($scope) {
             varsToList: 'lorem, ipsum, dolor',
             varEscapePrefix: 'JSON.stringify(',
             varEscapePostfix: ', false, "\\t")',
-            varNamePostfix: 'e.g. ":" or "="'
+            varNamePostfix: 'e.g. ":" or "="',
         },
         input: 'Put your comment\nhere'
     };

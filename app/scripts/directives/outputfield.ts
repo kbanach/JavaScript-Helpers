@@ -1,17 +1,19 @@
 'use strict';
 
 function selectElementsContent(elementToSelect) {
+    const doc = document as any;
+
     if (elementToSelect instanceof HTMLElement) {
         /**
          * code copied from: http://goo.gl/N2cvkS
          */
-        if (document.body.createTextRange) { // ms
-            var range = document.body.createTextRange();
+        if (doc.body.createTextRange) { // ms
+            var range = doc.body.createTextRange();
             range.moveToElementText(elementToSelect);
             range.select();
         } else if (window.getSelection) { // moz, opera, webkit
             var selection = window.getSelection();
-            var range = document.createRange();
+            var range = doc.createRange();
             range.selectNodeContents(elementToSelect);
             selection.removeAllRanges();
             selection.addRange(range);

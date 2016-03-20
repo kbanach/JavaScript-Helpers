@@ -39,6 +39,7 @@ class FieldType {
     constructor(type: string) {
         this.type = type;
         this.readableName = capitalizeFirstLetter(type);
+        this.fields = [];
     }
 
     add() {

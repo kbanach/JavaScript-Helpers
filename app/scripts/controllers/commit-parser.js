@@ -54,7 +54,7 @@ function beautifyOutput(loggedSections) {
 function parseCommits(options) {
     var output = '';
     var loggedSections = chopTextBySections(options);
-    output += beautifyOutput(loggedSections, options);
+    output += beautifyOutput(loggedSections);
     return output;
 }
 function generateSections(options) {
