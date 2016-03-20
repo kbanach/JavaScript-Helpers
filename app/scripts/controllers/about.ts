@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * @ngdoc function
  * @name jsUtilsApp.controller:AboutCtrl
@@ -8,10 +9,9 @@
  */
 angular.module('jsUtilsApp')
     .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
-});
-//# sourceMappingURL=about.js.map
+        this.awesomeThings = [
+            'HTML5 Boilerplate',
+            'AngularJS',
+            'Karma'
+        ];
+    });

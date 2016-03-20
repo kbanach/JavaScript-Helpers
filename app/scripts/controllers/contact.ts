@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * @ngdoc function
  * @name jsUtilsApp.controller:ContactCtrl
@@ -8,8 +9,7 @@
  */
 angular.module('jsUtilsApp')
     .controller('ContactCtrl', [
-    '$scope', function ($scope) {
-        $scope.gitHubLink = 'https://github.com/kbanach/JavaScript-Helpers';
-    }
-]);
-//# sourceMappingURL=contact.js.map
+        '$scope', function ($scope) {
+            $scope.gitHubLink = 'https://github.com/kbanach/JavaScript-Helpers';
+        }
+    ]);

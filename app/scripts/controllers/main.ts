@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * @ngdoc function
  * @name jsUtilsApp.controller:MainCtrl
@@ -8,5 +9,5 @@
  */
 angular.module('jsUtilsApp')
     .controller('MainCtrl', function () {
-});
-//# sourceMappingURL=main.js.map
+
+    });
