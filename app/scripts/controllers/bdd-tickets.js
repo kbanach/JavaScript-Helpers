@@ -14,29 +14,33 @@ function capitalizeFirstLetter(string) {
 function reverseString(string) {
     return string.split('').reverse().join('');
 }
-function InputField(label) {
-    this.label = label;
-    this.value = '';
-}
-function FieldType(type) {
-    this.type = type;
-    this.readableName = capitalizeFirstLetter(type);
-    this.fields = [];
-    this.output = '';
-}
-FieldType.prototype.add = function () {
-    var label = _.uniqueId(this.type + '_');
-    this.fields.push(new InputField(label));
-};
-FieldType.prototype.remove = function (id) {
-    var removedFields = _.remove(this.fields, function (field) {
-        return field.label === id;
-    });
-    return removedFields;
-};
-FieldType.prototype.getValues = function () {
-    return _.map(this.fields, 'value');
-};
+var InputField = (function () {
+    function InputField(label) {
+        this.label = label;
+        this.value = '';
+    }
+    return InputField;
+}());
+var FieldType = (function () {
+    function FieldType(type) {
+        this.type = type;
+        this.readableName = capitalizeFirstLetter(type);
+    }
+    FieldType.prototype.add = function () {
+        var label = _.uniqueId(this.type + '_');
+        this.fields.push(new InputField(label));
+    };
+    FieldType.prototype.remove = function (id) {
+        var removedFields = _.remove(this.fields, function (field) {
+            return field.label === id;
+        });
+        return removedFields;
+    };
+    FieldType.prototype.getValues = function () {
+        return _.map(this.fields, 'value');
+    };
+    return FieldType;
+}());
 function beautifyTypeOutput(fieldsValues, options) {
     var output = '';
     _.forEach(fieldsValues, function (fieldValue, index) {

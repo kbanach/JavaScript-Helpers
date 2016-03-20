@@ -33,7 +33,6 @@ function outputFieldDirective() {
             value: '='
         },
         link: function postLink(scope) {
-            console.log('seems that im linked now!');
             scope.select = selectOutput;
             scope.output_id = 'commentWrapper_output';
         }
