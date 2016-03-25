@@ -1,3 +1,5 @@
+/// <reference path="../app.ts" />
+
 'use strict';
 
 function selectElementsContent(elementToSelect) {
