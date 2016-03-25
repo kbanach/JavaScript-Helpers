@@ -21,7 +21,7 @@ var InputField = (function () {
         this.value = '';
     }
     return InputField;
-})();
+}());
 var FieldType = (function () {
     function FieldType(type) {
         this.type = type;
@@ -42,7 +42,7 @@ var FieldType = (function () {
         return _.map(this.fields, 'value');
     };
     return FieldType;
-})();
+}());
 function beautifyTypeOutput(fieldsValues, options) {
     var output = '';
     _.forEach(fieldsValues, function (fieldValue, index) {
