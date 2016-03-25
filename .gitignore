@@ -6,12 +6,3 @@
 /.idea/
 /.*
 !.jshintrc
-
-/app/*.js
-/app/*.js.map
-
-/app/scripts/controllers/*.js
-/app/scripts/controllers/*.js.map
-
-/app/scripts/directives/*.js
-/app/scripts/directives/*.js.map
