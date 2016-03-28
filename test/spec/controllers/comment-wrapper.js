@@ -1,10 +1,6 @@
 'use strict';
 
 describe('Controller: CommentWrapperCtrl', function () {
-    it('shall pass', function () {
-        expect(true).toBe(true);
-    });
-
     // load the controller's module
     beforeEach(module('jsUtilsApp'));
 
