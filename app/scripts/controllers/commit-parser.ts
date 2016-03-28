@@ -13,14 +13,14 @@
 angular.module('jsUtilsApp')
     .controller('CommitParserCtrl', commitParserCtrl);
 
-function chopTextBySections(options) {
+function chopTextBySections(options: CommitParseOptions) {
     var words = options.input;
     var sections = options.sections;
     var currentSection = '';
     var loggedSections = {};
     var lines = words.split('\n');
 
-    function lineStartsSection(testedSection) {
+    function lineStartsSection(testedSection: RegExp) {
         if (testedSection.test(lines[key])) {
             keywordLine = true;
         }
@@ -65,7 +65,7 @@ function beautifyOutput(loggedSections) {
     return output;
 }
 
-function parseCommits(options) {
+function parseCommits(options: CommitParseOptions) {
     var output = '';
 
     var loggedSections = chopTextBySections(options);
@@ -75,27 +75,7 @@ function parseCommits(options) {
     return output;
 }
 
-function generateSections(options) {
-    var sectionLiterals = angular.copy(options.sectionLiterals);
-    var sectionsRegexes = [];
-
-    sectionLiterals.forEach(function (literal) {
-        var regexpOptions = '';
-
-        if (_.isString(literal) && !_.isEmpty(literal.trim())) {
-            if (options.sectionCaseInsensitive) {
-                regexpOptions += 'i';
-            }
-
-            sectionsRegexes.push(new RegExp('^' + literal.trim(), regexpOptions));
-        }
-
-    });
-
-    return sectionsRegexes;
-}
-
-function generateTaskTitle(options) {
+function generateTaskTitle(options: CommitParseOptions) {
     var taskName = angular.copy(options.taskNameInput);
     var output = '';
 
@@ -115,50 +95,107 @@ function generateTaskTitle(options) {
     return output;
 }
 
-function commitParserCtrl($scope) {
+class CommitParsePlaceholders {
+    sections: string;
+    listChar: string;
+    input: string;
 
-    var blockRecalculation = false;
+    constructor(options: CommitParseOptions) {
+        this.setDefaults(options);
+    }
 
-    var defaults = {
-        showAdvancedOptions:    true,
-        input:                  '',
-        taskNameInput:          '',
-        taskNameEscape:         true,
-        taskNameCharToEscape:   '#',
-        taskNameEscaper:        ' #',
-        listChar:               '*',
-        sectionsInput:          '',
-        sectionsSeparator:      ',',
-        sectionLiterals:        ['added', 'removed', 'fixed', 'modified'],
-        sectionCaseInsensitive: true,
-        sections:               [
+    setDefaults(options: CommitParseOptions) {
+        let listChar = options.listChar;
+
+        this.sections = 'Defaults: added, removed, fixed, modified';
+        this.listChar = 'e.g. "*" or "-"';
+        this.input = '// example how to fill this field:\n\n' +
+            'Added:\n' +
+            listChar + ' thing added\n' +
+            listChar + ' another thing added' +
+            '\n\n' +
+            'Removed:\n' +
+            listChar + ' unwanted feature to remove' +
+            '\n\n' +
+            'Not matched section:\n' +
+            listChar + ' this will be in Others' +
+            '\n\n' +
+            'This text will be totaly ignored';
+    }
+}
+
+class CommitParseOptions {
+    showAdvancedOptions:boolean;
+    input:string;
+    taskNameInput:string;
+    taskNameEscape:boolean;
+    taskNameCharToEscape:string;
+    taskNameEscaper:string;
+    listChar:string;
+    sectionsInput:string;
+    sectionsSeparator:string;
+    sectionLiterals:string[];
+    sectionCaseInsensitive:boolean;
+    sections:RegExp[];
+
+    placeholder: CommitParsePlaceholders;
+
+    constructor() {
+        this.setDefaults();
+    }
+
+    setDefaults() {
+        this.showAdvancedOptions = true;
+        this.input = '';
+        this.taskNameInput = '';
+        this.taskNameEscape = true;
+        this.taskNameCharToEscape = '#';
+        this.taskNameEscaper = ' #';
+        this.listChar = '*';
+        this.sectionsInput = '';
+        this.sectionsSeparator = ',';
+        this.sectionLiterals = ['added', 'removed', 'fixed', 'modified'];
+        this.sectionCaseInsensitive = true;
+        this.sections = [
             /added:/i,
             /removed:/i,
             /fixed:/i,
             /modified:/i
-        ],
-        placeholder:            {
-            sections: 'Defaults: added, removed, fixed, modified',
-            listChar: 'e.g. "*" or "-"',
-            input:    '// example how to fill this field:\n\n' +
-                      'Added:\n' +
-                      '* thing added\n' +
-                      '* another thing added' +
-                      '\n\n' +
-                      'Removed:\n' +
-                      '* unwanted feature to remove' +
-                      '\n\n' +
-                      'Not matched section:\n' +
-                      '* this will be in Others' +
-                      '\n\n' +
-                      'This text will be totaly ignored'
-        }
+        ];
 
-    };
+        this.placeholder = new CommitParsePlaceholders(this);
+    }
+
+    updateSections(newSections: string) {
+        this.sectionLiterals = newSections.split(this.sectionsSeparator);
+        this.updateSectionRegExps();
+    }
+
+    private updateSectionRegExps() {
+        let self = this;
+
+        this.sections = [];
+
+        this.sectionLiterals.forEach( literal => {
+            var regexpOptions = '';
+
+            if (_.isString(literal) && !_.isEmpty(literal.trim())) {
+                if (self.sectionCaseInsensitive) {
+                    regexpOptions += 'i';
+                }
+
+                self.sections.push(new RegExp('^' + literal.trim(), regexpOptions));
+            }
+        });
+    }
+}
+
+function commitParserCtrl($scope) {
+    var blockRecalculation = false;
 
     function resetToDefaults() {
         blockRecalculation = true;
-        $scope.options = angular.copy(defaults);
+        $scope.options.setDefaults();
         blockRecalculation = false;
         updateSections();
         recalculateOutput();
@@ -173,11 +210,13 @@ function commitParserCtrl($scope) {
 
     function updateSections() {
         if ($scope.options.sectionsInput.trim()) {
-            $scope.options.sectionLiterals = $scope.options.sectionsInput.split($scope.options.sectionsSeparator);
+            $scope.options.updateSections($scope.options.sectionsInput);
         }
 
-        $scope.options.sections = generateSections($scope.options);
+        recalculateOutput();
     }
+
+    $scope.options = new CommitParseOptions();
 
     $scope.reset = resetToDefaults;
     $scope.calculateOutput = recalculateOutput;

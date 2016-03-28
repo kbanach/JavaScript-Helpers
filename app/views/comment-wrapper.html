@@ -4,8 +4,8 @@
 <div class="btn-group">
     <a class="btn btn-default btn-sm"
        ng-repeat="(key, value) in presets"
-       ng-click="loadPreset(value)">
-        {{value.presetName}} preset
+       ng-click="loadPreset(key)">
+        {{value}} preset
     </a>
 </div>
 
