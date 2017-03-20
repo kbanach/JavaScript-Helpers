@@ -31,17 +31,12 @@ module.exports = function (grunt) {
         // Project settings
         yeoman: appConfig,
 
-        typescript: {
+        ts: {
             base: {
                 src:     ['<%= yeoman.app %>/scripts/{,*/}*.ts'],
                 options: {
-                    target:    'es5',
-                    sourceMap: true
-                }
-            },
-            test: {
-                src:     ['test/spec/{,*/}*.ts'],
-                options: {
+                    outDir:    'dist',
+                    compiler:  '/usr/local/bin/tsc',
                     target:    'es5',
                     sourceMap: true
                 }
@@ -56,22 +51,14 @@ module.exports = function (grunt) {
             },
             ts:         {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.ts'],
-                tasks: ['typescript']
-            },
-            tsTest:     {
-                files: ['test/spec/{,*/}*.ts'],
-                tasks: ['typescript:test']
+                tasks: ['ts']
             },
             js:         {
                 files:   ['<%= yeoman.app %>/scripts/{,*/}*.js'],
                 tasks:   ['newer:jshint:all'],
                 options: {
-                    livereload: '<%= connect.options.livereload %>'
+                    livereload: true
                 }
-            },
-            jsTest:     {
-                files: ['test/spec/{,*/}*.js'],
-                tasks: ['newer:jshint:test', 'karma']
             },
             compass:    {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -80,68 +67,52 @@ module.exports = function (grunt) {
             gruntfile:  {
                 files: ['Gruntfile.js']
             },
-            livereload: {
-                options: {
-                    livereload: '<%= connect.options.livereload %>'
-                },
-                files:   [
-                    '<%= yeoman.app %>/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
-            }
+            // livereload: {
+            //     options: {
+            //         livereload: '<%= connect.options.livereload %>'
+            //     },
+            //     files:   [
+            //         '<%= yeoman.app %>/{,*/}*.html',
+            //         '.tmp/styles/{,*/}*.css',
+            //         '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            //     ]
+            // }
         },
 
-        // The actual grunt server settings
-        connect: {
-            options:    {
-                port:       9000,
-                // Change this to '0.0.0.0' to access the server from outside.
-                hostname:   'localhost',
-                livereload: 35729
-            },
-            livereload: {
-                options: {
-                    open:       true,
-                    middleware: function (connect) {
-                        return [
-                            connect.static('.tmp'),
-                            connect().use(
-                                '/bower_components',
-                                connect.static('./bower_components')
-                            ),
-                            connect().use(
-                                '/app/styles',
-                                connect.static('./app/styles')
-                            ),
-                            connect.static(appConfig.app)
-                        ];
-                    }
-                }
-            },
-            test:       {
-                options: {
-                    port:       9001,
-                    middleware: function (connect) {
-                        return [
-                            connect.static('.tmp'),
-                            connect.static('test'),
-                            connect().use(
-                                '/bower_components',
-                                connect.static('./bower_components')
-                            ),
-                            connect.static(appConfig.app)
-                        ];
-                    }
-                }
-            },
-            dist:       {
-                options: {
-                    open: true,
-                    base: '<%= yeoman.dist %>'
-                }
-            }
-        },
+        // // The actual grunt server settings
+        // connect: {
+        //     options:    {
+        //         port:       9000,
+        //         // Change this to '0.0.0.0' to access the server from outside.
+        //         hostname:   'localhost',
+        //         livereload: 35729
+        //     },
+        //     livereload: {
+        //         options: {
+        //             open:       true,
+        //             middleware: function (connect) {
+        //                 return [
+        //                     connect.static('.tmp'),
+        //                     connect().use(
+        //                         '/bower_components',
+        //                         connect.static('./bower_components')
+        //                     ),
+        //                     connect().use(
+        //                         '/app/styles',
+        //                         connect.static('./app/styles')
+        //                     ),
+        //                     connect.static(appConfig.app)
+        //                 ];
+        //             }
+        //         }
+        //     },
+        //     dist:       {
+        //         options: {
+        //             open: true,
+        //             base: '<%= yeoman.dist %>'
+        //         }
+        //     }
+        // },
 
         // Make sure code styles are up to par and there are no obvious mistakes
         jshint: {
@@ -154,12 +125,6 @@ module.exports = function (grunt) {
                     'Gruntfile.js',
                     '<%= yeoman.app %>/scripts/{,*/}*.js'
                 ]
-            },
-            test:    {
-                options: {
-                    jshintrc: 'test/.jshintrc'
-                },
-                src:     ['test/spec/{,*/}*.js']
             }
         },
 
@@ -215,22 +180,6 @@ module.exports = function (grunt) {
             app:  {
                 src:        ['<%= yeoman.app %>/index.html'],
                 ignorePath: /\.\.\//
-            },
-            test: {
-                devDependencies: true,
-                src:             '<%= karma.unit.configFile %>',
-                ignorePath:      /\.\.\//,
-                fileTypes:       {
-                    js: {
-                        block:   /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-                        detect:  {
-                            js: /'(.*\.js)'/gi
-                        },
-                        replace: {
-                            js: '\'{{filePath}}\','
-                        }
-                    }
-                }
             },
             sass: {
                 src:        ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -463,9 +412,6 @@ module.exports = function (grunt) {
             server: [
                 'compass:server'
             ],
-            test:   [
-                'compass'
-            ],
             dist:   [
                 'compass:dist',
                 //'imagemin',
@@ -473,14 +419,9 @@ module.exports = function (grunt) {
             ]
         },
 
-        // Test settings
-        karma: {
-            unit: {
-                configFile: 'test/karma.conf.js',
-                singleRun:  true
-            }
-        }
     });
+
+    grunt.loadNpmTasks("grunt-ts");
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
@@ -492,7 +433,7 @@ module.exports = function (grunt) {
             'wiredep',
             'concurrent:server',
             'autoprefixer:server',
-            'connect:livereload',
+            // 'connect:livereload',
             'watch'
         ]);
     });
@@ -502,18 +443,10 @@ module.exports = function (grunt) {
         grunt.task.run(['serve:' + target]);
     });
 
-    grunt.registerTask('test', [
-        'clean:server',
-        'wiredep',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
-    ]);
 
     grunt.registerTask('build', [
         'clean:dist',
-        'typescript',
+        'ts',
         'wiredep',
         'useminPrepare',
         'concurrent:dist',
@@ -532,7 +465,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'newer:jshint',
-        'test',
         'build'
     ]);
 };

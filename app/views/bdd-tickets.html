@@ -59,7 +59,27 @@
     </div>
 
     <div class="form-group">
-        <label for="bddTickets_andWrapper">Header wrap char (up to 3 chars, closing ones will be in reverse
+        <label for="bddTickets_headerContainer">Header container (<code>%h</code> will
+            be replaced with <strong>Header</strong>)</label>
+        <input type="text"
+               ng-model="options.headerContainer"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.headerContainer}}"
+               id="bddTickets_headerContainer"/>
+    </div>
+    <div class="form-group">
+        <label for="bddTickets_footer">Footer added on very bottom</label>
+        <input type="text"
+               ng-model="options.footer"
+               ng-change="calculateOutput()"
+               class="form-control"
+               placeholder="{{options.placeholder.footer}}"
+               id="bddTickets_footer"/>
+    </div>
+
+    <div class="form-group">
+        <label for="bddTickets_headerWrapper">Header wrap char (up to 3 chars, closing ones will be in reverse
             order)</label>
         <input type="text"
                ng-model="options.headerWrapper"

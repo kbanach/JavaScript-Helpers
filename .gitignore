@@ -115,3 +115,4 @@ bower_components
 /app/scripts/controllers/*.js.map
 /app/scripts/directives/*.js
 /app/scripts/directives/*.js.map
+/node_modules/
