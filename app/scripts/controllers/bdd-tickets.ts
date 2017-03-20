@@ -97,19 +97,6 @@ function getHeader(options) {
     if (!_.isEmpty(options.headerContainer.trim())) {
         headerContainer = options.headerContainer;
 
-
-        console.log('************************************************************');
-        console.log('************************** lalala **************************');
-        console.log('************************************************************');
-        console.log('* headerContainer: ',headerContainer);
-        console.log('************************************************************');
-        console.log('* options.headerContainerPlaceholder: ',options.headerContainerPlaceholder);
-        console.log('************************************************************');
-        console.log('* output: ',output);
-        console.log('************************************************************');
-
-
-
         if (_.includes(headerContainer, options.headerContainerPlaceholder)) {
             headerContainer = headerContainer.replace(options.headerContainerPlaceholder, output);
 
@@ -118,8 +105,6 @@ function getHeader(options) {
             output = headerContainer + '\n' + output;
         }
     }
-
-    output = output + '\n';
 
     if (options.spaceBetween) {
         output += '\n';
