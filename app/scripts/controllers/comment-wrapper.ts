@@ -136,10 +136,10 @@ class CommentOptions {
                 stringEscapeChar:        '\'',
                 presetName:              'NodeJS',
                 lineLength:              60,
-                varEscapePrefix:         'util.inspect(',
+                varEscapePrefix:         'require(\'util\').inspect(',
                 varEscapePostfix:        ', false, 3)',
                 varConcatChar:           ',',
-                input:                   'NodeJS preset loaded!\nDon`t forget to require "util" Node package'
+                input:                   'NodeJS preset loaded!'
             },
             'python3': {
                 lineStart:               'print(',
