@@ -163,7 +163,7 @@ function bddTicketsCtrl($scope) {
         headerContainer: '{panel:title=%h}',
         footer: '{panel}',
         headerContainerPlaceholder: '%h',
-        headerWrapper: '_*',
+        headerWrapper: '',
         spaceBetween: true,
         showOptions: false,
         placeholder: {
