@@ -1,0 +1,10 @@
+.logo {
+  height: 40vmin;
+}
+
+.header {
+  min-height: 50vh;
+  padding: 5vh;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
