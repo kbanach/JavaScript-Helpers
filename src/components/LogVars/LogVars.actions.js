@@ -2,7 +2,7 @@ export const consLogGenActions = {
   SET_VARS: 'UPDATE_VARS',
 };
 
-export function setConsoleLogVars(newVars) {
+export function setVars(newVars) {
   return {
     type: consLogGenActions.SET_VARS,
     vars: newVars.split(/[,; ]/ig)
