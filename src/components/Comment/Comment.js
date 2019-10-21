@@ -4,20 +4,9 @@ import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
 import { setComment } from './Comment.actions';
 
 class Comment extends React.Component {
-  state = {
-    comment: ''
-  };
-
   onChange = (e) => {
     e.preventDefault();
-    this.setState({
-      ...this.state,
-      comment: e.target.value,
-    })
-  }
-
-  send = () => {
-    this.props.onChange(this.state.comment);
+    this.props.onChange(e.target.value);
   }
 
   render() {
@@ -25,15 +14,16 @@ class Comment extends React.Component {
       <HorizontalInput
         label='The comment'
         type={INPUT_TYPE.TEXTAREA}
-        onBlur={this.send}
         onChange={this.onChange}
-        value={this.state.comment}
+        value={this.props.comment}
       />
     );
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  comment: state.comment
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onChange: (comment) => {

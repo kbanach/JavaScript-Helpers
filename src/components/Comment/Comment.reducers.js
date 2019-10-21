@@ -1,6 +1,6 @@
 import { CommentActions } from './Comment.actions';
 
-const commentInitialState = '';
+const commentInitialState = 'your comment';
 
 export function comment(state = commentInitialState, action) {
   switch (action.type) {

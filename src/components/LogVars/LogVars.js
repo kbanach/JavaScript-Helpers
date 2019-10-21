@@ -32,7 +32,9 @@ class LogVars extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  vars: state.vars.join(', ')
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onChange: (vars) => {

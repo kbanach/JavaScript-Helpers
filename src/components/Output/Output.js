@@ -4,18 +4,24 @@ import { connect } from 'react-redux';
 import './Output.css';
 
 const Output = ({ vars, comment }) => {
+
+  let parsedVarsLines = vars.map(v => (
+    `console.log('${v}: ', JSON.stringify(${v}, false, '\\t'))`
+  ));
+
+
   return (
     <div className="card">
       <pre className="card-body">
         <code>
-          <div>Vars: {vars && vars.map((v, k) => (
+
+          <div>{comment}</div>
+
+          <div>{parsedVarsLines && parsedVarsLines.map((v, k) => (
             <div key={k}>{v}</div>
           ))}
           </div>
 
-          <div>
-          Comment: {comment}
-          </div>
         </code>
       </pre>
     </div>
