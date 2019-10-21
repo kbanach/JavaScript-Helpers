@@ -4,31 +4,31 @@ import { connect } from 'react-redux';
 import { setConsoleLogVars } from './actions';
 import PropTypes from 'prop-types';
 
-const App = ({ dispatch, vars }) => {
+const App = ({ vars, onSumbmit }) => {
   let input;
 
   return (
-  <div className="App">
-    <form onSubmit={
-      (e) => {
-        e.preventDefault();
+    <div className="App">
+      <form onSubmit={
+        (e) => {
+          e.preventDefault();
 
-        if (!input.value.trim()) {
-          return;
+          if (!input.value.trim()) {
+            return;
+          }
+
+          onSumbmit(input.value);
         }
+      }>
+        <input ref={node => (input = node)} />
+        <button type="submit">Set Vars</button>
+      </form>
 
-        dispatch(setConsoleLogVars(input.value));
-      }
-    }>
-      <input ref={node => (input = node)} />
-      <button type="submit">Set Vars</button>
-    </form>
+      { vars && vars.map((v, key) => (
+        <div key={key}>{v}</div>
+      )) }
 
-    { vars && vars.map((v, key) => (
-      <div key={key}>{v}</div>
-    )) }
-
-  </div>
+    </div>
   );
 };
 
@@ -40,4 +40,10 @@ const mapStateToProps = state => ({
   vars: state.consoleLogsGenerator.vars
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  onSumbmit: (newVars) => (
+    dispatch(setConsoleLogVars(newVars))
+  ),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
