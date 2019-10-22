@@ -3,22 +3,15 @@ import { connect } from 'react-redux';
 import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
 import { setComment } from './Comment.actions';
 
-class Comment extends React.Component {
-  onChange = (e) => {
-    e.preventDefault();
-    this.props.onChange(e.target.value);
-  }
-
-  render() {
-    return (
-      <HorizontalInput
-        label='The comment'
-        type={INPUT_TYPE.TEXTAREA}
-        onChange={this.onChange}
-        value={this.props.comment}
-      />
-    );
-  }
+const  Comment = (props) => {
+  return (
+    <HorizontalInput
+      label='The comment'
+      type={INPUT_TYPE.TEXTAREA}
+      onChange={props.onChange}
+      value={props.comment}
+    />
+  );
 }
 
 const mapStateToProps = (state) => ({

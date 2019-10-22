@@ -2,45 +2,37 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setVars } from './LogVars.actions';
 import HorizontalInput from '../Form/HorizontalInput';
+import PropTypes from 'prop-types';
 
 class LogVars extends React.Component {
-  state = {
-    vars: '',
-  };
-
-  onChange = (e) => {
-    e.preventDefault();
-    this.setState({
-      ...this.state,
-      vars: e.target.value,
-    })
-  }
-
-  send = () => {
-    this.props.onChange(this.state.vars);
-  }
-
   render() {
     return (
       <HorizontalInput
         label="Variable names to log"
-        onBlur={this.send}
-        onChange={this.onChange}
-        value={this.state.vars}
+        onChange={(rawVars) => { this.props.onChange(rawVars) }}
+        value={this.props.rawVars}
       />
     );
   }
 }
 
+LogVars.propTypes = {
+  onChange: PropTypes.func.isRequired,
+
+  vars: PropTypes.arrayOf(PropTypes.string).isRequired,
+  rawVars: PropTypes.string.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  vars: state.vars.join(', ')
-})
+  vars: state.vars.vars,
+  rawVars: state.vars.rawVars,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onChange: (vars) => {
     dispatch(setVars(vars))
-  }
-})
+  },
+});
 
 export default connect(
   mapStateToProps,

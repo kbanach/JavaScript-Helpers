@@ -2,10 +2,11 @@ export const consLogGenActions = {
   SET_VARS: 'UPDATE_VARS',
 };
 
-export function setVars(newVars) {
+export function setVars(rawVars) {
   return {
     type: consLogGenActions.SET_VARS,
-    vars: newVars.split(/[,; ]/ig)
+    rawVars,
+    vars: rawVars.split(/[,; ]/ig)
       .map(t => t.trim())
       .filter(Boolean),
   };
