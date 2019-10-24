@@ -2,34 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { parseComment, parseVar, parseEmptyLine } from './helpers';
 import './Output.css';
 
 const Output = ({ vars, comment, settings }) => {
 
-  const parsedVarsLines = vars.map(v => (
-    `${settings.lineStart}` +
-    `${settings.charEscaper}${v}: ${settings.charEscaper}` +
-    `${settings.variableConcatenateChar}` +
-    `${settings.variableWrapperCodePrefix}${v}${settings.variableWrapperCodePostfix}`+
-    `${settings.lineEnd}`
-  ));
-
-  let parsedComment =
-  `${settings.lineStart}` +
-  `${settings.charEscaper}${comment.replace(new RegExp(settings.charEscaper, 'ig'), `\\${settings.charEscaper}`)}${settings.charEscaper}` +
-  `${settings.lineEnd}`;
+  const emptyLine = parseEmptyLine(settings);
+  const parsedVarsLines = vars.map(v => (parseVar(settings, v)));
+  const parsedComment = parseComment(settings, comment);
 
   return (
     <div className="card">
       <pre className="card-body">
         <code>
 
+          <div>{emptyLine}</div>
           <div>{parsedComment}</div>
+          <div>{emptyLine}</div>
 
           <div>{parsedVarsLines && parsedVarsLines.map((v, k) => (
             <div key={k}>{v}</div>
           ))}
           </div>
+
+          <div>{emptyLine}</div>
 
         </code>
       </pre>
