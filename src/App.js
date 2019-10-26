@@ -12,7 +12,7 @@ import Output from './components/Output/Output';
 const App = () => {
   return (
     <Container>
-      <h1>Logs generator</h1>
+      <h1>JS Development helpers</h1>
       <Presets />
       <Settings />
       <LogVars />
