@@ -50,9 +50,9 @@ class Settings extends React.Component {
             <Col><h3>Advanced settings</h3></Col>
             <Col className='text-right'>
               {(this.props.showAdvancedSettings) ? (
-                <Button variant='outline-primary' size='sm' onClick={this.props.hideAdvanced}>Hide advanced settings</Button>
+                <Button variant='primary' size='sm' onClick={this.props.hideAdvanced}>Hide advanced settings</Button>
               ) : (
-                <Button variant='primary' size='sm' onClick={this.props.showAdvanced}>Show advanced settings</Button>
+                <Button variant='outline-primary' size='sm' onClick={this.props.showAdvanced}>Show advanced settings</Button>
               )}
             </Col>
           </Row>
