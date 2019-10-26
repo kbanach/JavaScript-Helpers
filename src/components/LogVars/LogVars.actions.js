@@ -3,13 +3,11 @@ export const consLogGenActions = {
   SET_VARS: 'UPDATE_VARS',
 };
 
-
 export function resetVars() {
   return {
     type: consLogGenActions.RESET_VARS,
   };
 }
-
 
 export function setVars(rawVars) {
   return {
