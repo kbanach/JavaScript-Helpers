@@ -11,22 +11,21 @@ const Output = ({ vars, comment, settings }) => {
   const parsedVarsLines = vars.map(v => (parseVar(settings, v)));
   const parsedComment = parseComment(settings, comment);
 
+  const outputText = [
+    emptyLine,
+    parsedComment,
+    emptyLine,
+    ...parsedVarsLines,
+    emptyLine,
+  ];
+
   return (
     <div className="card">
       <pre className="card-body">
         <code>
-
-          <div>{emptyLine}</div>
-          <div>{parsedComment}</div>
-          <div>{emptyLine}</div>
-
-          <div>{parsedVarsLines && parsedVarsLines.map((v, k) => (
-            <div key={k}>{v}</div>
+          {outputText.map((l, k) => (
+            <div key={k}>{l}</div>
           ))}
-          </div>
-
-          <div>{emptyLine}</div>
-
         </code>
       </pre>
     </div>

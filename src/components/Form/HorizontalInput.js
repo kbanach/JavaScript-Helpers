@@ -11,7 +11,7 @@ export const INPUT_TYPE = {
 
 const HorizontalInput = ({label, type = INPUT_TYPE.INPUT, onChange, ...props}) => {
   return (
-    <Form.Group as={Row}>
+    <Form.Group as={Row} className='align-items-center'>
       <Form.Label column sm="3">{label}</Form.Label>
       <Col sm="9">
         <Form.Control as={type} onChange={(e) => {

@@ -50,7 +50,7 @@ export function parseComment(settings, comment) {
 
 export function parseVar(settings, variable) {
   return wrapLine(settings,
-    `${variable}: ${settings.charEscaper}` +
+    `${settings.filler} ${variable}: ${settings.charEscaper}` +
     `${settings.variableConcatenateChar}` +
     `${settings.variableWrapperCodePrefix}${variable}${settings.variableWrapperCodePostfix}`
   );
