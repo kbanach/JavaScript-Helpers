@@ -1,10 +1,12 @@
-function wrapLine(settings, line) {
-  return `${settings.lineStart}${settings.charEscaper}` +
-  `${line}` +
-  `${settings.charEscaper}${settings.lineEnd}`;
+function wrapLineInPreAndPostFix(settings, line) {
+  return `${settings.lineStart}${line}${settings.lineEnd}`;
 }
 
-function fillLine(settings, line) {
+function wrapStringWithEscaperChar(settings, stringToWrap) {
+  return settings.charEscaper + stringToWrap + settings.charEscaper;
+}
+
+function centerTextAndFillGapsAround(settings, line) {
   const targetLen = settings.lineLength;
   const currentLen = line.length;
 
@@ -21,36 +23,40 @@ function fillLine(settings, line) {
   return filledLine;
 }
 
-function parseLine(settings, line) {
-  const filledLine = fillLine(
-    settings,
-    line.replace(new RegExp(settings.charEscaper, 'ig'), `\\${settings.charEscaper}`)
-  );
+function transformStringToCenteredAndEscapedString(settings, line) {
+  const filledLine = centerTextAndFillGapsAround(settings, line);
 
-  return wrapLine(
+  let lineWithEscapedChars = filledLine;
+
+  if (settings.charEscaper) {
+    lineWithEscapedChars = lineWithEscapedChars.replace(new RegExp(settings.charEscaper, 'ig'), `\\${settings.charEscaper}`);
+  }
+
+  return wrapLineInPreAndPostFix(
     settings,
-    filledLine
+    wrapStringWithEscaperChar(settings, lineWithEscapedChars)
   );
 }
 
 export function parseEmptyLine(settings) {
-  const emptyLine = settings.filler.repeat(settings.lineLength);
-  return wrapLine(settings, emptyLine);
+  const emptyLine = wrapStringWithEscaperChar(settings, settings.filler.repeat(settings.lineLength));
+
+  return wrapLineInPreAndPostFix(settings, emptyLine);
 }
 
 export function parseComment(settings, comment) {
   return comment.split('\n')
     .map(l => l.trim())
     .map((l) => {
-      if (l) return parseLine(settings, l);
+      if (l) return transformStringToCenteredAndEscapedString(settings, l);
       return parseEmptyLine(settings);
     })
     .join('\n')
 }
 
 export function parseVar(settings, variable) {
-  return wrapLine(settings,
-    `${settings.filler} ${variable}: ${settings.charEscaper}` +
+  return wrapLineInPreAndPostFix(settings,
+    wrapStringWithEscaperChar(settings, `${settings.filler} ${variable}: `) +
     `${settings.variableConcatenateChar}` +
     `${settings.variableWrapperCodePrefix}${variable}${settings.variableWrapperCodePostfix}`
   );
