@@ -10,7 +10,7 @@ const settingsInitialState = {
   charEscaper: "'",
   variableConcatenateChar: ", ",
   variableWrapperCodePrefix: "JSON.stringify(",
-  variableWrapperCodePostfix: ", false, '\\t')",
+  variableWrapperCodePostfix: ", null, '\\t')",
 };
 
 const presets = {
@@ -21,7 +21,7 @@ const presets = {
     charEscaper: "'",
     variableConcatenateChar: ", ",
     variableWrapperCodePrefix: "JSON.stringify(",
-    variableWrapperCodePostfix: ", false, '\\t')",
+    variableWrapperCodePostfix: ", null, '\\t')",
   },
   NODEJS: {
     presetType: 'NODEJS',
