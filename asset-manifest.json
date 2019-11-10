@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/kbanach/JavaScript-Helpers/static/css/main.7015c6b5.chunk.css",
-    "main.js": "/kbanach/JavaScript-Helpers/static/js/main.ae342a08.chunk.js",
-    "main.js.map": "/kbanach/JavaScript-Helpers/static/js/main.ae342a08.chunk.js.map",
-    "runtime-main.js": "/kbanach/JavaScript-Helpers/static/js/runtime-main.1335a71a.js",
-    "runtime-main.js.map": "/kbanach/JavaScript-Helpers/static/js/runtime-main.1335a71a.js.map",
-    "static/css/2.0624914a.chunk.css": "/kbanach/JavaScript-Helpers/static/css/2.0624914a.chunk.css",
-    "static/js/2.7afd7ab5.chunk.js": "/kbanach/JavaScript-Helpers/static/js/2.7afd7ab5.chunk.js",
-    "static/js/2.7afd7ab5.chunk.js.map": "/kbanach/JavaScript-Helpers/static/js/2.7afd7ab5.chunk.js.map",
-    "index.html": "/kbanach/JavaScript-Helpers/index.html",
-    "precache-manifest.a2ac85cd0215a1455c74ea5109f6d921.js": "/kbanach/JavaScript-Helpers/precache-manifest.a2ac85cd0215a1455c74ea5109f6d921.js",
-    "service-worker.js": "/kbanach/JavaScript-Helpers/service-worker.js",
-    "static/css/2.0624914a.chunk.css.map": "/kbanach/JavaScript-Helpers/static/css/2.0624914a.chunk.css.map",
-    "static/css/main.7015c6b5.chunk.css.map": "/kbanach/JavaScript-Helpers/static/css/main.7015c6b5.chunk.css.map"
+    "main.css": "https://github.com/kbanach/JavaScript-Helpers/static/css/main.7015c6b5.chunk.css",
+    "main.js": "https://github.com/kbanach/JavaScript-Helpers/static/js/main.a4ed56a0.chunk.js",
+    "main.js.map": "https://github.com/kbanach/JavaScript-Helpers/static/js/main.a4ed56a0.chunk.js.map",
+    "runtime-main.js": "https://github.com/kbanach/JavaScript-Helpers/static/js/runtime-main.516f3e9e.js",
+    "runtime-main.js.map": "https://github.com/kbanach/JavaScript-Helpers/static/js/runtime-main.516f3e9e.js.map",
+    "static/css/2.0624914a.chunk.css": "https://github.com/kbanach/JavaScript-Helpers/static/css/2.0624914a.chunk.css",
+    "static/js/2.7afd7ab5.chunk.js": "https://github.com/kbanach/JavaScript-Helpers/static/js/2.7afd7ab5.chunk.js",
+    "static/js/2.7afd7ab5.chunk.js.map": "https://github.com/kbanach/JavaScript-Helpers/static/js/2.7afd7ab5.chunk.js.map",
+    "index.html": "https://github.com/kbanach/JavaScript-Helpers/index.html",
+    "precache-manifest.58655af3526b2aabc7e4bc3ded7cbea9.js": "https://github.com/kbanach/JavaScript-Helpers/precache-manifest.58655af3526b2aabc7e4bc3ded7cbea9.js",
+    "service-worker.js": "https://github.com/kbanach/JavaScript-Helpers/service-worker.js",
+    "static/css/2.0624914a.chunk.css.map": "https://github.com/kbanach/JavaScript-Helpers/static/css/2.0624914a.chunk.css.map",
+    "static/css/main.7015c6b5.chunk.css.map": "https://github.com/kbanach/JavaScript-Helpers/static/css/main.7015c6b5.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.1335a71a.js",
+    "static/js/runtime-main.516f3e9e.js",
     "static/css/2.0624914a.chunk.css",
     "static/js/2.7afd7ab5.chunk.js",
     "static/css/main.7015c6b5.chunk.css",
-    "static/js/main.ae342a08.chunk.js"
+    "static/js/main.a4ed56a0.chunk.js"
   ]
 }
