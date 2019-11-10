@@ -60,6 +60,16 @@ class Settings extends React.Component {
           {this.props.showAdvancedSettings && (
             <div>
               <HorizontalInput
+                label='General prefix'
+                onChange={(generalPrefix) => { this.props.onChange({ generalPrefix }) }}
+                value={this.props.generalPrefix}
+              />
+              <HorizontalInput
+                label='General postfix'
+                onChange={(generalPostfix) => { this.props.onChange({ generalPostfix }) }}
+                value={this.props.generalPostfix}
+              />
+              <HorizontalInput
                 label='Line start'
                 onChange={(lineStart) => { this.props.onChange({ lineStart }) }}
                 value={this.props.lineStart}
@@ -111,6 +121,8 @@ Settings.propTypes = {
   variableConcatenateChar: PropTypes.string.isRequired,
   variableWrapperCodePrefix: PropTypes.string.isRequired,
   variableWrapperCodePostfix: PropTypes.string.isRequired,
+  generalPrefix: PropTypes.string.isRequired,
+  generalPostfix: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

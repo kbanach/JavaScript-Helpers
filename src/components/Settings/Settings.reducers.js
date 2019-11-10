@@ -11,6 +11,8 @@ const settingsInitialState = {
   variableConcatenateChar: ", ",
   variableWrapperCodePrefix: "JSON.stringify(",
   variableWrapperCodePostfix: ", null, '\\t')",
+  generalPrefix: "",
+  generalPostfix: "",
 };
 
 const presets = {
@@ -22,6 +24,8 @@ const presets = {
     variableConcatenateChar: ", ",
     variableWrapperCodePrefix: "JSON.stringify(",
     variableWrapperCodePostfix: ", null, '\\t')",
+    generalPrefix: "",
+    generalPostfix: "",
   },
   NODEJS: {
     presetType: 'NODEJS',
@@ -29,8 +33,9 @@ const presets = {
     lineEnd: ');',
     charEscaper: "'",
     variableConcatenateChar: ", ",
-    variableWrapperCodePrefix: "require('util').inspect(",
+    variableWrapperCodePrefix: "util.inspect(",
     variableWrapperCodePostfix: ", false, 5)",
+    generalPrefix: "const util = require('util');",
   },
   DEFAULT: settingsInitialState,
   CUSTOM: {
