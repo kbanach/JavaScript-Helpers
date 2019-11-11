@@ -1,23 +1,26 @@
 import { SettingsActions } from './Settings.actions';
 
 const settingsInitialState = {
-  presetType: 'DEFAULT',
-  filler: '*',
-  lineLength: 60,
+  currentPreset: 'DEFAULT',
   showAdvancedSettings: false,
-  lineStart: 'console.log(',
-  lineEnd: ');',
-  charEscaper: "'",
-  variableConcatenateChar: ", ",
-  variableWrapperCodePrefix: "JSON.stringify(",
-  variableWrapperCodePostfix: ", null, '\\t')",
-  generalPrefix: "",
-  generalPostfix: "",
+  values: {
+    presetType: 'Default',
+    filler: '*',
+    lineLength: 60,
+    lineStart: 'console.log(',
+    lineEnd: ');',
+    charEscaper: "'",
+    variableConcatenateChar: ", ",
+    variableWrapperCodePrefix: "JSON.stringify(",
+    variableWrapperCodePostfix: ", null, '\\t')",
+    generalPrefix: "",
+    generalPostfix: "",
+  }
 };
 
-const presets = {
+const presetsValues = {
   BROWSER: {
-    presetType: 'BROWSER',
+    presetType: 'Browser',
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
@@ -28,7 +31,7 @@ const presets = {
     generalPostfix: "",
   },
   NODEJS: {
-    presetType: 'NODEJS',
+    presetType: 'NodeJS',
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
@@ -36,21 +39,41 @@ const presets = {
     variableWrapperCodePrefix: "util.inspect(",
     variableWrapperCodePostfix: ", false, 5)",
     generalPrefix: "const util = require('util');",
+    generalPostfix: "",
+  },  
+  REACT_RENDER: {
+    presetType: 'React render() log',
+    lineStart: '',
+    lineEnd: '<br />',
+    charEscaper: "",
+    variableConcatenateChar: "",
+    variableWrapperCodePrefix: "{JSON.stringify(",
+    variableWrapperCodePostfix: ", null, '\\t')}",
+    generalPrefix: "<pre>",
+    generalPostfix: "</pre>",
   },
-  DEFAULT: settingsInitialState,
+  DEFAULT: {
+    ...settingsInitialState.values
+  },
   CUSTOM: {
-    presetType: 'CUSTOM',
+    presetType: 'Custom',
   },
 };
 
-export const PRESETS = Object.keys(presets);
+export const PRESETS = Object.keys(presetsValues).reduce((prevValue, newValue) => {
+  return {...prevValue, [newValue]: presetsValues[newValue].presetType};
+}, {});
 
-export function settings(state = presets.DEFAULT, action) {
+export function settings(state = settingsInitialState, action) {
   switch (action.type) {
     case SettingsActions.LOAD_PRESET:
       return {
         ...state,
-        ...(presets[action.preset])
+        currentPreset: action.preset,
+        values: {
+          ...state.values,
+          ...presetsValues[action.preset],
+        }
       };
     case SettingsActions.RESET_SETTINGS:
       return {
@@ -59,8 +82,11 @@ export function settings(state = presets.DEFAULT, action) {
     case SettingsActions.UPDATE_SETTINGS:
       return {
         ...state,
-        ...(presets.CUSTOM),
-        ...action.settings,
+        values: {
+          ...state.values,
+          ...presetsValues.CUSTOM,
+          ...action.newSettingsValues,
+        }
       };
     case SettingsActions.SHOW_ADVANCED:
       return {

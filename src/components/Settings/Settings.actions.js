@@ -19,10 +19,10 @@ export function resetSettings() {
   };
 }
 
-export function updateSettings(settings) {
+export function updateSettings(newSettingsValues) {
   return {
     type: SettingsActions.UPDATE_SETTINGS,
-    settings,
+    newSettingsValues,
   };
 }
 
