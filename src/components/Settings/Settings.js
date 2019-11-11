@@ -126,12 +126,13 @@ Settings.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  ...state.settings,
+  showAdvancedSettings: state.settings.showAdvancedSettings,
+  ...state.settings.values,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChange: (settings) => {
-    dispatch(updateSettings(settings));
+  onChange: (newSettingsValues) => {
+    dispatch(updateSettings(newSettingsValues));
   },
   showAdvanced: () => {
     dispatch(showAdvancedSettings());
