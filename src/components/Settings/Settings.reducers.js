@@ -39,6 +39,7 @@ const presetsValues = {
     variableWrapperCodePrefix: "util.inspect(",
     variableWrapperCodePostfix: ", false, 5)",
     generalPrefix: "const util = require('util');",
+    generalPostfix: "",
   },  
   REACT_RENDER: {
     presetType: 'React render() log',
