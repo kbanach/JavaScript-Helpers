@@ -13,19 +13,27 @@ class LogVars extends React.Component {
       <Row>
         <Col>
           <Row>
-            <Col><h3>Variables</h3></Col>
-            <Col className='text-right'>
-              <Button variant='outline-danger'
-                size='sm'
-                onClick={() => {this.props.resetVariables()}}>
-                  Reset variables
-                </Button>
+            <Col>
+              <h3>Variables</h3>
+            </Col>
+            <Col className="text-right">
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={() => {
+                  this.props.resetVariables();
+                }}
+              >
+                Reset variables
+              </Button>
             </Col>
           </Row>
 
           <HorizontalInput
             label="Variable names to log"
-            onChange={(rawVars) => { this.props.onChange(rawVars) }}
+            onChange={rawVars => {
+              this.props.onChange(rawVars);
+            }}
             value={this.props.rawVars}
           />
         </Col>
@@ -42,13 +50,13 @@ LogVars.propTypes = {
   rawVars: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   vars: state.vars.vars,
   rawVars: state.vars.rawVars,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onChange: (vars) => {
+const mapDispatchToProps = dispatch => ({
+  onChange: vars => {
     dispatch(setVars(vars));
   },
   resetVariables: () => {
@@ -56,7 +64,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LogVars);
+export default connect(mapStateToProps, mapDispatchToProps)(LogVars);

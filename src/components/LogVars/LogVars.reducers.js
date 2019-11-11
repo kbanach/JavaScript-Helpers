@@ -20,4 +20,3 @@ export function vars(state = varsInitialState, action) {
       return state;
   }
 }
-
