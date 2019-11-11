@@ -6,11 +6,10 @@ import { parseComment, parseVar, parseEmptyLine } from './helpers';
 import './Output.css';
 
 const Output = ({ vars, comment, settings }) => {
-
   const genPrefix = settings.generalPrefix;
   const genPostfix = settings.generalPostfix;
   const emptyLine = parseEmptyLine(settings);
-  const parsedVarsLines = vars.map(v => (parseVar(settings, v)));
+  const parsedVarsLines = vars.map(v => parseVar(settings, v));
   const parsedComment = parseComment(settings, comment);
 
   const outputText = [
@@ -19,8 +18,8 @@ const Output = ({ vars, comment, settings }) => {
     parsedComment,
     emptyLine,
     ...parsedVarsLines,
-    (parsedVarsLines.length > 0) ? emptyLine : '',
-    genPostfix
+    parsedVarsLines.length > 0 ? emptyLine : '',
+    genPostfix,
   ];
 
   return (
@@ -34,7 +33,7 @@ const Output = ({ vars, comment, settings }) => {
       </pre>
     </div>
   );
-}
+};
 
 Output.propTypes = {
   vars: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -54,7 +53,7 @@ Output.propTypes = {
   }),
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   vars: state.vars.vars,
   comment: state.comment,
   settings: state.settings.values,

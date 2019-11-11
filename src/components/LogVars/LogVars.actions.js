@@ -13,7 +13,8 @@ export function setVars(rawVars) {
   return {
     type: consLogGenActions.SET_VARS,
     rawVars,
-    vars: rawVars.split(/[,; ]/ig)
+    vars: rawVars
+      .split(/[,; ]/gi)
       .map(t => t.trim())
       .filter(Boolean),
   };

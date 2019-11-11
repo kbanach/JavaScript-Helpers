@@ -16,9 +16,12 @@ function centerTextAndFillGapsAround(settings, line) {
     return line;
   }
 
-  const filledLine = settings.filler.repeat(Math.floor(gap / 2)) +
-  ' ' + line + ' ' +
-  settings.filler.repeat(Math.ceil(gap / 2));
+  const filledLine =
+    settings.filler.repeat(Math.floor(gap / 2)) +
+    ' ' +
+    line +
+    ' ' +
+    settings.filler.repeat(Math.ceil(gap / 2));
 
   return filledLine;
 }
@@ -29,35 +32,43 @@ function transformStringToCenteredAndEscapedString(settings, line) {
   let lineWithEscapedChars = filledLine;
 
   if (settings.charEscaper) {
-    lineWithEscapedChars = lineWithEscapedChars.replace(new RegExp(settings.charEscaper, 'ig'), `\\${settings.charEscaper}`);
+    lineWithEscapedChars = lineWithEscapedChars.replace(
+      new RegExp(settings.charEscaper, 'ig'),
+      `\\${settings.charEscaper}`,
+    );
   }
 
   return wrapLineInPreAndPostFix(
     settings,
-    wrapStringWithEscaperChar(settings, lineWithEscapedChars)
+    wrapStringWithEscaperChar(settings, lineWithEscapedChars),
   );
 }
 
 export function parseEmptyLine(settings) {
-  const emptyLine = wrapStringWithEscaperChar(settings, settings.filler.repeat(settings.lineLength));
+  const emptyLine = wrapStringWithEscaperChar(
+    settings,
+    settings.filler.repeat(settings.lineLength),
+  );
 
   return wrapLineInPreAndPostFix(settings, emptyLine);
 }
 
 export function parseComment(settings, comment) {
-  return comment.split('\n')
+  return comment
+    .split('\n')
     .map(l => l.trim())
-    .map((l) => {
+    .map(l => {
       if (l) return transformStringToCenteredAndEscapedString(settings, l);
       return parseEmptyLine(settings);
     })
-    .join('\n')
+    .join('\n');
 }
 
 export function parseVar(settings, variable) {
-  return wrapLineInPreAndPostFix(settings,
+  return wrapLineInPreAndPostFix(
+    settings,
     wrapStringWithEscaperChar(settings, `${settings.filler} ${variable}: `) +
-    `${settings.variableConcatenateChar}` +
-    `${settings.variableWrapperCodePrefix}${variable}${settings.variableWrapperCodePostfix}`
+      `${settings.variableConcatenateChar}` +
+      `${settings.variableWrapperCodePrefix}${variable}${settings.variableWrapperCodePostfix}`,
   );
 }
