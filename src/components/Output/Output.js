@@ -57,7 +57,7 @@ Output.propTypes = {
 const mapStateToProps = (state) => ({
   vars: state.vars.vars,
   comment: state.comment,
-  settings: state.settings,
+  settings: state.settings.values,
 });
 
 export default connect(mapStateToProps)(Output);
