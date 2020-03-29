@@ -53,6 +53,8 @@
   },
   "homepage": "http://kbanach.github.io/JavaScript-Helpers",
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "prettier": "1.19.1"
   }
 }
