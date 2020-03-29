@@ -6,12 +6,12 @@ Project live preview on http://kbanach.github.io/JavaScript-Helpers
 
 First of all install it with
 ```bash
-npm i
+yarn
 ```
 
 Then simply:
 ```bash
-$ npm start
+yarn start
 ```
 
 Which will open the browser.
