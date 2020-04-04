@@ -1,13 +1,13 @@
 const LOCAL_STORAGE_ITEM = '__state';
 
-export const saveState = (state) => {
+export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(LOCAL_STORAGE_ITEM, serializedState);
   } catch (err) {
     console.log('Error was throw during store parsing: ', err);
   }
-}
+};
 
 export const loadState = () => {
   try {
@@ -16,8 +16,8 @@ export const loadState = () => {
       return undefined;
     }
     return JSON.parse(serializedState);
-  } catch(err) {
+  } catch (err) {
     console.log('Error was throw during store reading: ', err);
     return undefined;
   }
-}
+};

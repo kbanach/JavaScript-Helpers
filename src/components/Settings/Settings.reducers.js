@@ -10,12 +10,12 @@ const settingsInitialState = {
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
-    variableConcatenateChar: ", ",
-    variableWrapperCodePrefix: "JSON.stringify(",
+    variableConcatenateChar: ', ',
+    variableWrapperCodePrefix: 'JSON.stringify(',
     variableWrapperCodePostfix: ", null, '\\t')",
-    generalPrefix: "",
-    generalPostfix: "",
-  }
+    generalPrefix: '',
+    generalPostfix: '',
+  },
 };
 
 const presetsValues = {
@@ -24,45 +24,48 @@ const presetsValues = {
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
-    variableConcatenateChar: ", ",
-    variableWrapperCodePrefix: "JSON.stringify(",
+    variableConcatenateChar: ', ',
+    variableWrapperCodePrefix: 'JSON.stringify(',
     variableWrapperCodePostfix: ", null, '\\t')",
-    generalPrefix: "",
-    generalPostfix: "",
+    generalPrefix: '',
+    generalPostfix: '',
   },
   NODEJS: {
     presetType: 'NodeJS',
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
-    variableConcatenateChar: ", ",
-    variableWrapperCodePrefix: "util.inspect(",
-    variableWrapperCodePostfix: ", false, 5)",
+    variableConcatenateChar: ', ',
+    variableWrapperCodePrefix: 'util.inspect(',
+    variableWrapperCodePostfix: ', false, 5)',
     generalPrefix: "const util = require('util');",
-    generalPostfix: "",
-  },  
+    generalPostfix: '',
+  },
   REACT_RENDER: {
     presetType: 'React render() log',
     lineStart: '',
     lineEnd: '<br />',
-    charEscaper: "",
-    variableConcatenateChar: "",
-    variableWrapperCodePrefix: "{JSON.stringify(",
+    charEscaper: '',
+    variableConcatenateChar: '',
+    variableWrapperCodePrefix: '{JSON.stringify(',
     variableWrapperCodePostfix: ", null, '\\t')}",
-    generalPrefix: "<pre>",
-    generalPostfix: "</pre>",
+    generalPrefix: '<pre>',
+    generalPostfix: '</pre>',
   },
   DEFAULT: {
-    ...settingsInitialState.values
+    ...settingsInitialState.values,
   },
   CUSTOM: {
     presetType: 'Custom',
   },
 };
 
-export const PRESETS = Object.keys(presetsValues).reduce((prevValue, newValue) => {
-  return {...prevValue, [newValue]: presetsValues[newValue].presetType};
-}, {});
+export const PRESETS = Object.keys(presetsValues).reduce(
+  (prevValue, newValue) => {
+    return { ...prevValue, [newValue]: presetsValues[newValue].presetType };
+  },
+  {},
+);
 
 export function settings(state = settingsInitialState, action) {
   switch (action.type) {
@@ -73,7 +76,7 @@ export function settings(state = settingsInitialState, action) {
         values: {
           ...state.values,
           ...presetsValues[action.preset],
-        }
+        },
       };
     case SettingsActions.RESET_SETTINGS:
       return {
@@ -86,7 +89,7 @@ export function settings(state = settingsInitialState, action) {
           ...state.values,
           ...presetsValues.CUSTOM,
           ...action.newSettingsValues,
-        }
+        },
       };
     case SettingsActions.SHOW_ADVANCED:
       return {

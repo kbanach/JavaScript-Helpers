@@ -12,4 +12,3 @@ export function comment(state = commentInitialState, action) {
       return state;
   }
 }
-
