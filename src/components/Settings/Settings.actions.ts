@@ -1,3 +1,6 @@
+import { PresetNames } from "./Settings.reducers";
+import { Settings } from "./Settings.interface";
+
 export const SettingsActions = {
   LOAD_PRESET: 'LOAD_PRESET',
   RESET_SETTINGS: 'RESET_SETTINGS',
@@ -6,7 +9,7 @@ export const SettingsActions = {
   HIDE_ADVANCED: 'HIDE_ADVANCED_SETTINGS',
 };
 
-export function loadSettingsPreset(preset) {
+export function loadSettingsPreset(preset: PresetNames) {
   return {
     type: SettingsActions.LOAD_PRESET,
     preset,
@@ -19,7 +22,7 @@ export function resetSettings() {
   };
 }
 
-export function updateSettings(newSettingsValues) {
+export function updateSettings(newSettingsValues: Partial<Settings>) {
   return {
     type: SettingsActions.UPDATE_SETTINGS,
     newSettingsValues,

@@ -1,8 +1,11 @@
 import { CommentActions } from './Comment.actions';
+import { AnyAction } from 'redux';
 
 const commentInitialState = 'your comment';
 
-export function comment(state = commentInitialState, action) {
+export type CommentState = string;
+
+export function comment(state = commentInitialState, action: AnyAction) {
   switch (action.type) {
     case CommentActions.RESET_COMMENT:
       return commentInitialState;
