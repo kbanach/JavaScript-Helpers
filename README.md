@@ -16,6 +16,10 @@ yarn start
 
 Which will open the browser.
 
+## Deployment to gh-pages
+
+Every merge to `master` is deployed by Travis CI. 
+
 ## Notes
 
 Everything what you can see here, is a one-man-one-tomuchfreetime job. Don't blame me for anything. Ask questions.
