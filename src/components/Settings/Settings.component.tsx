@@ -141,23 +141,3 @@ export class SettingsComponent extends React.Component<any, any> {
     );
   }
 }
-
-// Settings.propTypes = {
-//   onChange: PropTypes.func.isRequired,
-//   showAdvanced: PropTypes.func.isRequired,
-//   hideAdvanced: PropTypes.func.isRequired,
-
-//   showAdvancedSettings: PropTypes.bool.isRequired,
-//   filler: PropTypes.string.isRequired,
-//   lineLength: PropTypes.number.isRequired,
-//   lineStart: PropTypes.string.isRequired,
-//   lineEnd: PropTypes.string.isRequired,
-//   charEscaper: PropTypes.string.isRequired,
-//   variableConcatenateChar: PropTypes.string.isRequired,
-//   variableWrapperCodePrefix: PropTypes.string.isRequired,
-//   variableWrapperCodePostfix: PropTypes.string.isRequired,
-//   generalPrefix: PropTypes.string.isRequired,
-//   generalPostfix: PropTypes.string.isRequired,
-// };
-
-

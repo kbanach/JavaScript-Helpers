@@ -33,22 +33,3 @@ export const OutputComponent: React.FC<OutputComponentProps> = ({ vars, comment,
     </div>
   );
 };
-
-// Output.propTypes = {
-//   vars: PropTypes.arrayOf(PropTypes.string).isRequired,
-//   comment: PropTypes.string.isRequired,
-//   settings: PropTypes.shape({
-//     filler: PropTypes.string,
-//     lineLength: PropTypes.number,
-//     showAdvancedSettings: PropTypes.bool,
-//     lineStart: PropTypes.string,
-//     lineEnd: PropTypes.string,
-//     charEscaper: PropTypes.string,
-//     variableConcatenateChar: PropTypes.string,
-//     variableWrapperCodePrefix: PropTypes.string,
-//     variableWrapperCodePostfix: PropTypes.string,
-//     generalPrefix: PropTypes.string.isRequired,
-//     generalPostfix: PropTypes.string.isRequired,
-//   }),
-// };
-
