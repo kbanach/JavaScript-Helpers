@@ -1,13 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { resetVars, setVars } from './LogVars.actions';
 import HorizontalInput from '../Form/HorizontalInput';
-import PropTypes from 'prop-types';
+import { LogVarsProps } from './LogVars.interface';
+import { VarsState } from './LogVars.reducers';
 
-class LogVars extends React.Component {
+export class LogVarsComponent extends React.Component<LogVarsProps, any> {
   render() {
     return (
       <Row>
@@ -31,7 +30,7 @@ class LogVars extends React.Component {
 
           <HorizontalInput
             label="Variable names to log"
-            onChange={rawVars => {
+            onChange={(rawVars: VarsState['rawVars']) => {
               this.props.onChange(rawVars);
             }}
             value={this.props.rawVars}
@@ -41,27 +40,3 @@ class LogVars extends React.Component {
     );
   }
 }
-
-LogVars.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  resetVariables: PropTypes.func.isRequired,
-
-  vars: PropTypes.arrayOf(PropTypes.string).isRequired,
-  rawVars: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = state => ({
-  vars: state.vars.vars,
-  rawVars: state.vars.rawVars,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onChange: vars => {
-    dispatch(setVars(vars));
-  },
-  resetVariables: () => {
-    dispatch(resetVars());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LogVars);

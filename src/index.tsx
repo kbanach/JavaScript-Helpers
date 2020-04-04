@@ -4,8 +4,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import rootReducer from './rootReducer';
-import { loadState, saveState } from './localStorage';
+import rootReducer from './store/rootReducer';
+import { loadState, saveState } from './store/localStorage';
 import './index.css';
 
 const persistedState = loadState();
@@ -13,7 +13,7 @@ const persistedState = loadState();
 const store = createStore(
   rootReducer,
   persistedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 store.subscribe(() => {

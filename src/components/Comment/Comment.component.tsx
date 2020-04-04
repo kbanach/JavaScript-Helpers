@@ -1,13 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PropTypes from 'prop-types';
 import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
-import { resetComment, setComment } from './Comment.actions';
+import { CommentProps } from './Comment.interface';
 
-const Comment = props => {
+export const CommentComponent: React.FC<CommentProps> = props => {
   return (
     <Row>
       <Col>
@@ -40,23 +38,5 @@ const Comment = props => {
   );
 };
 
-Comment.propTypes = {
-  comment: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  resetComment: PropTypes.func.isRequired,
-};
 
-const mapStateToProps = state => ({
-  comment: state.comment,
-});
 
-const mapDispatchToProps = dispatch => ({
-  onChange: comment => {
-    dispatch(setComment(comment));
-  },
-  resetComment: () => {
-    dispatch(resetComment());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comment);

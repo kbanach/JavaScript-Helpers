@@ -1,3 +1,5 @@
+import { VarsState } from "./LogVars.reducers";
+
 export const consLogGenActions = {
   RESET_VARS: 'RESET_VARS',
   SET_VARS: 'UPDATE_VARS',
@@ -9,7 +11,7 @@ export function resetVars() {
   };
 }
 
-export function setVars(rawVars) {
+export function setVars(rawVars: VarsState['rawVars']) {
   return {
     type: consLogGenActions.SET_VARS,
     rawVars,

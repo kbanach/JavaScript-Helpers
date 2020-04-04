@@ -1,4 +1,6 @@
 import { SettingsActions } from './Settings.actions';
+import { AnyAction } from 'redux';
+import { Settings } from './Settings.interface';
 
 const settingsInitialState = {
   currentPreset: 'DEFAULT',
@@ -16,6 +18,12 @@ const settingsInitialState = {
     generalPrefix: '',
     generalPostfix: '',
   },
+};
+
+export interface SettingsState {
+  currentPreset: string;
+  showAdvancedSettings: boolean;
+  values: Settings;
 };
 
 const presetsValues = {
@@ -60,14 +68,19 @@ const presetsValues = {
   },
 };
 
+function getPreset(presetName: string) {
+  // @ts-ignore
+  return presetsValues[presetName];
+}
+
 export const PRESETS = Object.keys(presetsValues).reduce(
   (prevValue, newValue) => {
-    return { ...prevValue, [newValue]: presetsValues[newValue].presetType };
+    return { ...prevValue, [newValue]: getPreset(newValue).presetType };
   },
   {},
 );
 
-export function settings(state = settingsInitialState, action) {
+export function settings(state = settingsInitialState, action: AnyAction): SettingsState {
   switch (action.type) {
     case SettingsActions.LOAD_PRESET:
       return {
@@ -75,7 +88,7 @@ export function settings(state = settingsInitialState, action) {
         currentPreset: action.preset,
         values: {
           ...state.values,
-          ...presetsValues[action.preset],
+          ...getPreset(action.preset),
         },
       };
     case SettingsActions.RESET_SETTINGS:
