@@ -3,7 +3,7 @@ import { AnyAction } from 'redux';
 
 const commentInitialState = 'your comment';
 
-export type CommentState = typeof commentInitialState;
+export type CommentState = string;
 
 export function comment(state = commentInitialState, action: AnyAction) {
   switch (action.type) {

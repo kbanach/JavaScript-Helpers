@@ -1,12 +1,14 @@
-function wrapLineInPreAndPostFix(settings, line) {
+import { Settings } from "../Settings/Settings.interface";
+
+function wrapLineInPreAndPostFix(settings: Settings, line: string) {
   return `${settings.lineStart}${line}${settings.lineEnd}`;
 }
 
-function wrapStringWithEscaperChar(settings, stringToWrap) {
+function wrapStringWithEscaperChar(settings: Settings, stringToWrap: string) {
   return settings.charEscaper + stringToWrap + settings.charEscaper;
 }
 
-function centerTextAndFillGapsAround(settings, line) {
+function centerTextAndFillGapsAround(settings: Settings, line: string) {
   const targetLen = settings.lineLength;
   const currentLen = line.length;
 
@@ -26,7 +28,7 @@ function centerTextAndFillGapsAround(settings, line) {
   return filledLine;
 }
 
-function transformStringToCenteredAndEscapedString(settings, line) {
+function transformStringToCenteredAndEscapedString(settings: Settings, line: string) {
   const filledLine = centerTextAndFillGapsAround(settings, line);
 
   let lineWithEscapedChars = filledLine;
@@ -44,7 +46,7 @@ function transformStringToCenteredAndEscapedString(settings, line) {
   );
 }
 
-export function parseEmptyLine(settings) {
+export function parseEmptyLine(settings: Settings) {
   const emptyLine = wrapStringWithEscaperChar(
     settings,
     settings.filler.repeat(settings.lineLength),
@@ -53,7 +55,7 @@ export function parseEmptyLine(settings) {
   return wrapLineInPreAndPostFix(settings, emptyLine);
 }
 
-export function parseComment(settings, comment) {
+export function parseComment(settings: Settings, comment: string) {
   return comment
     .split('\n')
     .map(l => l.trim())
@@ -64,7 +66,7 @@ export function parseComment(settings, comment) {
     .join('\n');
 }
 
-export function parseVar(settings, variable) {
+export function parseVar(settings: Settings, variable: string) {
   return wrapLineInPreAndPostFix(
     settings,
     wrapStringWithEscaperChar(settings, `${settings.filler} ${variable}: `) +

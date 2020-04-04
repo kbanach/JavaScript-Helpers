@@ -1,3 +1,10 @@
+/**
+ * This file is a bit retarded. It can not be converted to *.tsx file, 
+ * because of complains of Form.Control (from react-bootstrap) that does not
+ * know how to handle spreaded properties.
+ * 
+ * TODO: This helper component should be rewritten from scratch. 
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';

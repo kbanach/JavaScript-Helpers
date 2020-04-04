@@ -2,8 +2,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
 import { CommentProps } from './Comment.interface';
+import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
 
 export const CommentComponent: React.FC<CommentProps> = props => {
   return (
@@ -29,7 +29,7 @@ export const CommentComponent: React.FC<CommentProps> = props => {
         <HorizontalInput
           label="The comment"
           type={INPUT_TYPE.TEXTAREA}
-          onChange={props.onChange}
+          onChange={(newValue: string) => props.onChange(newValue)}
           value={props.comment}
           rows={7}
         />
