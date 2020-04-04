@@ -2,14 +2,14 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() });
-
 import App from './App';
-import Presets from './components/Presets/Presets';
-import Settings from './components/Settings/Settings';
-import LogVars from './components/LogVars/LogVars';
-import Comment from './components/Comment/Comment';
-import Output from './components/Output/Output';
+import Presets from './components/Presets/Presets.container';
+import Settings from './components/Settings/Settings.container';
+import LogVars from './components/LogVars/LogVars.container';
+import Comment from './components/Comment/Comment.container';
+import Output from './components/Output/Output.container';
+
+configure({ adapter: new Adapter() });
 
 describe('root App component', () => {
   const rootApp = shallow(<App />);

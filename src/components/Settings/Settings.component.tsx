@@ -1,19 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Settings } from './Settings.interface';
 import HorizontalInput from '../Form/HorizontalInput';
-import {
-  resetSettings,
-  updateSettings,
-  showAdvancedSettings,
-  hideAdvancedSettings,
-} from './Settings.actions';
 
-class Settings extends React.Component {
-  changeLineLength = lineLenStr => {
+export class SettingsComponent extends React.Component<any, any> {
+  changeLineLength = (lineLenStr: string) => {
     let lineLength = parseInt(lineLenStr);
 
     if (isNaN(lineLength)) {
@@ -46,7 +39,7 @@ class Settings extends React.Component {
 
           <HorizontalInput
             label="Char to use as filler"
-            onChange={filler => {
+            onChange={(filler: Settings['filler']) => {
               this.props.onChange({ filler });
             }}
             value={this.props.filler}
@@ -72,14 +65,14 @@ class Settings extends React.Component {
                   Hide advanced settings
                 </Button>
               ) : (
-                <Button
-                  variant="outline-primary"
-                  size="sm"
-                  onClick={this.props.showAdvanced}
-                >
-                  Show advanced settings
-                </Button>
-              )}
+                  <Button
+                    variant="outline-primary"
+                    size="sm"
+                    onClick={this.props.showAdvanced}
+                  >
+                    Show advanced settings
+                  </Button>
+                )}
             </Col>
           </Row>
 
@@ -87,56 +80,56 @@ class Settings extends React.Component {
             <div>
               <HorizontalInput
                 label="General prefix"
-                onChange={generalPrefix => {
+                onChange={(generalPrefix: Settings['generalPrefix']) => {
                   this.props.onChange({ generalPrefix });
                 }}
                 value={this.props.generalPrefix}
               />
               <HorizontalInput
                 label="General postfix"
-                onChange={generalPostfix => {
+                onChange={(generalPostfix: Settings['generalPostfix']) => {
                   this.props.onChange({ generalPostfix });
                 }}
                 value={this.props.generalPostfix}
               />
               <HorizontalInput
                 label="Line start"
-                onChange={lineStart => {
+                onChange={(lineStart: Settings['lineStart']) => {
                   this.props.onChange({ lineStart });
                 }}
                 value={this.props.lineStart}
               />
               <HorizontalInput
                 label="Line end"
-                onChange={lineEnd => {
+                onChange={(lineEnd: Settings['lineEnd']) => {
                   this.props.onChange({ lineEnd });
                 }}
                 value={this.props.lineEnd}
               />
               <HorizontalInput
                 label="Char escaper"
-                onChange={charEscaper => {
+                onChange={(charEscaper: Settings['charEscaper']) => {
                   this.props.onChange({ charEscaper });
                 }}
                 value={this.props.charEscaper}
               />
               <HorizontalInput
                 label="Concatenate variable in log char"
-                onChange={variableConcatenateChar => {
+                onChange={(variableConcatenateChar: Settings['variableConcatenateChar']) => {
                   this.props.onChange({ variableConcatenateChar });
                 }}
                 value={this.props.variableConcatenateChar}
               />
               <HorizontalInput
                 label="Variable wrapper prefix"
-                onChange={prefix => {
+                onChange={(prefix: Settings['variableWrapperCodePrefix']) => {
                   this.props.onChange({ variableWrapperCodePrefix: prefix });
                 }}
                 value={this.props.variableWrapperCodePrefix}
               />
               <HorizontalInput
                 label="Variable wrapper postfix"
-                onChange={postfix => {
+                onChange={(postfix: Settings['variableWrapperCodePostfix']) => {
                   this.props.onChange({ variableWrapperCodePostfix: postfix });
                 }}
                 value={this.props.variableWrapperCodePostfix}
@@ -148,43 +141,3 @@ class Settings extends React.Component {
     );
   }
 }
-
-Settings.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  showAdvanced: PropTypes.func.isRequired,
-  hideAdvanced: PropTypes.func.isRequired,
-
-  showAdvancedSettings: PropTypes.bool.isRequired,
-  filler: PropTypes.string.isRequired,
-  lineLength: PropTypes.number.isRequired,
-  lineStart: PropTypes.string.isRequired,
-  lineEnd: PropTypes.string.isRequired,
-  charEscaper: PropTypes.string.isRequired,
-  variableConcatenateChar: PropTypes.string.isRequired,
-  variableWrapperCodePrefix: PropTypes.string.isRequired,
-  variableWrapperCodePostfix: PropTypes.string.isRequired,
-  generalPrefix: PropTypes.string.isRequired,
-  generalPostfix: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = state => ({
-  showAdvancedSettings: state.settings.showAdvancedSettings,
-  ...state.settings.values,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onChange: newSettingsValues => {
-    dispatch(updateSettings(newSettingsValues));
-  },
-  showAdvanced: () => {
-    dispatch(showAdvancedSettings());
-  },
-  resetForm: () => {
-    dispatch(resetSettings());
-  },
-  hideAdvanced: () => {
-    dispatch(hideAdvancedSettings());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);

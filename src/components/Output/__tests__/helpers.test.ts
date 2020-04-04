@@ -1,8 +1,9 @@
 import 'jest';
 import * as outputHelpers from '../helpers';
+import { Settings } from '../../Settings/Settings.interface';
 
 describe('Output helpers', () => {
-  let HAPPY_PATH_DEFAULTS;
+  let HAPPY_PATH_DEFAULTS: Partial<Settings>;
 
   beforeEach(() => {
     // only settings that are used in code
