@@ -1,5 +1,5 @@
 export interface Settings {
-  presetType: string;
+  presetFullName: string;
   filler: string;
   lineLength: number;
   lineStart: string;

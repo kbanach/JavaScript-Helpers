@@ -3,7 +3,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import App from './App';
-import Presets from './components/Presets/Presets';
+import Presets from './components/Presets/Presets.container';
 import Settings from './components/Settings/Settings.container';
 import LogVars from './components/LogVars/LogVars.container';
 import Comment from './components/Comment/Comment.container';

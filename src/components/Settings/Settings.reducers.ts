@@ -2,11 +2,19 @@ import { SettingsActions } from './Settings.actions';
 import { AnyAction } from 'redux';
 import { Settings } from './Settings.interface';
 
+export enum PresetNames {
+  BROWSER = 'BROWSER',
+  NODEJS = 'NODEJS',
+  REACT_RENDER = 'REACT_RENDER',
+  DEFAULT = 'DEFAULT',
+  CUSTOM = 'CUSTOM',
+};
+
 const settingsInitialState = {
-  currentPreset: 'DEFAULT',
+  currentPreset: PresetNames.DEFAULT,
   showAdvancedSettings: false,
   values: {
-    presetType: 'Default',
+    presetFullName: 'Default',
     filler: '*',
     lineLength: 60,
     lineStart: 'console.log(',
@@ -21,14 +29,17 @@ const settingsInitialState = {
 };
 
 export interface SettingsState {
-  currentPreset: string;
+  currentPreset: PresetNames;
   showAdvancedSettings: boolean;
   values: Settings;
 };
 
-const presetsValues = {
+
+const presetsValues: { 
+  [key in PresetNames]: Partial<Settings> 
+} = {
   BROWSER: {
-    presetType: 'Browser',
+    presetFullName: 'Browser',
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
@@ -39,7 +50,7 @@ const presetsValues = {
     generalPostfix: '',
   },
   NODEJS: {
-    presetType: 'NodeJS',
+    presetFullName: 'NodeJS',
     lineStart: 'console.log(',
     lineEnd: ');',
     charEscaper: "'",
@@ -50,7 +61,7 @@ const presetsValues = {
     generalPostfix: '',
   },
   REACT_RENDER: {
-    presetType: 'React render() log',
+    presetFullName: 'React render() log',
     lineStart: '',
     lineEnd: '<br />',
     charEscaper: '',
@@ -64,21 +75,13 @@ const presetsValues = {
     ...settingsInitialState.values,
   },
   CUSTOM: {
-    presetType: 'Custom',
+    presetFullName: 'Custom',
   },
 };
 
-function getPreset(presetName: string) {
-  // @ts-ignore
+export function getPreset(presetName: PresetNames) {
   return presetsValues[presetName];
 }
-
-export const PRESETS = Object.keys(presetsValues).reduce(
-  (prevValue, newValue) => {
-    return { ...prevValue, [newValue]: getPreset(newValue).presetType };
-  },
-  {},
-);
 
 export function settings(state = settingsInitialState, action: AnyAction): SettingsState {
   switch (action.type) {
@@ -98,9 +101,10 @@ export function settings(state = settingsInitialState, action: AnyAction): Setti
     case SettingsActions.UPDATE_SETTINGS:
       return {
         ...state,
+        currentPreset: PresetNames.CUSTOM,
         values: {
           ...state.values,
-          ...presetsValues.CUSTOM,
+          ...getPreset(PresetNames.CUSTOM),
           ...action.newSettingsValues,
         },
       };
