@@ -91,10 +91,10 @@ export function setVars(rawVars: VarsState['rawVars']) {
     varsList.push(currentVar);
   }
 
-  if (bracketsQueue.length) {
+  if (bracketsQueue.length && !bracketsError) {
     bracketsError = `Last unclosed bracket "${
       bracketsQueue[bracketsQueue.length - 1]
-    }" does not have closing bracket pair.`;
+    }" does not have closing bracket pair`;
   }
 
   return {

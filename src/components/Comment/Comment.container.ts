@@ -4,9 +4,10 @@ import { RootState } from '../../store/rootReducer';
 import { CommentState } from './Comment.reducers';
 import { CommentComponent } from './Comment.component';
 import { setComment, resetComment } from './Comment.actions';
+import { getComment } from './Comment.selectors';
 
 const mapStateToProps = (state: RootState) => ({
-  comment: state.comment,
+  comment: getComment(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -18,4 +19,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentComponent);
+export const Comment = connect(mapStateToProps, mapDispatchToProps)(CommentComponent);

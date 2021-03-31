@@ -1,14 +1,14 @@
-import { Settings } from '../Settings/Settings.interface';
+import { SettingsValues } from '../Settings/Settings.interface';
 
-function wrapLineInPreAndPostFix(settings: Settings, line: string) {
+function wrapLineInPreAndPostFix(settings: SettingsValues, line: string) {
   return `${settings.lineStart}${line}${settings.lineEnd}`;
 }
 
-function wrapStringWithEscaperChar(settings: Settings, stringToWrap: string) {
+function wrapStringWithEscaperChar(settings: SettingsValues, stringToWrap: string) {
   return settings.charEscaper + stringToWrap + settings.charEscaper;
 }
 
-function centerTextAndFillGapsAround(settings: Settings, line: string) {
+function centerTextAndFillGapsAround(settings: SettingsValues, line: string) {
   const targetLen = settings.lineLength;
   const currentLen = line.length;
 
@@ -29,7 +29,7 @@ function centerTextAndFillGapsAround(settings: Settings, line: string) {
 }
 
 function transformStringToCenteredAndEscapedString(
-  settings: Settings,
+  settings: SettingsValues,
   line: string,
 ) {
   const filledLine = centerTextAndFillGapsAround(settings, line);
@@ -49,7 +49,7 @@ function transformStringToCenteredAndEscapedString(
   );
 }
 
-export function parseEmptyLine(settings: Settings) {
+export function parseEmptyLine(settings: SettingsValues) {
   const emptyLine = wrapStringWithEscaperChar(
     settings,
     settings.filler.repeat(settings.lineLength),
@@ -58,7 +58,7 @@ export function parseEmptyLine(settings: Settings) {
   return wrapLineInPreAndPostFix(settings, emptyLine);
 }
 
-export function parseComment(settings: Settings, comment: string) {
+export function parseComment(settings: SettingsValues, comment: string) {
   return comment
     .split('\n')
     .map((l) => l.trim())
@@ -69,7 +69,7 @@ export function parseComment(settings: Settings, comment: string) {
     .join('\n');
 }
 
-export function parseVar(settings: Settings, variable: string) {
+export function parseVar(settings: SettingsValues, variable: string) {
   return wrapLineInPreAndPostFix(
     settings,
     wrapStringWithEscaperChar(settings, `${settings.filler} ${variable}: `) +

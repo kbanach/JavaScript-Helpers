@@ -13,7 +13,7 @@ export interface VarsState {
   bracketsError: string;
 }
 
-export function vars(state = varsInitialState, action: AnyAction): VarsState {
+export function varsReducer(state = varsInitialState, action: AnyAction): VarsState {
   switch (action.type) {
     case consLogGenActions.RESET_VARS:
       return {

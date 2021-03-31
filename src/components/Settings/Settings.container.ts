@@ -1,22 +1,26 @@
 import { connect } from 'react-redux';
-import { SettingsComponent } from './Settings.component';
 import { RootState } from '../../store/rootReducer';
 import { Dispatch } from 'redux';
-import { Settings } from './Settings.interface';
 import {
+  SettingsStateProps,
+  getShowAdvancedSettings,
+  getSettingsValues,
+  SettingsDispatchProps,
   updateSettings,
-  resetSettings,
   showAdvancedSettings,
+  resetSettings,
   hideAdvancedSettings,
-} from './Settings.actions';
+  SettingsValues,
+} from '.';
+import { SettingsComponent } from './Settings.component';
 
-const mapStateToProps = (state: RootState) => ({
-  showAdvancedSettings: state.settings.showAdvancedSettings,
-  ...state.settings.values,
+const mapStateToProps = (state: RootState): SettingsStateProps => ({
+  showAdvancedSettings: getShowAdvancedSettings(state),
+  ...getSettingsValues(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onChange: (newSettingsValues: Partial<Settings>) => {
+const mapDispatchToProps = (dispatch: Dispatch): SettingsDispatchProps => ({
+  onChange: (newSettingsValues: Partial<SettingsValues>) => {
     dispatch(updateSettings(newSettingsValues));
   },
   showAdvanced: () => {
@@ -30,4 +34,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsComponent);
+export const Settings = connect(mapStateToProps, mapDispatchToProps)(SettingsComponent);

@@ -1,14 +1,7 @@
 import { SettingsActions } from './Settings.actions';
 import { AnyAction } from 'redux';
-import { Settings } from './Settings.interface';
+import { PresetNames, SettingsValues, SettingsState } from './Settings.interface';
 
-export enum PresetNames {
-  BROWSER = 'BROWSER',
-  NODEJS = 'NODEJS',
-  REACT_RENDER = 'REACT_RENDER',
-  DEFAULT = 'DEFAULT',
-  CUSTOM = 'CUSTOM',
-}
 
 const settingsInitialState = {
   currentPreset: PresetNames.DEFAULT,
@@ -28,14 +21,8 @@ const settingsInitialState = {
   },
 };
 
-export interface SettingsState {
-  currentPreset: PresetNames;
-  showAdvancedSettings: boolean;
-  values: Settings;
-}
-
 const presetsValues: {
-  [key in PresetNames]: Partial<Settings>;
+  [key in PresetNames]: Partial<SettingsValues>;
 } = {
   BROWSER: {
     presetFullName: 'Browser',
@@ -82,7 +69,7 @@ export function getPreset(presetName: PresetNames) {
   return presetsValues[presetName];
 }
 
-export function settings(
+export function settingsReducer(
   state = settingsInitialState,
   action: AnyAction,
 ): SettingsState {

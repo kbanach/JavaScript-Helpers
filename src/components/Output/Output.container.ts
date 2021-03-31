@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
 import { OutputComponent } from './Output.component';
 import { RootState } from '../../store/rootReducer';
+import { getVars } from '../LogVars';
+import { getComment } from '../Comment';
+import { getSettingsValues } from '../Settings';
+import { OutputComponentStateProps } from './Output.interface';
 
-const mapStateToProps = (state: RootState) => ({
-  vars: state.vars.vars,
-  comment: state.comment,
-  settings: state.settings.values,
+const mapStateToProps = (state: RootState): OutputComponentStateProps => ({
+  vars: getVars(state),
+  comment: getComment(state),
+  settings: getSettingsValues(state),
 });
 
-export default connect(mapStateToProps)(OutputComponent);
+export const Output = connect(mapStateToProps)(OutputComponent);

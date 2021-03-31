@@ -1,5 +1,4 @@
-import { PresetNames } from './Settings.reducers';
-import { Settings } from './Settings.interface';
+import { PresetNames, SettingsValues } from ".";
 
 export const SettingsActions = {
   LOAD_PRESET: 'LOAD_PRESET',
@@ -22,7 +21,7 @@ export function resetSettings() {
   };
 }
 
-export function updateSettings(newSettingsValues: Partial<Settings>) {
+export function updateSettings(newSettingsValues: Partial<SettingsValues>) {
   return {
     type: SettingsActions.UPDATE_SETTINGS,
     newSettingsValues,

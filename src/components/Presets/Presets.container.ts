@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { loadSettingsPreset } from '../Settings/Settings.actions';
+import { loadSettingsPreset, PresetNames } from '../Settings';
 import { RootState } from '../../store/rootReducer';
 import { Dispatch } from 'redux';
-import { PresetNames } from '../Settings/Settings.reducers';
 import { PresetsComponent } from './Presets.component';
+import { PresetsStateProps, PresetsDispatchProps } from '.';
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): PresetsStateProps => ({
   activePreset: state.settings.currentPreset,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch): PresetsDispatchProps => ({
   changePreset: (preset: PresetNames) => {
     dispatch(loadSettingsPreset(preset));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PresetsComponent);
+export const Presets = connect(mapStateToProps, mapDispatchToProps)(PresetsComponent);
