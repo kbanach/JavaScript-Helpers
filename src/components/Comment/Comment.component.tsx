@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { CommentComponentProps } from './Comment.interface';
-import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
+import { HorizontalInput, INPUT_TYPE } from '../Form/';
 
 export const CommentComponent: React.FC<CommentComponentProps> = (props) => {
+  const { resetComment, onChange, comment } = props;
+
   return (
     <Row>
       <Col>
@@ -18,7 +20,7 @@ export const CommentComponent: React.FC<CommentComponentProps> = (props) => {
               variant="outline-danger"
               size="sm"
               onClick={() => {
-                props.resetComment();
+                resetComment();
               }}
             >
               Reset comment
@@ -29,8 +31,8 @@ export const CommentComponent: React.FC<CommentComponentProps> = (props) => {
         <HorizontalInput
           label="The comment"
           type={INPUT_TYPE.TEXTAREA}
-          onChange={(newValue: string) => props.onChange(newValue)}
-          value={props.comment}
+          onChange={(newValue: string) => onChange(newValue)}
+          value={comment}
           rows={7}
         />
       </Col>

@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentComponent);
+export const Comment = connect(mapStateToProps, mapDispatchToProps)(CommentComponent);

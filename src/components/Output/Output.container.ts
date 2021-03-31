@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { OutputComponent } from './Output.component';
 import { RootState } from '../../store/rootReducer';
-import { getVars } from '../LogVars/LogVars.selectors';
-import { getComment } from '../Comment/Comment.selectors';
-import { getSettingsValues } from '../Settings/Settings.selectors';
+import { getVars } from '../LogVars';
+import { getComment } from '../Comment';
+import { getSettingsValues } from '../Settings';
 import { OutputComponentStateProps } from './Output.interface';
 
 const mapStateToProps = (state: RootState): OutputComponentStateProps => ({
@@ -12,4 +12,4 @@ const mapStateToProps = (state: RootState): OutputComponentStateProps => ({
   settings: getSettingsValues(state),
 });
 
-export default connect(mapStateToProps)(OutputComponent);
+export const Output = connect(mapStateToProps)(OutputComponent);

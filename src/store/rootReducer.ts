@@ -1,16 +1,13 @@
 import { combineReducers } from 'redux';
 
-import {
-  settings,
-  SettingsState,
-} from '../components/Settings/Settings.reducers';
-import { vars, VarsState } from '../components/LogVars/LogVars.reducers';
-import { comment, CommentState } from '../components/Comment/Comment.reducers';
+import { settingsReducer, SettingsState } from '../components/Settings';
+import { varsReducer, VarsState } from '../components/LogVars';
+import { commentReducer, CommentState } from '../components/Comment';
 
 const reducer = combineReducers({
-  settings,
-  vars,
-  comment,
+  settings: settingsReducer,
+  vars: varsReducer,
+  comment: commentReducer,
 });
 
 export interface RootState {

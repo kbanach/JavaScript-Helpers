@@ -1,7 +1,6 @@
-import { CommentState } from '../Comment/Comment.reducers';
-import { VarsState } from '../LogVars/LogVars.reducers';
-import { Settings } from '../Settings/Settings.interface';
-import { SettingsState } from '../Settings/Settings.reducers';
+import { CommentState } from "../Comment";
+import { VarsState } from "../LogVars";
+import { SettingsState } from "../Settings";
 
 export interface OutputComponentStateProps {
   vars: VarsState['vars'];

@@ -1,6 +1,4 @@
-import { SettingsState } from './Settings.reducers';
-
-export interface Settings {
+export interface SettingsValues {
   presetFullName: string;
   filler: string;
   lineLength: number;
@@ -14,12 +12,26 @@ export interface Settings {
   generalPostfix: string;
 }
 
-export interface SettingsStateProps extends Settings {
+export enum PresetNames {
+  BROWSER = 'BROWSER',
+  NODEJS = 'NODEJS',
+  REACT_RENDER = 'REACT_RENDER',
+  DEFAULT = 'DEFAULT',
+  CUSTOM = 'CUSTOM',
+}
+
+export interface SettingsState {
+  currentPreset: PresetNames;
+  showAdvancedSettings: boolean;
+  values: SettingsValues;
+}
+
+export interface SettingsStateProps extends SettingsValues {
   showAdvancedSettings: SettingsState['showAdvancedSettings'];
 }
 
 export interface SettingsDispatchProps {
-  onChange: (newSettingsValues: Partial<Settings>) => void;
+  onChange: (newSettingsValues: Partial<SettingsValues>) => void;
   resetForm: () => void;
   showAdvanced: () => void;
   hideAdvanced: () => void;

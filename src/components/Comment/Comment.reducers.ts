@@ -5,7 +5,7 @@ const commentInitialState = 'your comment';
 
 export type CommentState = string;
 
-export function comment(state = commentInitialState, action: AnyAction) {
+export function commentReducer(state = commentInitialState, action: AnyAction) {
   switch (action.type) {
     case CommentActions.RESET_COMMENT:
       return commentInitialState;

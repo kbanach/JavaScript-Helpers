@@ -11,4 +11,6 @@ export interface LogVarsDispatchProps {
   resetVariables: () => void;
 }
 
-export interface LogVarsComponentProps extends LogVarsStateProps, LogVarsDispatchProps {}
+export interface LogVarsComponentProps
+  extends LogVarsStateProps,
+    LogVarsDispatchProps {}

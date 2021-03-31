@@ -1,31 +1,10 @@
-/**
- * This file is a bit retarded. It can not be converted to *.tsx file,
- * because of complains of Form.Control (from react-bootstrap) that does not
- * know how to handle spreaded properties.
- *
- * TODO: This helper component should be rewritten from scratch.
- */
 import React from 'react';
-import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { INPUT_TYPE, HorizontalInputProps } from './HorizontalInput.interface';
 
-export enum INPUT_TYPE {
-  INPUT = 'input',
-  TEXTAREA = 'textarea',
-}
-
-interface HorizontalInputProps {
-  label: string;
-  value: string;
-  type?: INPUT_TYPE;
-  errorMsg?: string;
-  rows?: number;
-  onChange: (val: string) => void;
-}
-
-const HorizontalInput: React.FC<HorizontalInputProps> = ({
+export const HorizontalInput: React.FC<HorizontalInputProps> = ({
   label,
   value,
   type = INPUT_TYPE.INPUT,
@@ -70,11 +49,3 @@ const HorizontalInput: React.FC<HorizontalInputProps> = ({
     </Form.Group>
   );
 };
-
-HorizontalInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(Object.values(INPUT_TYPE)),
-};
-
-export default HorizontalInput;
