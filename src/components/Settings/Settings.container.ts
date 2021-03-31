@@ -1,9 +1,14 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { SettingsComponent } from './Settings.component';
-import { RootState } from "../../store/rootReducer";
-import { Dispatch } from "redux";
-import { Settings } from "./Settings.interface";
-import { updateSettings, resetSettings, showAdvancedSettings, hideAdvancedSettings } from "./Settings.actions";
+import { RootState } from '../../store/rootReducer';
+import { Dispatch } from 'redux';
+import { Settings } from './Settings.interface';
+import {
+  updateSettings,
+  resetSettings,
+  showAdvancedSettings,
+  hideAdvancedSettings,
+} from './Settings.actions';
 
 const mapStateToProps = (state: RootState) => ({
   showAdvancedSettings: state.settings.showAdvancedSettings,

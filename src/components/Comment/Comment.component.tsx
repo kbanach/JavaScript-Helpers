@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { CommentProps } from './Comment.interface';
 import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
 
-export const CommentComponent: React.FC<CommentProps> = props => {
+export const CommentComponent: React.FC<CommentProps> = (props) => {
   return (
     <Row>
       <Col>
@@ -37,6 +37,3 @@ export const CommentComponent: React.FC<CommentProps> = props => {
     </Row>
   );
 };
-
-
-

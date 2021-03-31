@@ -14,7 +14,7 @@ export const PresetsComponent: React.FC<PresetsComponentProps> = (props) => (
         {Object.values(PresetNames).map((key) => (
           <Button
             key={key}
-            variant={(props.activePreset === key) ? 'primary' : 'outline-primary'}
+            variant={props.activePreset === key ? 'primary' : 'outline-primary'}
             onClick={() => props.changePreset(key)}
           >
             {getPreset(key).presetFullName}
@@ -25,5 +25,3 @@ export const PresetsComponent: React.FC<PresetsComponentProps> = (props) => (
     </Col>
   </Row>
 );
-
-

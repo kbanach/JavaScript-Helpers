@@ -11,7 +11,7 @@ export interface VarsState {
   vars: string[];
   rawVars: string;
   bracketsError: string;
-};
+}
 
 export function vars(state = varsInitialState, action: AnyAction): VarsState {
   switch (action.type) {

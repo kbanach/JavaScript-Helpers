@@ -4,11 +4,15 @@ import { parseComment, parseVar, parseEmptyLine } from './helpers';
 import './Output.css';
 import { OutputComponentProps } from './Output.interface';
 
-export const OutputComponent: React.FC<OutputComponentProps> = ({ vars, comment, settings }) => {
+export const OutputComponent: React.FC<OutputComponentProps> = ({
+  vars,
+  comment,
+  settings,
+}) => {
   const genPrefix = settings.generalPrefix;
   const genPostfix = settings.generalPostfix;
   const emptyLine = parseEmptyLine(settings);
-  const parsedVarsLines = vars.map(v => parseVar(settings, v));
+  const parsedVarsLines = vars.map((v) => parseVar(settings, v));
   const parsedComment = parseComment(settings, comment);
 
   const outputText = [

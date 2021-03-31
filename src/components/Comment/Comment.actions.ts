@@ -1,4 +1,4 @@
-import { CommentState } from "./Comment.reducers";
+import { CommentState } from './Comment.reducers';
 
 export const CommentActions = {
   RESET_COMMENT: 'RESET_COMMENT',

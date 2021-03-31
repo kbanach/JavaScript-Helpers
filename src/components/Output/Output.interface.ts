@@ -1,4 +1,4 @@
-import { Settings } from "../Settings/Settings.interface";
+import { Settings } from '../Settings/Settings.interface';
 
 export interface OutputComponentProps {
   vars: string[];

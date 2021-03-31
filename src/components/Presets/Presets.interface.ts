@@ -1,7 +1,7 @@
-import { PresetNames } from "../Settings/Settings.reducers";
+import { PresetNames } from '../Settings/Settings.reducers';
 
 export interface PresetsComponentProps {
   activePreset: PresetNames;
 
-  changePreset: (presetToLoad: PresetNames) => void,
-};
+  changePreset: (presetToLoad: PresetNames) => void;
+}

@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { OutputComponent } from './Output.component';
-import { RootState } from "../../store/rootReducer";
+import { RootState } from '../../store/rootReducer';
 
 const mapStateToProps = (state: RootState) => ({
   vars: state.vars.vars,

@@ -8,7 +8,7 @@ export enum PresetNames {
   REACT_RENDER = 'REACT_RENDER',
   DEFAULT = 'DEFAULT',
   CUSTOM = 'CUSTOM',
-};
+}
 
 const settingsInitialState = {
   currentPreset: PresetNames.DEFAULT,
@@ -32,11 +32,10 @@ export interface SettingsState {
   currentPreset: PresetNames;
   showAdvancedSettings: boolean;
   values: Settings;
-};
+}
 
-
-const presetsValues: { 
-  [key in PresetNames]: Partial<Settings> 
+const presetsValues: {
+  [key in PresetNames]: Partial<Settings>;
 } = {
   BROWSER: {
     presetFullName: 'Browser',
@@ -83,7 +82,10 @@ export function getPreset(presetName: PresetNames) {
   return presetsValues[presetName];
 }
 
-export function settings(state = settingsInitialState, action: AnyAction): SettingsState {
+export function settings(
+  state = settingsInitialState,
+  action: AnyAction,
+): SettingsState {
   switch (action.type) {
     case SettingsActions.LOAD_PRESET:
       return {

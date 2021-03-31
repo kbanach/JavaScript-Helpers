@@ -1,6 +1,6 @@
 const LOCAL_STORAGE_ITEM = '__state';
 
-export const saveState = state => {
+export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(LOCAL_STORAGE_ITEM, serializedState);
