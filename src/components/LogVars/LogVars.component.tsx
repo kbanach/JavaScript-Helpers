@@ -34,6 +34,7 @@ export class LogVarsComponent extends React.Component<LogVarsProps, any> {
               this.props.onChange(rawVars);
             }}
             value={this.props.rawVars}
+            errorMsg={this.props.bracketsError}
           />
         </Col>
       </Row>

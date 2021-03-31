@@ -4,11 +4,13 @@ import { AnyAction } from 'redux';
 const varsInitialState: VarsState = {
   vars: [],
   rawVars: '',
+  bracketsError: '',
 };
 
 export interface VarsState {
   vars: string[];
   rawVars: string;
+  bracketsError: string;
 };
 
 export function vars(state = varsInitialState, action: AnyAction): VarsState {
@@ -17,10 +19,12 @@ export function vars(state = varsInitialState, action: AnyAction): VarsState {
       return {
         ...varsInitialState,
       };
-    case consLogGenActions.SET_VARS:
+    case consLogGenActions.UPDATE_VARS:
       return {
+        ...state,
         vars: [...action.vars],
         rawVars: action.rawVars,
+        bracketsError: action.bracketsError,
       };
     default:
       return state;
