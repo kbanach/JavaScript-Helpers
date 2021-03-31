@@ -5,14 +5,15 @@ import { VarsState } from './LogVars.reducers';
 import { LogVarsComponent } from './LogVars.component';
 import { setVars, resetVars } from './LogVars.actions';
 import { getBracketsError, getRawVars, getVars } from './LogVars.selectors';
+import { LogVarsStateProps, LogVarsDispatchProps } from './LogVars.interface';
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): LogVarsStateProps => ({
   vars: getVars(state),
   rawVars: getRawVars(state),
   bracketsError: getBracketsError(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch): LogVarsDispatchProps => ({
   onChange: (vars: VarsState['rawVars']) => {
     dispatch(setVars(vars));
   },

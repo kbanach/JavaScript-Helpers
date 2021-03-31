@@ -4,14 +4,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { INPUT_TYPE, HorizontalInputProps } from './HorizontalInput.interface';
 
-export const HorizontalInput: React.FC<HorizontalInputProps> = ({
-  label,
-  value,
-  type = INPUT_TYPE.INPUT,
-  onChange,
-  errorMsg,
-  rows,
-}) => {
+export const HorizontalInput: React.FC<HorizontalInputProps> = (props) => {
+  const {
+    label,
+    value,
+    type = INPUT_TYPE.INPUT,
+    onChange,
+    errorMsg,
+    rows,
+  } = props;
+
   return (
     <Form.Group as={Row} className="align-items-center">
       <Form.Label column sm="3">
