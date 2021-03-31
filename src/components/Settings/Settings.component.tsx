@@ -2,10 +2,13 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Settings } from './Settings.interface';
+import { Settings, SettingsComponentProps } from './Settings.interface';
 import HorizontalInput from '../Form/HorizontalInput';
 
-export class SettingsComponent extends React.Component<any, any> {
+export class SettingsComponent extends React.Component<
+  SettingsComponentProps,
+  any
+> {
   changeLineLength = (lineLenStr: string) => {
     let lineLength = parseInt(lineLenStr);
 
@@ -48,7 +51,7 @@ export class SettingsComponent extends React.Component<any, any> {
           <HorizontalInput
             label="Line length"
             onChange={this.changeLineLength}
-            value={this.props.lineLength}
+            value={'' + this.props.lineLength}
           />
 
           <Row>

@@ -2,11 +2,11 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { LogVarsProps } from './LogVars.interface';
+import { LogVarsComponentProps } from './LogVars.interface';
 import { VarsState } from './LogVars.reducers';
 import HorizontalInput from '../Form/HorizontalInput';
 
-export class LogVarsComponent extends React.Component<LogVarsProps, any> {
+export class LogVarsComponent extends React.Component<LogVarsComponentProps, any> {
   render() {
     return (
       <Row>

@@ -4,11 +4,12 @@ import { Dispatch } from 'redux';
 import { VarsState } from './LogVars.reducers';
 import { LogVarsComponent } from './LogVars.component';
 import { setVars, resetVars } from './LogVars.actions';
+import { getBracketsError, getRawVars, getVars } from './LogVars.selectors';
 
 const mapStateToProps = (state: RootState) => ({
-  vars: state.vars.vars,
-  rawVars: state.vars.rawVars,
-  bracketsError: state.vars.bracketsError,
+  vars: getVars(state),
+  rawVars: getRawVars(state),
+  bracketsError: getBracketsError(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
