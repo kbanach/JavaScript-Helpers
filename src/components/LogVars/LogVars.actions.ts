@@ -63,7 +63,13 @@ export function setVars(rawVars: VarsState['rawVars']) {
         if (bracketsQueue.length && char === getClosingBracket(lastOpenedBracket)) {
           bracketsQueue.pop();
         } else {
-          bracketsError = `Closing bracket "${char}" does not match last opened char "${lastOpenedBracket}"`;
+          bracketsError = `Closing bracket "${char}" does not match`;
+
+          if (lastOpenedBracket) {
+            bracketsError += ` last opened "${lastOpenedBracket}"`;
+          } else {
+            bracketsError += ` any opening bracket`;
+          }
         }
       }
     } else {
