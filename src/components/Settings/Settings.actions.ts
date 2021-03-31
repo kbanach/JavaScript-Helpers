@@ -1,5 +1,5 @@
-import { PresetNames } from "./Settings.reducers";
-import { Settings } from "./Settings.interface";
+import { PresetNames } from './Settings.reducers';
+import { Settings } from './Settings.interface';
 
 export const SettingsActions = {
   LOAD_PRESET: 'LOAD_PRESET',

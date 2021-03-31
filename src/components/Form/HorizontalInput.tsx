@@ -1,9 +1,9 @@
 /**
- * This file is a bit retarded. It can not be converted to *.tsx file, 
+ * This file is a bit retarded. It can not be converted to *.tsx file,
  * because of complains of Form.Control (from react-bootstrap) that does not
  * know how to handle spreaded properties.
- * 
- * TODO: This helper component should be rewritten from scratch. 
+ *
+ * TODO: This helper component should be rewritten from scratch.
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -14,7 +14,7 @@ import Col from 'react-bootstrap/Col';
 export enum INPUT_TYPE {
   INPUT = 'input',
   TEXTAREA = 'textarea',
-};
+}
 
 interface HorizontalInputProps {
   label: string;
@@ -39,22 +39,22 @@ const HorizontalInput: React.FC<HorizontalInputProps> = ({
         {label}
       </Form.Label>
       <Col sm="9">
-        {(type === INPUT_TYPE.INPUT) && (
+        {type === INPUT_TYPE.INPUT && (
           <Form.Control
             onChange={(e: any) => {
               e.preventDefault();
-              onChange(e?.target?.value ?? '' as string);
+              onChange(e?.target?.value ?? ('' as string));
             }}
             isInvalid={!!errorMsg}
             value={value}
           />
         )}
-        {(type === INPUT_TYPE.TEXTAREA) && (
+        {type === INPUT_TYPE.TEXTAREA && (
           <Form.Control
-            as='textarea'
+            as="textarea"
             onChange={(e: any) => {
               e.preventDefault();
-              onChange(e?.target?.value ?? '' as string);
+              onChange(e?.target?.value ?? ('' as string));
             }}
             isInvalid={!!errorMsg}
             value={value}

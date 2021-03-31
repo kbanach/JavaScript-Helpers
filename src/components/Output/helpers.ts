@@ -1,4 +1,4 @@
-import { Settings } from "../Settings/Settings.interface";
+import { Settings } from '../Settings/Settings.interface';
 
 function wrapLineInPreAndPostFix(settings: Settings, line: string) {
   return `${settings.lineStart}${line}${settings.lineEnd}`;
@@ -28,7 +28,10 @@ function centerTextAndFillGapsAround(settings: Settings, line: string) {
   return filledLine;
 }
 
-function transformStringToCenteredAndEscapedString(settings: Settings, line: string) {
+function transformStringToCenteredAndEscapedString(
+  settings: Settings,
+  line: string,
+) {
   const filledLine = centerTextAndFillGapsAround(settings, line);
 
   let lineWithEscapedChars = filledLine;
@@ -58,8 +61,8 @@ export function parseEmptyLine(settings: Settings) {
 export function parseComment(settings: Settings, comment: string) {
   return comment
     .split('\n')
-    .map(l => l.trim())
-    .map(l => {
+    .map((l) => l.trim())
+    .map((l) => {
       if (l) return transformStringToCenteredAndEscapedString(settings, l);
       return parseEmptyLine(settings);
     })

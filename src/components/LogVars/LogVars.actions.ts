@@ -1,4 +1,4 @@
-import { VarsState } from "./LogVars.reducers";
+import { VarsState } from './LogVars.reducers';
 
 export const consLogGenActions = {
   RESET_VARS: 'RESET_VARS',
@@ -14,7 +14,9 @@ export function resetVars() {
 type OpeningBrackets = '(' | '{' | '[';
 type ClosingBrackets = ')' | '}' | ']';
 
-const getClosingBracket = (closing: OpeningBrackets): ClosingBrackets | undefined => {
+const getClosingBracket = (
+  closing: OpeningBrackets,
+): ClosingBrackets | undefined => {
   switch (closing) {
     case '(':
       return ')' as ClosingBrackets;
@@ -23,17 +25,17 @@ const getClosingBracket = (closing: OpeningBrackets): ClosingBrackets | undefine
     case '[':
       return ']' as ClosingBrackets;
   }
-}
+};
 
 const isOpeningBracket = (val: any): val is OpeningBrackets => {
   const openingBrackets: RegExp = /[({[]/;
-  return openingBrackets.test(val)
-}
+  return openingBrackets.test(val);
+};
 
 const isClosingBracket = (val: any): val is ClosingBrackets => {
   const closingBrackets: RegExp = /[)}\]]/;
-  return closingBrackets.test(val)
-}
+  return closingBrackets.test(val);
+};
 
 export function setVars(rawVars: VarsState['rawVars']) {
   const separator: RegExp = /[ ,;]/;
@@ -44,7 +46,6 @@ export function setVars(rawVars: VarsState['rawVars']) {
   let bracketsError: string = '';
 
   for (let char of rawVars) {
-
     if (bracketsError.length > 0) {
       break;
     }
@@ -60,15 +61,24 @@ export function setVars(rawVars: VarsState['rawVars']) {
       if (isClosingBracket(char)) {
         const lastOpenedBracket = bracketsQueue[bracketsQueue.length - 1];
 
-        if (bracketsQueue.length && char === getClosingBracket(lastOpenedBracket)) {
+        if (
+          bracketsQueue.length &&
+          char === getClosingBracket(lastOpenedBracket)
+        ) {
           bracketsQueue.pop();
         } else {
-          bracketsError = `Closing bracket "${char}" does not match last opened char "${lastOpenedBracket}"`;
+          bracketsError = `Closing bracket "${char}" does not match`;
+
+          if (lastOpenedBracket) {
+            bracketsError += ` last opened "${lastOpenedBracket}"`;
+          } else {
+            bracketsError += ` any opening bracket`;
+          }
         }
       }
     } else {
-      // if char IS empty 
-      // AND currentVar str is not empty, then dump it to varsList and reset to empty string 
+      // if char IS empty
+      // AND currentVar str is not empty, then dump it to varsList and reset to empty string
       if (currentVar.trim()) {
         varsList.push(currentVar);
         currentVar = '';
@@ -82,7 +92,9 @@ export function setVars(rawVars: VarsState['rawVars']) {
   }
 
   if (bracketsQueue.length) {
-    bracketsError = `Last unclosed bracket "${bracketsQueue[bracketsQueue.length - 1]}" does not have closing bracket pair.`;
+    bracketsError = `Last unclosed bracket "${
+      bracketsQueue[bracketsQueue.length - 1]
+    }" does not have closing bracket pair.`;
   }
 
   return {

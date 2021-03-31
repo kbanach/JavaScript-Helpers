@@ -1,7 +1,7 @@
-import { CommentState } from "./Comment.reducers";
+import { CommentState } from './Comment.reducers';
 
 export interface CommentProps {
   comment: CommentState;
-  onChange: (newComment: CommentState) => void,
-  resetComment: () => void,
-};
+  onChange: (newComment: CommentState) => void;
+  resetComment: () => void;
+}

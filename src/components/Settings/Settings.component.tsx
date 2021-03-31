@@ -65,14 +65,14 @@ export class SettingsComponent extends React.Component<any, any> {
                   Hide advanced settings
                 </Button>
               ) : (
-                  <Button
-                    variant="outline-primary"
-                    size="sm"
-                    onClick={this.props.showAdvanced}
-                  >
-                    Show advanced settings
-                  </Button>
-                )}
+                <Button
+                  variant="outline-primary"
+                  size="sm"
+                  onClick={this.props.showAdvanced}
+                >
+                  Show advanced settings
+                </Button>
+              )}
             </Col>
           </Row>
 
@@ -115,7 +115,9 @@ export class SettingsComponent extends React.Component<any, any> {
               />
               <HorizontalInput
                 label="Concatenate variable in log char"
-                onChange={(variableConcatenateChar: Settings['variableConcatenateChar']) => {
+                onChange={(
+                  variableConcatenateChar: Settings['variableConcatenateChar'],
+                ) => {
                   this.props.onChange({ variableConcatenateChar });
                 }}
                 value={this.props.variableConcatenateChar}
