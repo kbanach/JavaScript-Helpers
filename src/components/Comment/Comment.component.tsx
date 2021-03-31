@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { CommentProps as CommentComponentProps } from './Comment.interface';
+import { CommentComponentProps } from './Comment.interface';
 import HorizontalInput, { INPUT_TYPE } from '../Form/HorizontalInput';
 
 export const CommentComponent: React.FC<CommentComponentProps> = (props) => {
