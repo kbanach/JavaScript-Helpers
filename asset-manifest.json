@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "http://kbanach.github.io/JavaScript-Helpers/static/css/main.7015c6b5.chunk.css",
-    "main.js": "http://kbanach.github.io/JavaScript-Helpers/static/js/main.6cb16098.chunk.js",
-    "main.js.map": "http://kbanach.github.io/JavaScript-Helpers/static/js/main.6cb16098.chunk.js.map",
+    "main.js": "http://kbanach.github.io/JavaScript-Helpers/static/js/main.5424e510.chunk.js",
+    "main.js.map": "http://kbanach.github.io/JavaScript-Helpers/static/js/main.5424e510.chunk.js.map",
     "runtime-main.js": "http://kbanach.github.io/JavaScript-Helpers/static/js/runtime-main.27237455.js",
     "runtime-main.js.map": "http://kbanach.github.io/JavaScript-Helpers/static/js/runtime-main.27237455.js.map",
     "static/css/2.f93178fb.chunk.css": "http://kbanach.github.io/JavaScript-Helpers/static/css/2.f93178fb.chunk.css",
-    "static/js/2.bf6b5422.chunk.js": "http://kbanach.github.io/JavaScript-Helpers/static/js/2.bf6b5422.chunk.js",
-    "static/js/2.bf6b5422.chunk.js.map": "http://kbanach.github.io/JavaScript-Helpers/static/js/2.bf6b5422.chunk.js.map",
+    "static/js/2.827a4ed0.chunk.js": "http://kbanach.github.io/JavaScript-Helpers/static/js/2.827a4ed0.chunk.js",
+    "static/js/2.827a4ed0.chunk.js.map": "http://kbanach.github.io/JavaScript-Helpers/static/js/2.827a4ed0.chunk.js.map",
     "index.html": "http://kbanach.github.io/JavaScript-Helpers/index.html",
-    "precache-manifest.0aeb3d10929175a2bc569ee0ee144f06.js": "http://kbanach.github.io/JavaScript-Helpers/precache-manifest.0aeb3d10929175a2bc569ee0ee144f06.js",
+    "precache-manifest.4dc83df6922eb31f3d570e2956135d28.js": "http://kbanach.github.io/JavaScript-Helpers/precache-manifest.4dc83df6922eb31f3d570e2956135d28.js",
     "service-worker.js": "http://kbanach.github.io/JavaScript-Helpers/service-worker.js",
     "static/css/2.f93178fb.chunk.css.map": "http://kbanach.github.io/JavaScript-Helpers/static/css/2.f93178fb.chunk.css.map",
     "static/css/main.7015c6b5.chunk.css.map": "http://kbanach.github.io/JavaScript-Helpers/static/css/main.7015c6b5.chunk.css.map"
@@ -17,8 +17,8 @@
   "entrypoints": [
     "static/js/runtime-main.27237455.js",
     "static/css/2.f93178fb.chunk.css",
-    "static/js/2.bf6b5422.chunk.js",
+    "static/js/2.827a4ed0.chunk.js",
     "static/css/main.7015c6b5.chunk.css",
-    "static/js/main.6cb16098.chunk.js"
+    "static/js/main.5424e510.chunk.js"
   ]
 }
