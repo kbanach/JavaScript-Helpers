@@ -6,4 +6,5 @@ export interface LogVarsProps {
 
   vars: VarsState['vars'],
   rawVars: VarsState['rawVars'],
+  bracketsError: VarsState['bracketsError'],
 };

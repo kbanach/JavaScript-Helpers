@@ -8,6 +8,7 @@ import { setVars, resetVars } from "./LogVars.actions";
 const mapStateToProps = (state: RootState) => ({
   vars: state.vars.vars,
   rawVars: state.vars.rawVars,
+  bracketsError: state.vars.bracketsError,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
