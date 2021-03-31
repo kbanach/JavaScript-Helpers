@@ -3,7 +3,7 @@ import * as outputHelpers from '../helpers';
 import { SettingsValues } from '../../Settings/Settings.interface';
 
 describe('Output helpers', () => {
-  let HAPPY_PATH_DEFAULTS: Partial<SettingsValues>;
+  let HAPPY_PATH_DEFAULTS: SettingsValues;
 
   beforeEach(() => {
     // only settings that are used in code
@@ -16,7 +16,7 @@ describe('Output helpers', () => {
       variableConcatenateChar: ', ',
       variableWrapperCodePrefix: 'JSON.stringify(',
       variableWrapperCodePostfix: ", null, '\\t')",
-    };
+    } as SettingsValues;
   });
 
   describe('has method parseEmptyLine', () => {
