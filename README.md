@@ -1,6 +1,6 @@
 # JavaScript Helpers
 
-Project live preview on http://kbanach.github.io/JavaScript-Helpers
+Project live preview on https://kbanach.github.io/JavaScript-Helpers
 
 ## How to run
 
