@@ -7,7 +7,7 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
-  yarn_install:
+  install_dependencies:
     docker: 
       - image: "circleci/node:16"
     steps:
@@ -26,7 +26,7 @@ jobs:
           at: .
       - run: ls -al
   
-  test:
+  run_tests:
     docker: 
       - image: "circleci/node:16"
     steps:
@@ -49,17 +49,17 @@ jobs:
 workflows:
   test_and_deploy:
     jobs:
-      - yarn_install
+      - install_dependencies
       - log_files:
           requires:
-            - yarn_install
-      - test:
+            - install_dependencies
+      - run_tests:
           requires:
-            - yarn_install
+            - install_dependencies
       - deploy_to_githubio:
           requires:
-            - yarn_install
-            - test
-          filters:
-            branches:
-              only: /master/
+            - install_dependencies
+            - run_tests
+          # filters:
+          #   branches:
+          #     only: /master/
