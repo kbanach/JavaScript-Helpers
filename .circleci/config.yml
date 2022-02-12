@@ -7,7 +7,7 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
-  yarn_install:
+  install_dependencies:
     docker: 
       - image: "circleci/node:16"
     steps:
@@ -26,7 +26,7 @@ jobs:
           at: .
       - run: ls -al
   
-  test:
+  run_tests:
     docker: 
       - image: "circleci/node:16"
     steps:
@@ -39,9 +39,13 @@ jobs:
       - image: "circleci/node:16"
     description: Use gh-pages package to deploy to github.io
     steps:
+      - run: mkdir -p ~/.ssh                                            # prevents from 
+      - run: ssh-keyscan github.com >> ~/.ssh/known_hosts               # "The authenticity of host 'github.com (140.82.113.4)' can't be established"
+      - run: git config --global user.email "banach.krystian@gmail.com" # error while trying to push to gh-pages
+      - run: git config --global user.name "CI gh-pages bot"            #
       - add_ssh_keys:
           fingerprints:
-            - "59:ad:fd:64:71:eb:81:01:6a:d7:1a:c9:0c:19:39:af"
+            - "04:2d:53:38:f4:07:e1:66:8e:b3:01:c1:a4:1a:4a:d2"
       - attach_workspace:
           at: .
       - run: yarn deploy
@@ -49,17 +53,17 @@ jobs:
 workflows:
   test_and_deploy:
     jobs:
-      - yarn_install
+      - install_dependencies
       - log_files:
           requires:
-            - yarn_install
-      - test:
+            - install_dependencies
+      - run_tests:
           requires:
-            - yarn_install
+            - install_dependencies
       - deploy_to_githubio:
           requires:
-            - yarn_install
-            - test
+            - install_dependencies
+            - run_tests
           filters:
             branches:
               only: /master/
