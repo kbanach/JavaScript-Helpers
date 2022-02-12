@@ -12,16 +12,6 @@ jobs:
       - image: "circleci/node:16"
     steps:
       - checkout
-      - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
-      - run:
-          name: Code Has Arrived
-          command: |
-            ls -al
-            echo '^^^That should look familiar^^^'
       - run: yarn
       - persist_to_workspace:
           root: .
@@ -48,12 +38,10 @@ jobs:
     docker: 
       - image: "circleci/node:16"
     description: Use gh-pages package to deploy to github.io
-
     steps:
       - attach_workspace:
           at: .
       - run: yarn deploy
-          
 
 workflows:
   test_and_deploy:
