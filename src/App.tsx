@@ -8,6 +8,7 @@ import { LogVars } from './components/LogVars';
 import { Comment } from './components/Comment';
 import { Output } from './components/Output';
 import { Presets } from './components/Presets';
+import { Footer } from './components/Footer';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <LogVars />
       <Comment />
       <Output />
+      <Footer />
     </Container>
   );
 };
