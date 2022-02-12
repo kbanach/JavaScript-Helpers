@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "https://kbanach.github.io/JavaScript-Helpers/static/css/main.17a760c8.chunk.css",
-    "main.js": "https://kbanach.github.io/JavaScript-Helpers/static/js/main.93ddacd4.chunk.js",
-    "main.js.map": "https://kbanach.github.io/JavaScript-Helpers/static/js/main.93ddacd4.chunk.js.map",
+    "main.css": "https://kbanach.github.io/JavaScript-Helpers/static/css/main.f7577dfc.chunk.css",
+    "main.js": "https://kbanach.github.io/JavaScript-Helpers/static/js/main.0c0253ce.chunk.js",
+    "main.js.map": "https://kbanach.github.io/JavaScript-Helpers/static/js/main.0c0253ce.chunk.js.map",
     "runtime-main.js": "https://kbanach.github.io/JavaScript-Helpers/static/js/runtime-main.23527f0f.js",
     "runtime-main.js.map": "https://kbanach.github.io/JavaScript-Helpers/static/js/runtime-main.23527f0f.js.map",
     "static/css/2.3b8df3f8.chunk.css": "https://kbanach.github.io/JavaScript-Helpers/static/css/2.3b8df3f8.chunk.css",
     "static/js/2.cccfc14a.chunk.js": "https://kbanach.github.io/JavaScript-Helpers/static/js/2.cccfc14a.chunk.js",
     "static/js/2.cccfc14a.chunk.js.map": "https://kbanach.github.io/JavaScript-Helpers/static/js/2.cccfc14a.chunk.js.map",
     "index.html": "https://kbanach.github.io/JavaScript-Helpers/index.html",
-    "precache-manifest.e133fe3075a4c5e1e71582626f8e0499.js": "https://kbanach.github.io/JavaScript-Helpers/precache-manifest.e133fe3075a4c5e1e71582626f8e0499.js",
+    "precache-manifest.bdb087c73215b7c148145d9b36164ad7.js": "https://kbanach.github.io/JavaScript-Helpers/precache-manifest.bdb087c73215b7c148145d9b36164ad7.js",
     "service-worker.js": "https://kbanach.github.io/JavaScript-Helpers/service-worker.js",
     "static/css/2.3b8df3f8.chunk.css.map": "https://kbanach.github.io/JavaScript-Helpers/static/css/2.3b8df3f8.chunk.css.map",
-    "static/css/main.17a760c8.chunk.css.map": "https://kbanach.github.io/JavaScript-Helpers/static/css/main.17a760c8.chunk.css.map"
+    "static/css/main.f7577dfc.chunk.css.map": "https://kbanach.github.io/JavaScript-Helpers/static/css/main.f7577dfc.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.23527f0f.js",
     "static/css/2.3b8df3f8.chunk.css",
     "static/js/2.cccfc14a.chunk.js",
-    "static/css/main.17a760c8.chunk.css",
-    "static/js/main.93ddacd4.chunk.js"
+    "static/css/main.f7577dfc.chunk.css",
+    "static/js/main.0c0253ce.chunk.js"
   ]
 }
