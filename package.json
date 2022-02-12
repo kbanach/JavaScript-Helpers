@@ -52,7 +52,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kbanach/JavaScript-Helpers.git"
+    "url": "https://github.com/kbanach/JavaScript-Helpers.git"
   },
   "author": "kbanach",
   "license": "ISC",
