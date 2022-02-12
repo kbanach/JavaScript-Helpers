@@ -39,6 +39,9 @@ jobs:
       - image: "circleci/node:16"
     description: Use gh-pages package to deploy to github.io
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "59:ad:fd:64:71:eb:81:01:6a:d7:1a:c9:0c:19:39:af"
       - attach_workspace:
           at: .
       - run: yarn deploy
