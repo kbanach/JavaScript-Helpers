@@ -23,6 +23,10 @@ jobs:
             ls -al
             echo '^^^That should look familiar^^^'
       - run: yarn
+      - persist_to_workspace:
+          root: .
+          paths: 
+            - "*"
 
   log_files:
     docker: 
