@@ -37,6 +37,7 @@ jobs:
 workflows:
   test_and_deploy:
     jobs:
+      - checkout
       - yarn_install
       - log_files:
           requires:
