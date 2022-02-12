@@ -1,0 +1,61 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
+# See: https://circleci.com/docs/2.0/orb-intro/
+orbs:
+  node: circleci/node@4.7
+
+jobs:
+  yarn_install:
+    docker: 
+      - image: "circleci/node:16"
+    steps:
+      - checkout
+      - run: yarn
+      - persist_to_workspace:
+          root: .
+          paths: 
+            - "*"
+
+  log_files:
+    docker: 
+      - image: "circleci/node:16"
+    steps: 
+      - attach_workspace:
+          at: .
+      - run: ls -al
+  
+  test:
+    docker: 
+      - image: "circleci/node:16"
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn test
+
+  deploy_to_githubio:
+    docker: 
+      - image: "circleci/node:16"
+    description: Use gh-pages package to deploy to github.io
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn deploy
+
+workflows:
+  test_and_deploy:
+    jobs:
+      - yarn_install
+      - log_files:
+          requires:
+            - yarn_install
+      - test:
+          requires:
+            - yarn_install
+      - deploy_to_githubio:
+          requires:
+            - yarn_install
+          filters:
+            branches:
+              only: /master/
