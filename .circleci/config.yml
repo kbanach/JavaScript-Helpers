@@ -19,3 +19,9 @@ workflows:
           version: '16.10'
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: yarn
+      - deploy_to_githubio:
+          name: Use gh-pages package to deploy to github.io
+          command: yarn deploy
+          # filters:
+          #   branches:
+          #     only: /master/
