@@ -31,14 +31,19 @@ jobs:
   log_files:
     docker: 
       - image: "circleci/node:16"
-    steps:
+    steps: 
+      - attach_workspace:
+          at: .
       - run: ls -al
   
   test:
     docker: 
       - image: "circleci/node:16"
     steps:
+      - attach_workspace:
+          at: .
       - run: yarn test
+      
   deploy_to_githubio:
     docker: 
       - image: "circleci/node:16"
