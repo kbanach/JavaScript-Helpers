@@ -31,6 +31,9 @@ workflows:
   test_and_deploy:
     jobs:
       - yarn_install
+      - test:
+          requires:
+          - yarn_install
 
 
 # Invoke jobs via workflows
