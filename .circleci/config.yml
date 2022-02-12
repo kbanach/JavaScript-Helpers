@@ -45,7 +45,7 @@ jobs:
       - run: git config --global user.name "CI gh-pages bot"            #
       - add_ssh_keys:
           fingerprints:
-            - "59:ad:fd:64:71:eb:81:01:6a:d7:1a:c9:0c:19:39:af"
+            - "04:2d:53:38:f4:07:e1:66:8e:b3:01:c1:a4:1a:4a:d2"
       - attach_workspace:
           at: .
       - run: yarn deploy
