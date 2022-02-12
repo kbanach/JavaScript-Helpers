@@ -28,12 +28,11 @@ jobs:
       #     only: /master/
 
 workflows:
-  install:
+  test_and_deploy:
     jobs:
       - yarn_install
-  build:
-    jobs:
       - test
+      - deploy_to_githubio
   
 
 # Invoke jobs via workflows
