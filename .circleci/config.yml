@@ -39,8 +39,10 @@ jobs:
       - image: "circleci/node:16"
     description: Use gh-pages package to deploy to github.io
     steps:
-      - run: mkdir -p ~/.ssh                               # prevents from "The authenticity of host 'github.com (140.82.113.4)' can't be established"
-      - run: ssh-keyscan github.com >> ~/.ssh/known_hosts  # error while trying to push to gh-pages
+      - run: mkdir -p ~/.ssh                                   # prevents from 
+      - run: ssh-keyscan github.com >> ~/.ssh/known_hosts      # "The authenticity of host 'github.com (140.82.113.4)' can't be established"
+      - run: git config user.email "banach.krystian@gmail.com" # error while trying to push to gh-pages
+      - run: git config user.name "CI gh-pages bot"            #
       - add_ssh_keys:
           fingerprints:
             - "59:ad:fd:64:71:eb:81:01:6a:d7:1a:c9:0c:19:39:af"
