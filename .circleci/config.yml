@@ -43,16 +43,17 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn test
-      
+
   deploy_to_githubio:
     docker: 
       - image: "circleci/node:16"
     description: Use gh-pages package to deploy to github.io
+
     steps:
+      - attach_workspace:
+          at: .
       - run: yarn deploy
-      # filters:
-      #   branches:
-      #     only: /master/
+          
 
 workflows:
   test_and_deploy:
@@ -63,4 +64,10 @@ workflows:
             - yarn_install
       - test:
           requires:
-          - yarn_install
+            - yarn_install
+      - deploy_to_githubio:
+          requires:
+            - yarn_install
+          filters:
+            branches:
+              only: /master/
