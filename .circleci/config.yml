@@ -48,6 +48,11 @@ jobs:
             - "04:2d:53:38:f4:07:e1:66:8e:b3:01:c1:a4:1a:4a:d2"
       - attach_workspace:
           at: .
+      - run:
+        name: Add REACT_APP_BUILD_TIME variable
+        command: |
+          echo 'export REACT_APP_BUILD_TIME=$(date +"%Y-%m-%d - %H:%M:%S")' >> $BASH_ENV
+          source $BASH_ENV
       - run: yarn deploy
 
 workflows:
@@ -64,6 +69,6 @@ workflows:
           requires:
             - install_dependencies
             - run_tests
-          filters:
-            branches:
-              only: /master/
+          # filters:
+          #   branches:
+          #     only: /master/
