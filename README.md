@@ -1,6 +1,6 @@
 # JavaScript Helpers
 
-[![JavaScript Helpers build status](https://circleci.com/gh/kbanach/JavaScript-Helpers.svg?style=shield)](https://app.circleci.com/pipelines/github/kbanach/JavaScript-Helpers?filter=all)
+[![JavaScript Helpers build status](https://circleci.com/gh/kbanach/JavaScript-Helpers/tree/master.svg?&style=shield)](https://app.circleci.com/pipelines/github/kbanach/JavaScript-Helpers?filter=all)
 
 
 Project live preview on https://kbanach.github.io/JavaScript-Helpers
