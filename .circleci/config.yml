@@ -69,6 +69,6 @@ workflows:
           requires:
             - install_dependencies
             - run_tests
-          # filters:
-          #   branches:
-          #     only: /master/
+          filters:
+            branches:
+              only: /master/
