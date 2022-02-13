@@ -1,5 +1,8 @@
 # JavaScript Helpers
 
+[![JavaScript Helpers build status](https://circleci.com/gh/kbanach/JavaScript-Helpers.svg?style=shield)](https://app.circleci.com/pipelines/github/kbanach/JavaScript-Helpers?filter=all)
+
+
 Project live preview on https://kbanach.github.io/JavaScript-Helpers
 
 ## How to run
@@ -20,7 +23,7 @@ Which will open the browser.
 
 ## Deployment to gh-pages
 
-Every merge to `master` is deployed by Travis CI.
+Every merge to `master` is deployed by CircleCI.
 
 ## Notes
 
