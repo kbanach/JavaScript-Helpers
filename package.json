@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "REACT_APP_BUILD_TIME=$(date +\"%Y-%m-%d - %H:%M:%S\") gh-pages -d build --message \"[skip ci] Updates\""
+    "deploy": "gh-pages -d build --message \"[skip ci] Updates\""
   },
   "eslintConfig": {
     "extends": "react-app"
