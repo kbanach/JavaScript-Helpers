@@ -21,9 +21,9 @@ yarn start
 
 Which will open the browser.
 
-## Deployment to gh-pages
+## Release
 
-Every merge to `master` is deployed by CircleCI.
+Every merge to `master` is deployed by CircleCI to gh-pages
 
 ## Notes
 
