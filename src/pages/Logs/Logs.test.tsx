@@ -3,11 +3,11 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import {Logs} from './Logs';
-import {Presets} from '../components/Presets';
-import {Settings} from '../components/Settings';
-import {LogVars} from '../components/LogVars';
-import {Comment} from '../components/Comment';
-import {Output} from '../components/Output';
+import {Presets} from '../../components/Presets';
+import {Settings} from '../../components/Settings';
+import {LogVars} from '../../components/LogVars';
+import {Comment} from '../../components/Comment';
+import {Output} from '../../components/Output';
 
 configure({ adapter: new Adapter() });
 

@@ -3,7 +3,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import App from './App';
-import { Logs } from './pages/Logs';
+import { Logs } from './pages/';
 
 configure({ adapter: new Adapter() });
 
@@ -13,5 +13,4 @@ describe('root App component', () => {
   it(`should have Logs mounted`, () => {
     expect(rootApp.contains(<Logs />)).toBe(true);
   });
-
 });
