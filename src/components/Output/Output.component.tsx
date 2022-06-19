@@ -43,10 +43,11 @@ export const OutputComponent: React.FC<OutputComponentProps> = ({
 
   return (
     <div className="output card">
-
       {/* TODO: remmove code duplication of <pre> with copy on click for TableOfContents and Output */}
       <pre
-        className={`card-body ${copiedFlag ? 'output__copied' : ''} ${hideCopiedPopup ? 'hide-popup' : ''}`}
+        className={`card-body ${copiedFlag ? 'output__copied' : ''} ${
+          hideCopiedPopup ? 'hide-popup' : ''
+        }`}
       >
         <code
           onClick={async () => {

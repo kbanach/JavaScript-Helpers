@@ -1,7 +1,10 @@
 import { SettingsActions } from './Settings.actions';
 import { AnyAction } from 'redux';
-import { PresetNames, SettingsValues, SettingsState } from './Settings.interface';
-
+import {
+  PresetNames,
+  SettingsValues,
+  SettingsState,
+} from './Settings.interface';
 
 const settingsInitialState = {
   currentPreset: PresetNames.DEFAULT,

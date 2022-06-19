@@ -30,7 +30,6 @@ Temporary Items
 
 ### Node ###
 # Logs
-logs
 *.log
 npm-debug.log*
 
@@ -116,3 +115,6 @@ bower_components
 /app/scripts/directives/*.js
 /app/scripts/directives/*.js.map
 /node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/

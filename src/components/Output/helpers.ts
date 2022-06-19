@@ -4,7 +4,10 @@ function wrapLineInPreAndPostFix(settings: SettingsValues, line: string) {
   return `${settings.lineStart}${line}${settings.lineEnd}`;
 }
 
-function wrapStringWithEscaperChar(settings: SettingsValues, stringToWrap: string) {
+function wrapStringWithEscaperChar(
+  settings: SettingsValues,
+  stringToWrap: string,
+) {
   return settings.charEscaper + stringToWrap + settings.charEscaper;
 }
 
