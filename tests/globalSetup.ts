@@ -22,7 +22,7 @@ export default async function (
   const publicUrl = 'http://localhost:3000';
 
   try {
-    console.log('Starging build');
+    console.log('Starting build');
     execSync('yarn build', {
       cwd: rootDir,
       env: { ...process.env, PUBLIC_URL: publicUrl },
