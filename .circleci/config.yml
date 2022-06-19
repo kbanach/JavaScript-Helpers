@@ -13,10 +13,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: playwright-browsers-cache-{{ checksum "package-lock.json" }}
+          key: playwright-browsers-cache-{{ checksum "yarn.lock" }}
       - run: yarn
       - save_cache:
-          key: playwright-browsers-cache-{{ checksum "package-lock.json" }}
+          key: playwright-browsers-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.npm
       - persist_to_workspace:
