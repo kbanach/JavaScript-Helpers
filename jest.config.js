@@ -80,7 +80,7 @@ module.exports = {
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '\\.(css|less)$': '<rootDir>/src/__mocks__/styleMock.js'
+    '\\.(css|less)$': '<rootDir>/src/__mocks__/styleMock.js',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -117,9 +117,7 @@ module.exports = {
   // rootDir: null,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: [
-    "<rootDir>/src"
-  ],
+  roots: ['<rootDir>/src'],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -134,7 +132,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-jsdom",
+  testEnvironment: 'jest-environment-jsdom',
   // testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
@@ -150,9 +148,7 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    "/node_modules/"
-  ],
+  testPathIgnorePatterns: ['/node_modules/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -173,9 +169,7 @@ module.exports = {
   // transform: null,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: [
-    "/node_modules/"
-  ],
+  transformIgnorePatterns: ['/node_modules/'],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
