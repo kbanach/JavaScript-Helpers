@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { browser, page } from 'playwright';
 
-test('basic smoke test', async ({ page }) => {
+it('basic smoke test', async () => {
   await page.goto('https://kbanach.github.io/JavaScript-Helpers/', { waitUntil: 'domcontentloaded' });
   await page.waitForSelector('#root nav.nav-tabs');
   const tabs = page.locator('#root nav.nav-tabs a:nth-child(1)');
-  await expect(tabs).toHaveText('Logs Generator');
+  await expect(tabs.toString()).toContain('Logs Generator');
 });
