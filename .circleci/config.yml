@@ -18,7 +18,7 @@ jobs:
       - save_cache:
           key: playwright-browsers-cache-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.npm
+            - ~/.cache/yarn
       - persist_to_workspace:
           root: .
           paths: 
