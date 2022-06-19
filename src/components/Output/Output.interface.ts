@@ -1,6 +1,6 @@
-import { CommentState } from "../Comment";
-import { VarsState } from "../LogVars";
-import { SettingsState } from "../Settings";
+import { CommentState } from '../Comment';
+import { VarsState } from '../LogVars';
+import { SettingsState } from '../Settings';
 
 export interface OutputComponentStateProps {
   vars: VarsState['vars'];

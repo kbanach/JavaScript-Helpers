@@ -22,4 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch): LogVarsDispatchProps => ({
   },
 });
 
-export const LogVars = connect(mapStateToProps, mapDispatchToProps)(LogVarsComponent);
+export const LogVars = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LogVarsComponent);

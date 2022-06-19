@@ -1,4 +1,4 @@
-import { PresetNames, SettingsValues } from ".";
+import { PresetNames, SettingsValues } from '.';
 
 export const SettingsActions = {
   LOAD_PRESET: 'LOAD_PRESET',

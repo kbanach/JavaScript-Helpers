@@ -1,45 +1,46 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
 import './TableOfContents.css';
 
 const getTitlesOnly = (fileContent: string): string[] => {
-    return fileContent.split('\n').filter(s => s.startsWith('#'));
-}
+  return fileContent.split('\n').filter((s) => s.startsWith('#'));
+};
 
 const cleanupReadmeTitle = (titleLine: string): [string, number] => {
-    const matches: number = titleLine.match(/#/g)?.length ?? 0;
-    const titleWithoutHash = titleLine.replace(/#* /i, '');
+  const matches: number = titleLine.match(/#/g)?.length ?? 0;
+  const titleWithoutHash = titleLine.replace(/#* /i, '');
 
-    return [titleWithoutHash, matches];
-}
+  return [titleWithoutHash, matches];
+};
 
 const getTableOfContentsFromDoc = (doc: string) => {
-    return getTitlesOnly(doc)
-        .map((fileLine) => {
-            const [line, deepth] = cleanupReadmeTitle(fileLine);
+  return getTitlesOnly(doc)
+    .map((fileLine) => {
+      const [line, deepth] = cleanupReadmeTitle(fileLine);
 
-            if (deepth === 1) {
-                return '';
-            }
+      if (deepth === 1) {
+        return '';
+      }
 
-            let indent = '';
+      let indent = '';
 
-            if (deepth > 2) {
-                indent += ' '.repeat(4 * (deepth - 2));
-            }
+      if (deepth > 2) {
+        indent += ' '.repeat(4 * (deepth - 2));
+      }
 
-            const escapedAnchor = line.toLowerCase()
-                .replace(/ /ig, '-')
-                .split('')
-                .filter((ch: string) => /[-\w]/ig.test(ch))
-                .join('');
+      const escapedAnchor = line
+        .toLowerCase()
+        .replace(/ /gi, '-')
+        .split('')
+        .filter((ch: string) => /[-\w]/gi.test(ch))
+        .join('');
 
-            return `${indent}1. [${line}](#${escapedAnchor})`;
-        })
-        .filter(Boolean)
-        .join('\n');
-}
+      return `${indent}1. [${line}](#${escapedAnchor})`;
+    })
+    .filter(Boolean)
+    .join('\n');
+};
 
 const defaultText = `\
 # The title, which is ignored
@@ -68,43 +69,56 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 `;
 
 async function copyToClipboard(text: string): Promise<void> {
-    navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(text);
 }
 
 export const TheTableOfContents = () => {
-    const [copiedFlag, setCopiedFlag] = useState<Boolean>(false);
-    const [hideCopiedPopup, setHideCopiedPopup] = useState<Boolean>(false);
-    const [input, setInput] = useState<string>(defaultText);
-    const [tableOfContents, setTableOfContents] = useState<string>('');
+  const [copiedFlag, setCopiedFlag] = useState<Boolean>(false);
+  const [hideCopiedPopup, setHideCopiedPopup] = useState<Boolean>(false);
+  const [input, setInput] = useState<string>(defaultText);
+  const [tableOfContents, setTableOfContents] = useState<string>('');
 
-    const addCopiedPopup = () => {
-        setHideCopiedPopup(false);
-        setCopiedFlag(true);
+  const addCopiedPopup = () => {
+    setHideCopiedPopup(false);
+    setCopiedFlag(true);
 
-        setTimeout(() => {
-            setHideCopiedPopup(true);
-        }, 1000);
-    }
+    setTimeout(() => {
+      setHideCopiedPopup(true);
+    }, 1000);
+  };
 
-    useEffect(() => {
-        setTableOfContents(getTableOfContentsFromDoc(input));
-    }, [input]);
+  useEffect(() => {
+    setTableOfContents(getTableOfContentsFromDoc(input));
+  }, [input]);
 
-    return (<div className="table-of-contents">
-        <div className="card">
-            {/* TODO: remmove code duplication of <pre> with copy on click for TableOfContents and Output */}
-            <pre className={`card-body ${copiedFlag ? 'table-of-contents__copied' : ''} ${hideCopiedPopup ? 'hide-popup' : ''}`}>
-                <code
-                    onClick={async () => {
-                        await copyToClipboard(tableOfContents);
-                        addCopiedPopup();
-                    }}
-                >{tableOfContents}</code>
-            </pre>
-        </div>
-        <br />
+  return (
+    <div className="table-of-contents">
+      <div className="card">
+        {/* TODO: remmove code duplication of <pre> with copy on click for TableOfContents and Output */}
+        <pre
+          className={`card-body ${
+            copiedFlag ? 'table-of-contents__copied' : ''
+          } ${hideCopiedPopup ? 'hide-popup' : ''}`}
+        >
+          <code
+            onClick={async () => {
+              await copyToClipboard(tableOfContents);
+              addCopiedPopup();
+            }}
+          >
+            {tableOfContents}
+          </code>
+        </pre>
+      </div>
+      <br />
 
-
-        <Form.Control as="textarea" onChange={(e) => setInput(e.target.value)} rows={20} style={{ width: '100%' }} value={input} />
-    </div>)
-}
+      <Form.Control
+        as="textarea"
+        onChange={(e) => setInput(e.target.value)}
+        rows={20}
+        style={{ width: '100%' }}
+        value={input}
+      />
+    </div>
+  );
+};

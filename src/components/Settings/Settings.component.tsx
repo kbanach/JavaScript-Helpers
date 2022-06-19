@@ -119,14 +119,18 @@ export const SettingsComponent: React.FC<SettingsComponentProps> = (props) => {
             />
             <HorizontalInput
               label="Variable wrapper prefix"
-              onChange={(prefix: SettingsValues['variableWrapperCodePrefix']) => {
+              onChange={(
+                prefix: SettingsValues['variableWrapperCodePrefix'],
+              ) => {
                 props.onChange({ variableWrapperCodePrefix: prefix });
               }}
               value={props.variableWrapperCodePrefix}
             />
             <HorizontalInput
               label="Variable wrapper postfix"
-              onChange={(postfix: SettingsValues['variableWrapperCodePostfix']) => {
+              onChange={(
+                postfix: SettingsValues['variableWrapperCodePostfix'],
+              ) => {
                 props.onChange({ variableWrapperCodePostfix: postfix });
               }}
               value={props.variableWrapperCodePostfix}

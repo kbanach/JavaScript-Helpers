@@ -15,4 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch): PresetsDispatchProps => ({
   },
 });
 
-export const Presets = connect(mapStateToProps, mapDispatchToProps)(PresetsComponent);
+export const Presets = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PresetsComponent);
