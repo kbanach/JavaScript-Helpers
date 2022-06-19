@@ -1,11 +1,13 @@
 {
   "name": "javascript-helpers",
   "description": "JS Development helpers - use them if you need them",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:local": "PUBLIC_URL=http://localhost:3000/ yarn build",
+    "serve": "serve build/",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "jest",
     "test:e2e": "jest --config jest.e2e-config.js",
@@ -24,6 +26,7 @@
     "@types/react": "^16.9.32",
     "@types/react-dom": "^16.9.6",
     "@types/react-redux": "^7.1.7",
+    "@types/serve-handler": "^6.1.1",
     "bootstrap": "4.3.1",
     "gh-pages": "^2.1.1",
     "jest": "28",
@@ -36,7 +39,9 @@
     "react-redux": "7.1.1",
     "react-scripts": "3.2.0",
     "redux": "4.0.4",
+    "serve": "^13.0.2",
     "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
     "typescript": "^4.7.4"
   },
   "devDependencies": {
@@ -66,6 +71,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.1.1",
+    "**/@typescript-eslint/parser": "^4.1.1"
   },
   "repository": {
     "type": "git",
