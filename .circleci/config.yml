@@ -12,7 +12,13 @@ jobs:
       - image: "circleci/node:16"
     steps:
       - checkout
+      - restore_cache:
+          key: playwright-browsers-cache-{{ checksum "yarn.lock" }}
       - run: yarn
+      - save_cache:
+          key: playwright-browsers-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.npm
       - persist_to_workspace:
           root: .
           paths: 
@@ -26,13 +32,23 @@ jobs:
           at: .
       - run: ls -al
   
-  run_tests:
+  run_unit_tests:
     docker: 
       - image: "circleci/node:16"
     steps:
       - attach_workspace:
           at: .
-      - run: yarn test
+      - run: yarn test:unit
+
+  run_e2e_tests:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.22.0-focal
+    environment:
+      NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn test:e2e
 
   deploy_to_githubio:
     docker: 
@@ -62,13 +78,17 @@ workflows:
       - log_files:
           requires:
             - install_dependencies
-      - run_tests:
+      - run_unit_tests:
+          requires:
+            - install_dependencies
+      - run_e2e_tests:
           requires:
             - install_dependencies
       - deploy_to_githubio:
           requires:
             - install_dependencies
-            - run_tests
+            - run_unit_tests
+            - run_e2e_tests
           filters:
             branches:
               only: /master/
