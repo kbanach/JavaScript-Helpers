@@ -21,20 +21,30 @@ const App = () => {
           <Tabs
             id="controlled-tab"
             activeKey={key}
-            onSelect={(k) => { k && setKey(k); }}
+            onSelect={(k) => {
+              k && setKey(k);
+            }}
           >
-            <Tab eventKey={Pages.LOGS} title={Pages.LOGS} className="app__page app__tab-logs-generator">
+            <Tab
+              eventKey={Pages.LOGS}
+              title={Pages.LOGS}
+              className="app__page app__tab-logs-generator"
+            >
               <Logs />
             </Tab>
-            <Tab eventKey={Pages.TABLE_OF_CONTENTS} title={Pages.TABLE_OF_CONTENTS}  className="app__page">
+            <Tab
+              eventKey={Pages.TABLE_OF_CONTENTS}
+              title={Pages.TABLE_OF_CONTENTS}
+              className="app__page"
+            >
               <TheTableOfContents />
             </Tab>
           </Tabs>
-        <Footer />
+          <Footer />
         </Col>
       </Row>
     </Container>
-  )
+  );
 };
 
 export default App;
