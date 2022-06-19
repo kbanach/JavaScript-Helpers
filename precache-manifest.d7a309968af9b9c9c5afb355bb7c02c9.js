@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7a30055341410bd2726edd1e70788a97",
+    "revision": "3e330efd1c1846f65138e22c7011edf1",
     "url": "https://kbanach.github.io/JavaScript-Helpers/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://kbanach.github.io/JavaScript-Helpers/static/css/2.73a3c38b.chunk.css"
   },
   {
-    "revision": "604fc74bc4c14519d226",
+    "revision": "900273494e1074cdef8a",
     "url": "https://kbanach.github.io/JavaScript-Helpers/static/css/main.552b0abb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://kbanach.github.io/JavaScript-Helpers/static/js/2.da399a29.chunk.js"
   },
   {
-    "revision": "604fc74bc4c14519d226",
-    "url": "https://kbanach.github.io/JavaScript-Helpers/static/js/main.80a22dd9.chunk.js"
+    "revision": "900273494e1074cdef8a",
+    "url": "https://kbanach.github.io/JavaScript-Helpers/static/js/main.5cc6b1d4.chunk.js"
   },
   {
     "revision": "2132fa8bd39523fcb4fd",
